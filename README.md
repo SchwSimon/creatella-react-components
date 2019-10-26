@@ -37,11 +37,11 @@ class Example extends Component {
 ## Configure custom styling
 
 1) see `./src/styles/styles.scss`
-    '-> `@import '_vars';`          Variables
-    '-> `@import '_normalize';`     Some normalization
-    '-> `@import '_mixins';`        Mixins
-    '-> `@import '_global';`        Global use classes & ids
-    '-> `@import '_components';`    Override / extend component styles
+- `@import '_vars';`          Variables
+- `@import '_normalize';`     Some normalization
+- `@import '_mixins';`        Mixins
+- `@import '_global';`        Global use classes & ids
+- `@import '_components';`    Override / extend component styles
 
 ```scss
 // _vars.scss
@@ -76,7 +76,7 @@ import { BUTTON_CLASSNAMES } from 'config/style';
 
 ## Components
 
-### <Button />
+- <Button />
 
 (additional props will be passed to the main container)
 ```jsx
@@ -97,7 +97,7 @@ import { BUTTON_CLASSNAMES } from 'config/style';
 />
 ```
 
-### <ActivityIndicator />
+- <ActivityIndicator />
 
 ```jsx
 <ActivityIndicator
@@ -108,7 +108,7 @@ import { BUTTON_CLASSNAMES } from 'config/style';
 />
 ```
 
-### <OutsideClick />
+- <OutsideClick />
 
 :exclamation: Requires children
 (additional props will be passed to the main container)
