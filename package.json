@@ -1,17 +1,16 @@
 {
   "name": "creatella-react-components",
   "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0"
-  },
+  "description": "Createllas React Components Library",
+  "author": "SchwSimon",
+  "license": "MIT",
+  "repository": "SchwSimon/creatella-react-components",
+  "dependencies": {},
+  "sideEffects": false,
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build-lib": "rimraf ./lib/ && babel ./src/lib --out-dir ./lib --copy-files"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,5 +26,21 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "peerDependencies": {
+    "node-sass": "^4.13.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-react": "^7.6.3",
+    "node-sass": "^4.13.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-scripts": "^3.2.0",
+    "rimraf": "^3.0.0"
   }
 }
