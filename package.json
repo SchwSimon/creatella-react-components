@@ -1,6 +1,6 @@
 {
   "name": "creatella-react-components",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Createllas React Components Library",
   "author": "SchwSimon",
   "license": "MIT",
@@ -10,9 +10,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build-lib": "babel ./src/lib --out-dir ./lib --copy-files",
-    "clean-lib-folder": "rimraf ./lib/",
-    "commit-push": "git add * && git commit -m . && git push origin master",
+    "build-lib": "babel ./src/lib --out-dir ./lib --copy-files && delay 1",
+    "clean-lib-folder": "rimraf ./lib/ && delay 1",
+    "commit-push": "git add * && git commit -m . && git push origin master && delay 1",
     "pub": "yarn clean-lib-folder && yarn build-lib && yarn commit-push && npm publish"
   },
   "eslintConfig": {
@@ -36,11 +36,12 @@
     "react-dom": "^16.11.0"
   },
   "devDependencies": {
-    "creatella-react-components": "^0.1.1",
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-react": "^7.6.3",
+    "creatella-react-components": "^0.1.2",
+    "delay-cli": "^1.1.0",
     "node-sass": "^4.13.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
