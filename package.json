@@ -10,7 +10,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build-lib": "rimraf ./lib/ && babel ./src/lib --out-dir ./lib --copy-files"
+    "build-lib": "rimraf ./lib/ && babel ./src/lib --out-dir ./lib --copy-files",
+    "pub": "yarn build-lib && git push origin master"
   },
   "eslintConfig": {
     "extends": "react-app"
