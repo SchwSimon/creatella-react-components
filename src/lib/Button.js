@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import ActivityIndicator from './ActivityIndicator';
-import './Button/Button.scss';
 
 export default class Button extends PureComponent {
     static propTypes = {
@@ -10,15 +9,16 @@ export default class Button extends PureComponent {
         classNameLink: PropTypes.string,
         classNameDisabled: PropTypes.string,
         classNameProcessing: PropTypes.string,
+        classNameActivityIndicator: PropTypes.string,
+        label: PropTypes.string,
         route: PropTypes.string,
         routeProps: PropTypes.object,
-        label: PropTypes.string,
         isDisabled: PropTypes.bool,
         isProcessing: PropTypes.bool,
-        onClick: PropTypes.func,
-        children: PropTypes.any,
         debounceTime: PropTypes.number,
-        sizeActivityIndicator: PropTypes.number
+        sizeActivityIndicator: PropTypes.number,
+        onClick: PropTypes.func,
+        children: PropTypes.any
     }
 
     static defaultProps = {
@@ -69,12 +69,13 @@ export default class Button extends PureComponent {
 
     render() {
         const {
-            className, classNameDisabled, classNameProcessing, classNameLink, classNameActivityIndicator,
-            route, routeProps, label, isDisabled, isProcessing, children, sizeActivityIndicator
+            className, classNameDisabled, classNameProcessing, classNameLink, classNameActivityIndicator, onClick,
+            label, route, routeProps, isDisabled, isProcessing, children, sizeActivityIndicator, debounceTime, ...props
         } = this.props;
 
         return (
             <span
+                {...props}
                 className={`Button ${isDisabled ? `Button--disabled ${classNameDisabled}` : ''} ${isProcessing ? `Button--processing ${classNameProcessing}` : ''} ${className}`}
                 onClick={this.onClick}>
                 {isProcessing
@@ -88,7 +89,7 @@ export default class Button extends PureComponent {
                                 pathname: route,
                                 state: routeProps
                             }}>
-                            {children ? children : label}
+                            {children || label}
                         </Link>
                         : children || label
                 }

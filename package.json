@@ -12,7 +12,8 @@
     "build": "react-scripts build",
     "build-lib": "babel ./src/lib --out-dir ./lib --copy-files && delay 1",
     "clean-lib-folder": "rimraf ./lib/ && delay 1",
-    "commit-push": "git add * && git commit -m . && git push origin master && delay 1",
+    "commit-push": "git add * && git commit -m \"update build\" && git push origin master && delay 1",
+    "lint": "eslint src/.",
     "pub": "yarn clean-lib-folder && yarn build-lib && yarn commit-push && npm publish"
   },
   "eslintConfig": {
@@ -33,7 +34,8 @@
   "peerDependencies": {
     "node-sass": "^4.13.0",
     "react": "^16.11.0",
-    "react-dom": "^16.11.0"
+    "react-dom": "^16.11.0",
+    "react-router-dom": "^16.11.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
@@ -42,11 +44,23 @@
     "@babel/preset-react": "^7.6.3",
     "creatella-react-components": "^0.1.2",
     "delay-cli": "^1.1.0",
+    "eslint-config-idiomatic": "^4.0.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^3.0.9",
     "node-sass": "^4.13.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "^3.2.0",
     "rimraf": "^3.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
   },
   "files": [
     "lib"

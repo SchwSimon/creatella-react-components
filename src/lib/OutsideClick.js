@@ -58,7 +58,7 @@ export default class OutsideClick extends PureComponent {
         const { onOutsideClick, children, event, ...props } = this.props;
 
         return (
-            <div ref={this.REF} {...props}>
+            <div {...props} ref={this.REF}>
                 {children}
             </div>
         );

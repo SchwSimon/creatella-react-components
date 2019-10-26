@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
-import './ActivityIndicator/ActivityIndicator.scss';
 
 export default class ActivityIndicator extends PureComponent {
     static propTypes = {

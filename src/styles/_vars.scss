@@ -1,0 +1,97 @@
+//-------------------------------------//
+// MEDIA QUERIES
+$media-lg: 1200px;
+$media-md: 992px;
+$media-sm: 768px;
+$media-xs: 480px;
+
+//-------------------------------------//
+// COLORS
+
+$background-color-body: #ececec;
+$color-body: #334150;
+
+$color-green: #35D367;
+$color-red: #E63939;
+$color-lightgray: #E1E8EE;
+
+$color-link: $background-color-body;
+$color-link-hover: lighten($background-color-body, 4%);
+
+//-------------------------------------//
+// FONTS
+
+$font-family-body: 'Poppins', Arial, Sans-Serif;
+$font-color-body: $color-body;
+$font-size-body: 14px;
+
+$font-light: 300;
+$font-normal: 400;
+$font-medium: 500;
+$font-bold: 700;
+$font-bolder: 900;
+
+
+//-------------------------------------//
+// SPACING
+
+$spacing: 20px;
+$spacing-half: $spacing / 2;
+$spacing-double: $spacing * 2;
+$spacing-third: $spacing * 3;
+
+//-------------------------------------//
+// Global Variables
+
+// Radius
+$border-radius-small: 3px;
+$border-radius-medium: 6px;
+$border-radius-large: 9px;
+
+// Box Shadow
+$box-shadow-light: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+$box-shadow-medium: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+$box-shadow-heavy: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+//-------------------------------------//
+// App Variables
+
+// App Header
+$AppHeader-height: 60px;
+$AppHeader-background-color: gray;
+
+// App Header Nav
+// $appheadernav-width: 240px;
+// $appheadernav-transition-duration: 160ms;
+
+//-------------------------------------//
+// Component Variables
+
+// ActivityIndicator
+$ActivityIndicator-stroke: red;
+
+
+// Checkbox
+// $checkbox-fontsize-icon: 14px;
+// $checkbox-fontsize-text: 14px;
+// $checkbox-color-main: $color-brand-blue;
+// $checkbox-border-radius: 4px;
+
+// Form Control
+// $formcontrol-label-fontsize: 16px;
+// $formcontrol-fontsize: 14px;
+// $formcontrol-height: 42px;
+// $formcontrol-padding: 0 $spacing;
+// $formcontrol-border-radius: 6px;
+// $formcontrol-border-width: 2px;
+// $formcontrol-background-color: #fff;
+// $formcontrol-color-main: $color-brand-blue;
+// $formcontrol-color-readonly: #fff;
+// $formcontrol-background-color-readonly: lighten($color-brand-blue, 5);
+// $formcontrol-color-placeholder: lighten($color-brand-blue, 25);
+
+// ItemPicker
+// $itempicker-border-radius: $formcontrol-border-radius;
+// $itempicker-border-width: $formcontrol-border-width;
+// $itempicker-color-main: $formcontrol-color-main;
+// $itempicker-background-color: $formcontrol-background-color;

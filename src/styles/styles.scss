@@ -1,0 +1,39 @@
+/*
+ * Custom App Component Styling
+ */
+@import '_vars';
+@import '_normalize';
+@import '_mixins';
+@import '_global';
+@import '_components';
+
+.AppHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $AppHeader-height;
+    background-color: $AppHeader-background-color;
+}
+
+.App {
+    &__h1 {
+        margin-left: $spacing;
+        margin-top: $spacing-double;
+        margin-bottom: $spacing;
+    }
+
+    &__loading {
+        margin: 0 $spacing-double;
+    }
+
+    &__button {
+        box-shadow: $box-shadow-light;
+        border-radius: $border-radius-medium;
+        margin: 0 $spacing;
+        border: 1px solid gray;
+        height: 30px;
+        min-width: 80px;
+        padding: 0 $spacing-half;
+    }
+}

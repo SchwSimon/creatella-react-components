@@ -6,6 +6,10 @@ $duration: 1.5s;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    stroke: #000;
+    line-height: 1;
+    font-size: 11px;
+    color: gray;
 
     &__spinner {
         animation: rotator $duration linear infinite;

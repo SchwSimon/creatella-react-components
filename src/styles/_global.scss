@@ -1,28 +1,17 @@
-html, body {
-    min-height: 100%;
-    height: 100%;
-    background-color: $color-body-background;
-}
-
 #root {
     height: 100%;
 }
 
-// with header
-#app-wrap {
+.App {
     height: 100%;
-    padding-top: $appheader-height;
+
+    &--withHeader {
+        padding-top: $AppHeader-height;
+    }
 }
 
-.page-wrap {
+.main {
     height: 100%;
-}
-
-.page-activity {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: $spacing-third;
 }
 
 .flex-row {
@@ -60,22 +49,9 @@ html, body {
     align-items: center;
 }
 
-.flex-1 {
-    flex: 1;
-}
-
-.flex-2 {
-    flex: 2;
-}
-
-.flex-3 {
-    flex: 3;
-}
-
-.flex-4 {
-    flex: 4;
-}
-
-.flex-5 {
-    flex: 5;
-}
+.flex-1 { flex: 1; }
+.flex-2 { flex: 2; }
+.flex-3 { flex: 3; }
+.flex-4 { flex: 4; }
+.flex-5 { flex: 5; }
+.flex-6 { flex: 6; }
