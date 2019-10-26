@@ -11,7 +11,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build-lib": "rimraf ./lib/ && babel ./src/lib --out-dir ./lib --copy-files",
-    "pub": "yarn build-lib && git push origin master"
+    "commit-push": "git add * && git commit -m . && git push origin master",
+    "pub": "yarn build-lib && yarn commit-push"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -43,5 +44,8 @@
     "react-dom": "^16.11.0",
     "react-scripts": "^3.2.0",
     "rimraf": "^3.0.0"
-  }
+  },
+  "files": [
+    "lib"
+  ]
 }
