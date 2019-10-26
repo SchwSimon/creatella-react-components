@@ -1,32 +1,16 @@
 import React, { Component } from 'react';
-import CompA from './lib/CompA';
-import CompB from './lib/CompB';
-// import CompA from 'creatella-react-components/lib/CompA';
-import './App.scss';
+import ActivityIndicator from './lib/ActivityIndicator';
+import './lib/styles.scss';
 
 export default class App extends Component {
-  render() {
-    return (
-        <div className="App">
-          <header className="App-header">
+    render() {
+        return (
+            <div className="App">
+                <ActivityIndicator />
 
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
-
-          <CompA />
-
-          <CompB />
-        </div>
-    )
-  }
+                <ActivityIndicator
+                    info='This is a info text, going on a bit more.' />
+            </div>
+        );
+    }
 }

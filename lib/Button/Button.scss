@@ -1,0 +1,34 @@
+@import '../styles/_variables';
+
+.Button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+
+    &--disabled,
+    &--processing {
+        pointer-events: none;
+    }
+
+    &__link {
+        display: inherit;
+        flex-direction: inherit;
+        justify-content: inherit;
+        align-items: inherit;
+        text-align: inherit;
+        cursor: inherit;
+        user-select: inherit;
+        height: 100%;
+        width: 100%;
+
+        &:link,
+        &:hover,
+        &:focus,
+        &:visited {
+            color: inherit;
+        }
+    }
+}

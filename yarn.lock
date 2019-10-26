@@ -2870,6 +2870,13 @@ creatella-react-components@^0.1.0:
   resolved "https://registry.yarnpkg.com/creatella-react-components/-/creatella-react-components-0.1.0.tgz#d4b5ae3d5112c56d61b73a6e8157d155009735ed"
   integrity sha512-8ATWcF6e+5PwQahy1P16/9cqklljLef6ZynMb5gIoOhNsm5QFtTBpqj0DYOzQIZ5eQZ1gk1wGHuw1Mhjb58sDA==
 
+creatella-react-components@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/creatella-react-components/-/creatella-react-components-0.1.1.tgz#2fa173ae0c885b021c6fcdb0c49b788a1dfb8869"
+  integrity sha512-Rd/ew5q2Z1xQtbY28ixu5HzgCP7kdGzF2K3R5+/0EuH70l+hRbD/xA4Q2rb9bqOshbjl+HGzd6YPXw6Om4iP/w==
+  dependencies:
+    creatella-react-components "^0.1.0"
+
 cross-spawn@6.0.5, cross-spawn@^6.0.0, cross-spawn@^6.0.5:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"

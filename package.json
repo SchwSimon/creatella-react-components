@@ -1,13 +1,11 @@
 {
   "name": "creatella-react-components",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Createllas React Components Library",
   "author": "SchwSimon",
   "license": "MIT",
   "repository": "SchwSimon/creatella-react-components",
-  "dependencies": {
-    "creatella-react-components": "^0.1.0"
-  },
+  "dependencies": {},
   "sideEffects": false,
   "scripts": {
     "start": "react-scripts start",
@@ -38,6 +36,7 @@
     "react-dom": "^16.11.0"
   },
   "devDependencies": {
+    "creatella-react-components": "^0.1.1",
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
     "@babel/plugin-proposal-class-properties": "^7.5.5",

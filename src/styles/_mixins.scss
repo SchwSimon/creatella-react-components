@@ -1,0 +1,26 @@
+//-------------------------------------//
+// mixins for media queries
+
+@mixin screen-lg {
+    @media (max-width: $media-lg) {
+        @content;
+    }
+}
+
+@mixin screen-md {
+    @media (max-width: $media-md) {
+        @content;
+    }
+}
+
+@mixin screen-sm {
+    @media (max-width: $media-sm) {
+        @content;
+    }
+}
+
+@mixin screen-xs {
+    @media (max-width: $media-xs) {
+        @content;
+    }
+}

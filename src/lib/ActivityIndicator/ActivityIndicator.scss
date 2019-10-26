@@ -1,0 +1,59 @@
+$offset: 187;
+$duration: 1.5s;
+
+.ActivityIndicator {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &__spinner {
+        animation: rotator $duration linear infinite;
+        stroke: inherit;
+
+        &-path {
+            stroke: inherit;
+            stroke-dasharray: $offset;
+            stroke-dashoffset: 0;
+            transform-origin: center;
+            animation: dash $duration ease-in-out infinite;
+        }
+    }
+
+    &__info {
+        position: absolute;
+        text-align: center;
+        top: 100%;
+        width: 100px;
+        margin-top: 2px;
+        line-height: inherit;
+        font-size: inherit;
+        color: inherit;
+    }
+}
+
+@keyframes rotator {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(270deg);
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: $offset;
+    }
+
+    50% {
+        stroke-dashoffset: $offset / 4;
+        transform: rotate(135deg);
+    }
+
+    100% {
+        stroke-dashoffset: $offset;
+        transform: rotate(450deg);
+    }
+}

@@ -1,0 +1,63 @@
+.form-group {
+    margin-bottom: 0;
+
+    .form-label {
+        font-weight: $font-medium;
+        font-size: $formcontrol-label-fontsize;
+        margin-bottom: $spacing-half;
+    }
+
+    .form-control {
+        padding: $formcontrol-padding;
+        height: $formcontrol-height;
+        border-radius: $formcontrol-border-radius;
+        border: $formcontrol-border-width solid $formcontrol-color-main;
+        font-size: $formcontrol-fontsize;
+        background-color: $formcontrol-background-color;
+        color: $formcontrol-color-main;
+        box-shadow: none;
+
+        &:focus {
+            box-shadow: none;
+            border: $formcontrol-border-width solid $formcontrol-color-main;
+        }
+
+        &::placeholder {
+            font-weight: $font-medium;
+            color: $formcontrol-color-placeholder;
+        }
+
+        &:read-only {
+            color: $formcontrol-color-readonly;
+            background-color: $formcontrol-background-color-readonly;
+        }
+    }
+
+    .input-group-prepend,
+    .input-group-append {
+        .input-group-text {
+            border-color: $formcontrol-color-main;
+            border-width: $formcontrol-border-width;
+            color: $formcontrol-color-main;
+            font-size: $formcontrol-fontsize;
+        }
+    }
+
+    .input-group-prepend {
+        .input-group-text {
+            border-right: 0 none;
+            border-top-left-radius: $formcontrol-border-radius;
+            border-bottom-left-radius: $formcontrol-border-radius;
+            background-color: $formcontrol-background-color;
+        }
+    }
+
+    .input-group-append {
+        .input-group-text {
+            border-left: 0 none;
+            border-top-right-radius: $formcontrol-border-radius;
+            border-bottom-right-radius: $formcontrol-border-radius;
+            background-color: $formcontrol-background-color;
+        }
+    }
+}
