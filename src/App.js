@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import CompA from './lib/CompA';
+import CompB from './lib/CompB';
+// import CompA from 'creatella-react-components/lib/CompA';
 import './App.scss';
 
 export default class App extends Component {
@@ -22,6 +24,8 @@ export default class App extends Component {
           </header>
 
           <CompA />
+
+          <CompB />
         </div>
     )
   }

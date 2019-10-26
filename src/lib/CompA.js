@@ -10,7 +10,7 @@ export default class CompA extends Component {
   render() {
     return (
       <div className='test'>
-        CompA
+        AAAAAAA
       </div>
     )
   }

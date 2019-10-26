@@ -9,8 +9,8 @@ export default class CompB extends Component {
 
   render() {
       return (
-        <div className='test'>
-          CompB
+        <div className='testB'>
+          BBBBBBB
         </div>
       )
   }

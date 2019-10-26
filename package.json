@@ -1,18 +1,21 @@
 {
   "name": "creatella-react-components",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Createllas React Components Library",
   "author": "SchwSimon",
   "license": "MIT",
   "repository": "SchwSimon/creatella-react-components",
-  "dependencies": {},
+  "dependencies": {
+    "creatella-react-components": "^0.1.0"
+  },
   "sideEffects": false,
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build-lib": "rimraf ./lib/ && babel ./src/lib --out-dir ./lib --copy-files",
+    "build-lib": "babel ./src/lib --out-dir ./lib --copy-files",
+    "clean-lib-folder": "rimraf ./lib/",
     "commit-push": "git add * && git commit -m . && git push origin master",
-    "pub": "yarn build-lib && yarn commit-push"
+    "pub": "yarn clean-lib-folder && yarn build-lib && yarn commit-push && npm publish"
   },
   "eslintConfig": {
     "extends": "react-app"
