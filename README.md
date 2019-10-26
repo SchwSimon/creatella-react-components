@@ -36,7 +36,7 @@ class Example extends Component {
 
 ## Configure custom styling
 
-1) see `./src/styles/styles.scss`
+###### 1) see `./src/styles/styles.scss`
 - `@import '_vars';`          Variables
 - `@import '_normalize';`     Some normalization
 - `@import '_mixins';`        Mixins
@@ -57,7 +57,7 @@ $color-green: #35D367;
 }
 ```
 
-2) create `config/style.js`
+###### 2) create `config/style.js`
 ```js
 // Pre-defined button styles classes
 export const BUTTON_CLASSNAMES = {
@@ -65,7 +65,7 @@ export const BUTTON_CLASSNAMES = {
 };
 ```
 
-3) In app usage
+###### 3) In app usage
 ```jsx
 import Button from 'lib/Button';
 import { BUTTON_CLASSNAMES } from 'config/style';
@@ -73,11 +73,9 @@ import { BUTTON_CLASSNAMES } from 'config/style';
 <Button className={BUTTON_CLASSNAMES.SOLID_GREEN} />
 ```
 
-
 ## Components
 
-- <Button />
-
+###### `<Button />`
 (additional props will be passed to the main container)
 ```jsx
 <Button
@@ -97,8 +95,7 @@ import { BUTTON_CLASSNAMES } from 'config/style';
 />
 ```
 
-- <ActivityIndicator />
-
+###### `<ActivityIndicator />`
 ```jsx
 <ActivityIndicator
     size={24}           // default: 24
@@ -108,8 +105,7 @@ import { BUTTON_CLASSNAMES } from 'config/style';
 />
 ```
 
-- <OutsideClick />
-
+###### `<OutsideClick />`
 :exclamation: Requires children
 (additional props will be passed to the main container)
 ```jsx
