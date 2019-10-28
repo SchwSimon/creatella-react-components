@@ -36,4 +36,8 @@
         min-width: 80px;
         padding: 0 $spacing-half;
     }
+
+    &__checkbox {
+        margin-left: $spacing;
+    }
 }

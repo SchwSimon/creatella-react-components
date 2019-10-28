@@ -1,0 +1,46 @@
+
+.CheckBox {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+
+    &__box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: inherit;
+        background-color: #fff;
+        border: 2px solid #000;
+        color: #000;
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+        // usually ${width - 10px} should be good
+        font-size: 14px;
+
+        &--checked {
+            background-color: #000;
+        }
+
+        &-check {
+            opacity: 0;
+
+            :hover > & {
+                opacity: 0.3;
+            }
+
+            &--checked {
+                opacity: 1 !important;
+                color: #fff;
+            }
+        }
+    }
+
+    &__label {
+        margin-left: 10px;
+    }
+}

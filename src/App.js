@@ -4,6 +4,7 @@ import { BUTTON_CLASSNAMES } from 'config/style';
 import ActivityIndicator from 'lib/ActivityIndicator';
 import Button from 'lib/Button';
 import Alerts from 'lib/Alerts';
+import CheckBox from 'lib/CheckBox';
 import { ALERTS_POSITION_ARRAY, ALERT_TYPES_ARRAY } from 'lib/Alerts/config';
 import 'lib/styles.scss';
 
@@ -19,6 +20,7 @@ export default class App extends Component {
         super(props);
 
         this.state = {
+            isCheckBoxCheck: false,
             nextAlertId: 1,
             isAlertAutoDismiss: true,
             alertPosition: ALERTS_POSITION_ARRAY[0],
@@ -59,7 +61,9 @@ export default class App extends Component {
     }
 
     render() {
-        const { alerts, alertPosition, isAlertAutoDismiss } = this.state;
+        const {
+            alerts, alertPosition, isAlertAutoDismiss, isCheckBoxCheck
+        } = this.state;
 
         return (
             <div className='App App--withHeader'>
@@ -116,6 +120,31 @@ export default class App extends Component {
                             <Button className={BUTTON_CLASSNAMES.SOLID_GREEN}>
                                 Custom solid Green
                             </Button>
+                        </div>
+
+                        <h1 className='App__h1'>
+                            CheckBox
+                        </h1>
+
+                        <div className='flex-row flex-ac'>
+                            <CheckBox
+                                className='App__checkbox'
+                                label='Some checkbox label'
+                                value={111}
+                                isChecked={isCheckBoxCheck}
+                                onChange={(isChecked, value) => this.setState({ isCheckBoxCheck: !isChecked })} />
+
+                            <CheckBox
+                                className='App__checkbox'
+                                isChecked={isCheckBoxCheck}
+                                onChange={(isChecked) => this.setState({ isCheckBoxCheck: !isChecked })} />
+
+                            <CheckBox
+                                className='App__checkbox'
+                                isChecked={isCheckBoxCheck}
+                                onChange={(isChecked) => this.setState({ isCheckBoxCheck: !isChecked })}>
+                                with children
+                            </CheckBox>
                         </div>
 
                         <h1 className='App__h1'>

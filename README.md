@@ -85,7 +85,6 @@ import { BUTTON_CLASSNAMES } from 'config/style';
 ## Components
 
 ###### `<Button />`
-(additional props will be passed to the main container)
 ```jsx
 import Button from 'lib/Button';
 
@@ -96,7 +95,7 @@ import Button from 'lib/Button';
     classNameProcessing=''
     classNameActivityIndicator=''
     label=''                        // ! Only without children
-    route=''
+    route=''                        // ! Uses "react-router-dom" <Link to={route} />
     routeProps={}                   // [Object]
     onClick={}                      // [Func]
     isDisabled={false}              // default: false
@@ -111,22 +110,36 @@ import Button from 'lib/Button';
 import ActivityIndicator from 'lib/ActivityIndicator';
 
 <ActivityIndicator
-    size={24}           // default: 24
     className=''
     classNameInfo=''
-    info=''
+    size={24}           // default: 24
+    info=''             // [String]
 />
 ```
 
+###### `<Checkbox />`
+```jsx
+import Checkbox from 'lib/Checkbox';
+
+<Checkbox
+    className=''
+    isChecked={}    // [Bool] !required
+    onChange={}     // [Func] !required
+    label=''        // ! Only without children
+    value={}>       // [Any] will be passed as second argument to onChange
+    <div />         // [Any]
+</Checkbox>
+```
+
 ###### `<OutsideClick />`
-:exclamation: Requires children
-(additional props will be passed to the main container)
 ```jsx
 import OutsideClick from 'lib/OutsideClick';
 
 <OutsideClick
-    onOutsideClick={}       // [Func]
-    event='mousedown' />    // default: 'mousedown'
+    onOutsideClick={}   // [Func] !required
+    event='mousedown'>  // default: 'mousedown'
+    <div />             // [Any] !required
+</OutsideClick>
 ```
 
 ###### `<Alerts />`
@@ -135,9 +148,9 @@ import OutsideClick from 'lib/OutsideClick';
 import Alerts, { ALERTS_POSITION } from 'lib/Alerts';
 
 <Alerts
-    position={ALERTS_POSITION.BOTTOM_LEFT}  // One of {ALERTS_POSITION}
-    onDismiss={}                            // pass redux function {dismissAlert}
-    alerts={}                               // pass redux store {alerts}
+    position={ALERTS_POSITION.BOTTOM_LEFT}  // One of {ALERTS_POSITION} !required
+    onDismiss={}                            // pass redux function {dismissAlert} !required
+    alerts={}                               // pass redux store {alerts} !required
 />
 ```
 

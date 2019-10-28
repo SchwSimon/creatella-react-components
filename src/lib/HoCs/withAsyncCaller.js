@@ -1,0 +1,153 @@
+import React, { PureComponent } from 'react';
+
+const AXIOS = window._baseAxios;
+
+/**
+ * api/async request handler
+ * @param {Component} Component
+ * @returns {Component}
+ */
+export function withAsyncCaller(Component) {
+    return class WithAsyncCaller extends PureComponent {
+        constructor(props) {
+            super(props);
+
+            this._isMounted = true;
+            this.cancelTokenKeyIndex = 0;
+            this.cancelTokens = {};
+            this.state = {};
+        }
+
+        componentWillUnmount() {
+            this._isMounted = false;
+
+            Object.keys(this.cancelTokens).forEach(this.cancelTokenByKey);
+        }
+
+        cancelTokenByKey = (key) => {
+            if (this.cancelTokens[key]) {
+                this.cancelTokens[key].cancel();
+            }
+        }
+
+        generateCancelToken = () => {
+            if (AXIOS) {
+                const cancelTokenKey = `CT${this.cancelTokenKeyIndex++}`;
+                const cancelToken = AXIOS.CancelToken.source();
+
+                this.cancelTokens[cancelTokenKey] = cancelToken;
+
+                return cancelToken;
+            }
+
+            return undefined;
+        }
+
+        apiCaller = (func, ...args) => {
+            return this.caller(func, ...[...args, this.generateCancelToken()]);
+        }
+
+        apiCallerProps = (config, ...args) => {
+            this.callerProps(config, ...[...args, this.generateCancelToken()]);
+        }
+
+        asyncCaller = (func, ...args) => {
+            return this.caller(func, ...args);
+        }
+
+        asyncCallerProps = (config, ...args) => {
+            this.callerProps(config, ...args);
+        }
+
+        caller = async (func, ...args) => {
+            if (this._isMounted) {
+                const response = await func(...args);
+
+                if (this._isMounted) {
+                    return response;
+                }
+            }
+
+            throw new Error('Component did unmount while async request');
+        }
+
+        callerProps = (config, ...args) => {
+            const {
+                api, responseKey, responseDataKey,
+                loadingKey, onSuccess, onError
+            } = config;
+
+            const request = async () => {
+                let newState = {};
+                let response;
+                let callback;
+
+                try {
+                    response = await api(...args);
+
+                    if (responseKey) {
+                        newState[responseKey] = responseDataKey ? response[responseDataKey] : response;
+                    }
+
+                    if (onSuccess && this._isMounted) {
+                        callback = () => onSuccess(response);
+                    }
+                }
+                catch (err) {
+                    response = err;
+
+                    if (onError && this._isMounted) {
+                        callback = () => onError(err);
+                    }
+                }
+                finally {
+                    if (loadingKey) {
+                        newState[loadingKey] = false;
+                    }
+
+                    if (this._isMounted) {
+                        newState = (responseKey || loadingKey) ? newState : null;
+
+                        this.setState(newState, callback);
+                    }
+                }
+            };
+
+            if (this._isMounted) {
+                if (loadingKey) {
+                    this.setState({
+                        [loadingKey]: true
+                    }, request);
+                }
+                else {
+                    request();
+                }
+            }
+        }
+
+        setOwnProps = (props) => {
+            if (this._isMounted) {
+                this.setState({ ...props });
+            }
+        }
+
+        isComponentMounted = () => {
+            return this._isMounted;
+        }
+
+        render() {
+            return (
+                <Component
+                    {...this.state}
+                    {...this.props}
+                    isMounted={this.isComponentMounted}
+                    setOwnProps={this.setOwnProps}
+                    apiCaller={this.apiCaller}
+                    apiCallerProps={this.apiCallerProps}
+                    apiGenerateCancelToken={this.generateCancelToken}
+                    asyncCaller={this.asyncCaller}
+                    asyncCallerProps={this.asyncCallerProps} />
+            );
+        }
+    };
+}
