@@ -7,11 +7,20 @@
 ```bash
 yarn add creatella-react-components
 
-// Peer Dependencies
+/*
+ * Peer Dependencies
+ */
 yarn add node-sass
 yarn add react
 yarn add react-dom
+// Button
 yarn add react-router-dom
+// Alerts, Checkbox
+yarn add @fortawesome/fontawesome-svg-core
+yarn add @fortawesome/free-solid-svg-icons
+yarn add @fortawesome/react-fontawesome
+// Alerts
+yarn add date-fns
 ```
 
 ## Usage
@@ -78,6 +87,8 @@ import { BUTTON_CLASSNAMES } from 'config/style';
 ###### `<Button />`
 (additional props will be passed to the main container)
 ```jsx
+import Button from 'lib/Button';
+
 <Button
     className=''
     classNameLink=''
@@ -97,6 +108,8 @@ import { BUTTON_CLASSNAMES } from 'config/style';
 
 ###### `<ActivityIndicator />`
 ```jsx
+import ActivityIndicator from 'lib/ActivityIndicator';
+
 <ActivityIndicator
     size={24}           // default: 24
     className=''
@@ -109,9 +122,23 @@ import { BUTTON_CLASSNAMES } from 'config/style';
 :exclamation: Requires children
 (additional props will be passed to the main container)
 ```jsx
+import OutsideClick from 'lib/OutsideClick';
+
 <OutsideClick
     onOutsideClick={}       // [Func]
     event='mousedown' />    // default: 'mousedown'
+```
+
+###### `<Alerts />`
+:exclamation: Use with redux `lib/ReduxReducers/alerts/alerts.js`
+```jsx
+import Alerts, { ALERTS_POSITION } from 'lib/Alerts';
+
+<Alerts
+    position={ALERTS_POSITION.BOTTOM_LEFT}  // One of {ALERTS_POSITION}
+    onDismiss={}                            // pass redux function {dismissAlert}
+    alerts={}                               // pass redux store {alerts}
+/>
 ```
 
 ## License

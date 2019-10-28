@@ -32,6 +32,10 @@
     ]
   },
   "peerDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.7",
+    "date-fns": "^2.6.0",
     "node-sass": "^4.13.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
@@ -42,7 +46,11 @@
     "@babel/core": "^7.6.4",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-react": "^7.6.3",
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.7",
     "creatella-react-components": "^0.1.2",
+    "date-fns": "^2.6.0",
     "delay-cli": "^1.1.0",
     "eslint-config-idiomatic": "^4.0.0",
     "eslint-config-standard": "^14.1.0",
