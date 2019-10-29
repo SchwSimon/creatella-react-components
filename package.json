@@ -14,7 +14,7 @@
     "clean-lib-folder": "rimraf ./lib/ && delay 1",
     "commit-push": "git add * && git commit -m \"update build\" && git push origin master && delay 1",
     "lint": "eslint src/.",
-    "pub": "yarn clean-lib-folder && yarn build-lib && yarn commit-push && npm publish"
+    "pub": "yarn clean-lib-folder && yarn build-lib && yarn commit-push && yarn publish"
   },
   "eslintConfig": {
     "extends": "react-app"
