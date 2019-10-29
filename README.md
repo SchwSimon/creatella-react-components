@@ -98,10 +98,10 @@ import Button from 'lib/Button';
     route=''                        // ! Uses "react-router-dom" <Link to={route} />
     routeProps={}                   // [Object]
     onClick={}                      // [Func]
-    isDisabled={false}              // default: false
-    isProcessing={false}            // default: false
-    debounceTime={500}              // default: 500 (ms)
-    sizeActivityIndicator={20}      // default: 20
+    isDisabled={false}              // [Bool] default: false
+    isProcessing={false}            // [Bool] default: false
+    debounceTime={500}              // [Number] default: 500 (ms)
+    sizeActivityIndicator={20}      // [Number] default: 20
 />
 ```
 
@@ -112,7 +112,7 @@ import ActivityIndicator from 'lib/ActivityIndicator';
 <ActivityIndicator
     className=''
     classNameInfo=''
-    size={24}           // default: 24
+    size={24}           // [Number] default: 24
     info=''             // [String]
 />
 ```
@@ -125,7 +125,7 @@ import Checkbox from 'lib/Checkbox';
     className=''
     isChecked={}    // [Bool] !required
     onChange={}     // [Func] !required
-    label=''        // ! Only without children
+    label=''        // [String] ! Only without children
     value={}>       // [Any] will be passed as second argument to onChange
     <div />         // [Any]
 </Checkbox>
@@ -137,9 +137,31 @@ import OutsideClick from 'lib/OutsideClick';
 
 <OutsideClick
     onOutsideClick={}   // [Func] !required
-    event='mousedown'>  // default: 'mousedown'
+    event='mousedown'>  // [String] default: 'mousedown'
     <div />             // [Any] !required
 </OutsideClick>
+```
+
+###### `<ItemPicker />`
+```jsx
+import ItemPicker from 'lib/ItemPicker';
+
+<ItemPicker
+    className=''
+    isVisible={}                    // [Bool] !required
+    onChange={}                     // [Func] !required
+    onClose={}                      // [Func]
+    items={}                        // [Array]
+    itemsNameKey='name'             // [String] default: 'name'
+    value={}                        // [Number | Array]
+    maxSelections={}                // [Number] default: null
+    minSelections={0}               // [Number] default: 0
+    renderItemContent={}            // [Func]
+    searchRenderItemTreshold={8}    // [Number] default: 8
+    emptyText='No items yet'        // [String] default: 'No items yet'
+    emptySearchText='No matches'    // [String] default: 'No matches'
+    searchPlaceholderText='Search..'// [String] default: 'Search..'
+/>
 ```
 
 ###### `<Alerts />`
@@ -152,6 +174,66 @@ import Alerts, { ALERTS_POSITION } from 'lib/Alerts';
     onDismiss={}                            // pass redux function {dismissAlert} !required
     alerts={}                               // pass redux store {alerts} !required
 />
+```
+
+## Higher-Order Components
+
+###### `withAsyncCaller()`
+```js
+import { withAsyncCaller } from 'lib/HOCs/withAsyncCaller';
+
+export default withAsyncCaller(MyComponent);
+
+// if faster unmount behaviour is needed on the HOC
+onUnmount();
+// instead of setState you can use setOwnProps
+setOwnProps({ data: [] })
+// usable with async/await, the last arg will always be a Axios CancelToken
+apiCaller(async/promise function, arg1, arg2, arg3, ...)
+// same as apiCaller without cancel token
+asyncCaller()
+// usable with props only, the last arg will always be a Axios CancelToken
+asyncCallerProps({
+    api,                // [Func] !required
+    responseKey,        // [String]
+    responseDataKey,    // [String]
+    loadingKey,         // [String]
+    onSuccess,          // [Func]
+    onError,            // [Func]
+}, arg1, arg2, arg3, ...)    
+// same as apiCaller without cancel token
+apiCallerProps()
+
+// For custom cancellation handling
+// NOTE: pass false, if you don't want the HOC to auto cancel the request on unmount
+// NOTE: Don't use with apiCaller / apiCallerProps
+generateCancelToken()
+```
+
+###### `withThrottledChange()`
+```js
+import { withThrottledChange } from 'lib/HOCs/withThrottledChange';
+
+// Default throttle: 150ms
+export default withThrottledChange(MyComponent, 150);
+
+// onChangeThrottled(
+    value,      // [Any]
+    callback,   // [Func] !isRequired
+    throttle    // [Number] default: see above
+);
+```
+
+###### `withWindowResizeListener()`
+```js
+import { withAsyncCaller } from 'lib/HOCs/withAsyncCaller';
+
+// Default delay: 100ms
+export default withAsyncCaller(MyComponent, 100);
+
+// props
+windowWidth     // window.innerWidth
+windowHeight    // window.innerHeight
 ```
 
 ## License
