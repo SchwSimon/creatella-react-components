@@ -15,7 +15,7 @@ yarn add react
 yarn add react-dom
 // Button
 yarn add react-router-dom
-// Alerts, Checkbox
+// Alerts, Checkbox, Avatar
 yarn add @fortawesome/fontawesome-svg-core
 yarn add @fortawesome/free-solid-svg-icons
 yarn add @fortawesome/react-fontawesome
@@ -173,6 +173,17 @@ import Alerts, { ALERTS_POSITION } from 'lib/Alerts';
     position={ALERTS_POSITION.BOTTOM_LEFT}  // One of {ALERTS_POSITION} !required
     onDismiss={}                            // pass redux function {dismissAlert} !required
     alerts={}                               // pass redux store {alerts} !required
+/>
+```
+
+###### `<Avatar />`
+```jsx
+import Avatar from 'lib/Avatar';
+
+<Avatar
+    className=''
+    src={}          // [String]
+    icon={}         // [Object] FontAwesome Icon
 />
 ```
 

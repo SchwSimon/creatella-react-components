@@ -4,7 +4,9 @@ import { BUTTON_CLASSNAMES } from 'config/style';
 import ActivityIndicator from 'lib/ActivityIndicator';
 import Button from 'lib/Button';
 import Alerts from 'lib/Alerts';
+import Avatar from 'lib/Avatar';
 import CheckBox from 'lib/CheckBox';
+import RadioBox from 'lib/RadioBox';
 import ItemPicker from 'lib/ItemPicker';
 import { ALERTS_POSITION_ARRAY, ALERT_TYPES_ARRAY } from 'lib/Alerts/config';
 import 'lib/styles.scss';
@@ -41,6 +43,7 @@ export default class App extends Component {
         itempickerItems16[4].name = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr';
 
         this.state = {
+            checkedId: 1,
             itempickerItemsActiveIds: [1, 3],
             itempickerItems8,
             itempickerItems16,
@@ -87,7 +90,7 @@ export default class App extends Component {
     render() {
         const {
             itempickerItems8, itempickerItems16, itempickerItemsActiveIds,
-            alerts, alertPosition, isAlertAutoDismiss, isCheckBoxCheck
+            alerts, alertPosition, isAlertAutoDismiss, isCheckBoxCheck, checkedId
         } = this.state;
 
         return (
@@ -96,6 +99,18 @@ export default class App extends Component {
                     <div className='AppHeader' />
 
                     <main className='main'>
+                        <h1 className='App__h1'>
+                            Avatar
+                        </h1>
+
+                        <div className='flex-row flex-ac'>
+                            <Avatar className='App__avatar' />
+
+                            <Avatar
+                                src='https://factio-eu-production.s3.eu-west-3.amazonaws.com/uploads/71610f93-670b-41c1-b4fb-50aaba565a8f.png'
+                                className='App__avatar' />
+                        </div>
+
                         <h1 className='App__h1'>
                             ItemPicker
                         </h1>
@@ -200,6 +215,25 @@ export default class App extends Component {
                                 onChange={(isChecked) => this.setState({ isCheckBoxCheck: !isChecked })}>
                                 with children
                             </CheckBox>
+                        </div>
+
+                        <h1 className='App__h1'>
+                            RadioBox
+                        </h1>
+
+                        <div className='flex-row flex-ac'>
+                            <RadioBox
+                                className='App__radiobox'
+                                id={1}
+                                label='Some RadioBox label'
+                                checkedId={checkedId}
+                                onChange={(checkedId) => this.setState({ checkedId })} />
+
+                            <RadioBox
+                                className='App__radiobox'
+                                id={2}
+                                checkedId={checkedId}
+                                onChange={(checkedId) => this.setState({ checkedId })} />
                         </div>
 
                         <h1 className='App__h1'>
