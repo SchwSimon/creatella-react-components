@@ -70,6 +70,18 @@ $AppHeader-background-color: gray;
 // ActivityIndicator
 $ActivityIndicator-stroke: red;
 
+// CheckBox
+$CheckBox-border: 2px solid #E4F0FC;
+$CheckBox-color: #AE77EA;
+$CheckBox-checked-background-color: #AE77EA;
+
+// RadioBox
+$RadioBox-border: 2px solid #E4F0FC;
+$RadioBox-hover-border: 7px solid #e9dcf7;
+$RadioBox-hover-background-color: rgba(#AE77EA, 0.5);
+$RadioBox-checked-border: 7px solid #e9dcf7;
+$RadioBox-checked-background-color: #AE77EA;
+
 // $formcontrol-label-fontsize: 16px;
 // $formcontrol-fontsize: 14px;
 // $formcontrol-height: 42px;

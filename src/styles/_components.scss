@@ -16,6 +16,33 @@
     }
 }
 
+.CheckBox {
+    &__box {
+        border: $CheckBox-border;
+        color: $CheckBox-color;
+
+        &--checked {
+            background-color: $CheckBox-checked-background-color;
+        }
+    }
+}
+
+.RadioBox {
+    &__box {
+        border: $RadioBox-border;
+
+        &:hover {
+            border: $RadioBox-hover-border;
+            background-color: $RadioBox-hover-background-color;
+        }
+
+        &--checked {
+            border: $RadioBox-checked-border !important;
+            background-color: $RadioBox-checked-background-color !important;
+        }
+    }
+}
+
 // .form-group {
 //     margin-bottom: 0;
 //

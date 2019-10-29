@@ -37,7 +37,8 @@
         padding: 0 $spacing-half;
     }
 
-    &__checkbox {
+    &__checkbox,
+    &__radiobox {
         margin-left: $spacing;
     }
 }
