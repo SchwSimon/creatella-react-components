@@ -106,21 +106,21 @@ export default class App extends Component {
                                 isVisible={true} />
 
                             <ItemPicker
-                                onChange={(ids) => this.setState({itempickerItemsActiveIds: ids})}
+                                onChange={(ids) => this.setState({ itempickerItemsActiveIds: ids })}
                                 isVisible={true}
                                 maxSelections={3}
                                 value={itempickerItemsActiveIds}
                                 items={itempickerItems8} />
 
                             <ItemPicker
-                                onChange={(ids) => this.setState({itempickerItemsActiveIds: ids})}
+                                onChange={(ids) => this.setState({ itempickerItemsActiveIds: ids })}
                                 isVisible={true}
                                 renderItemContent={(item) => <CheckBox isChecked={true} label={item.name} />}
                                 value={itempickerItemsActiveIds}
                                 items={itempickerItems8} />
 
                             <ItemPicker
-                                onChange={(ids) => this.setState({itempickerItemsActiveIds: ids})}
+                                onChange={(ids) => this.setState({ itempickerItemsActiveIds: ids })}
                                 isVisible={true}
                                 value={itempickerItemsActiveIds}
                                 items={itempickerItems16} />

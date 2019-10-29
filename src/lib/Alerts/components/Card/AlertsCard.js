@@ -25,7 +25,7 @@ export default class AlertsCard extends PureComponent {
     static defaultProps = {
         isAutoDismiss: true,
         animationDuration: 500,
-        dismissDuration: 3000
+        dismissDuration: 4000
     }
 
     constructor(props) {

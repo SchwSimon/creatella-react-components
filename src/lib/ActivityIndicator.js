@@ -38,7 +38,7 @@ export default class ActivityIndicator extends PureComponent {
                         r='30' />
                 </svg>
 
-                {info && (
+                {!!info && (
                     <div className={`ActivityIndicator__info ${classNameInfo}`}>
                         {info}
                     </div>
