@@ -228,7 +228,7 @@ import { withThrottledChange } from 'lib/HOCs/withThrottledChange';
 // Default throttle: 150ms
 export default withThrottledChange(MyComponent, 150);
 
-// onChangeThrottled(
+onChangeThrottled(
     value,      // [Any]
     callback,   // [Func] !isRequired
     throttle    // [Number] default: see above
@@ -245,6 +245,26 @@ export default withAsyncCaller(MyComponent, 100);
 // props
 windowWidth     // window.innerWidth
 windowHeight    // window.innerHeight
+```
+
+## Helpers
+
+###### `ellipsisString()`
+```js
+import { ellipsisString } from 'lib/helpers/ellipsisString';
+
+ellipsisString(
+    string,     // [String] !isRequired
+    maxLength,  // [Number] !isRequired
+    appendix    // [String] default: '...'
+);
+```
+
+###### `ellipsisString()`
+```js
+import { deepCopyObject } from 'lib/helpers/deepCopyObject';
+
+deepCopyObject(object);  // [Object] !isRequired
 ```
 
 ## License
