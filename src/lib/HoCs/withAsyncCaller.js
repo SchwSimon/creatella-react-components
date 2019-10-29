@@ -68,7 +68,7 @@ export function withAsyncCaller(Component) {
                 }
             }
 
-            throw new Error('Component did unmount while async request');
+            throw new Error('Component did unmount while async call');
         }
 
         callerProps = (config, ...args) => {
