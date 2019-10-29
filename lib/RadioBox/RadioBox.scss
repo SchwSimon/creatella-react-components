@@ -1,0 +1,35 @@
+
+.RadioBox {
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+
+    &__box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 28px;
+        width: 28px;
+        height: 28px;
+        border-radius: 28px;
+        border: 7px solid #d5d5d5;
+        background-color: #fff;
+
+        &:hover {
+            border: 7px solid #ccc;
+            background-color: rgba(#000, 0.5);
+        }
+
+        &--checked {
+            border: 7px solid #cecece !important;
+            background-color: rgba(#262626, 0.9) !important;
+        }
+    }
+
+    &__label {
+        margin-left: 10px;
+    }
+}
