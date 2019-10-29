@@ -24,18 +24,29 @@ export function withAsyncCaller(Component) {
             Object.keys(this.cancelTokens).forEach(this.cancelTokenByKey);
         }
 
+        onChildUnmount = () => {
+            this._isMounted = false;
+
+            Object.keys(this.cancelTokens).forEach(this.cancelTokenByKey);
+        }
+
         cancelTokenByKey = (key) => {
             if (this.cancelTokens[key]) {
                 this.cancelTokens[key].cancel();
+
+                delete this.cancelTokens[key];
             }
         }
 
-        generateCancelToken = () => {
+        generateCancelToken = (isAutoHandling = true) => {
             if (AXIOS) {
-                const cancelTokenKey = `CT${this.cancelTokenKeyIndex++}`;
                 const cancelToken = AXIOS.CancelToken.source();
 
-                this.cancelTokens[cancelTokenKey] = cancelToken;
+                if (isAutoHandling) {
+                    const cancelTokenKey = `CT${this.cancelTokenKeyIndex++}`;
+
+                    this.cancelTokens[cancelTokenKey] = cancelToken;
+                }
 
                 return cancelToken;
             }
@@ -131,22 +142,18 @@ export function withAsyncCaller(Component) {
             }
         }
 
-        isComponentMounted = () => {
-            return this._isMounted;
-        }
-
         render() {
             return (
                 <Component
                     {...this.state}
                     {...this.props}
-                    isMounted={this.isComponentMounted}
+                    onUnmount={this.onChildUnmount}
                     setOwnProps={this.setOwnProps}
                     apiCaller={this.apiCaller}
                     apiCallerProps={this.apiCallerProps}
-                    apiGenerateCancelToken={this.generateCancelToken}
                     asyncCaller={this.asyncCaller}
-                    asyncCallerProps={this.asyncCallerProps} />
+                    asyncCallerProps={this.asyncCallerProps}
+                    generateCancelToken={this.generateCancelToken} />
             );
         }
     };
