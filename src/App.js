@@ -5,6 +5,7 @@ import ActivityIndicator from 'lib/ActivityIndicator';
 import Button from 'lib/Button';
 import Alerts from 'lib/Alerts';
 import CheckBox from 'lib/CheckBox';
+import ItemPicker from 'lib/ItemPicker';
 import { ALERTS_POSITION_ARRAY, ALERT_TYPES_ARRAY } from 'lib/Alerts/config';
 import 'lib/styles.scss';
 
@@ -19,7 +20,30 @@ export default class App extends Component {
     constructor(props) {
         super(props);
 
+        const itempickerItems8 = [];
+        const itempickerItems16 = [];
+
+        for (let i = 0; i < 16; i++) {
+            if (i < 8) {
+                itempickerItems8[i] = {
+                    id: i + 1,
+                    name: `Item ${i + 1}`
+                };
+            }
+
+            itempickerItems16[i] = {
+                id: i + 1,
+                name: `Item ${i + 1}`
+            };
+        }
+
+        itempickerItems8[4].name = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr';
+        itempickerItems16[4].name = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr';
+
         this.state = {
+            itempickerItemsActiveIds: [1, 3],
+            itempickerItems8,
+            itempickerItems16,
             isCheckBoxCheck: false,
             nextAlertId: 1,
             isAlertAutoDismiss: true,
@@ -62,6 +86,7 @@ export default class App extends Component {
 
     render() {
         const {
+            itempickerItems8, itempickerItems16, itempickerItemsActiveIds,
             alerts, alertPosition, isAlertAutoDismiss, isCheckBoxCheck
         } = this.state;
 
@@ -71,6 +96,36 @@ export default class App extends Component {
                     <div className='AppHeader' />
 
                     <main className='main'>
+                        <h1 className='App__h1'>
+                            ItemPicker
+                        </h1>
+
+                        <div className='flex-row flex-ac'>
+                            <ItemPicker
+                                onChange={() => {}}
+                                isVisible={true} />
+
+                            <ItemPicker
+                                onChange={(ids) => this.setState({itempickerItemsActiveIds: ids})}
+                                isVisible={true}
+                                maxSelections={3}
+                                value={itempickerItemsActiveIds}
+                                items={itempickerItems8} />
+
+                            <ItemPicker
+                                onChange={(ids) => this.setState({itempickerItemsActiveIds: ids})}
+                                isVisible={true}
+                                renderItemContent={(item) => <CheckBox isChecked={true} label={item.name} />}
+                                value={itempickerItemsActiveIds}
+                                items={itempickerItems8} />
+
+                            <ItemPicker
+                                onChange={(ids) => this.setState({itempickerItemsActiveIds: ids})}
+                                isVisible={true}
+                                value={itempickerItemsActiveIds}
+                                items={itempickerItems16} />
+                        </div>
+
                         <h1 className='App__h1'>
                             ActivityIndicator
                         </h1>
