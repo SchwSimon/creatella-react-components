@@ -110,7 +110,7 @@ $color-border-error: #A20000;
         }
 
         &-right {
-            font-family: Arial;
+            font-family: Helvetica, Arial, sans-serif;
 
             &-time {
                 display: flex;
@@ -158,6 +158,11 @@ $color-border-error: #A20000;
                 transition-duration: 150ms;
                 transition-timing-function: ease-out;
 
+                @keyframes CountDown {
+                    from { transform: scaleX(1); }
+                    to { transform: scaleX(0); }
+                }
+
                 &--pinned {
                     height: 0;
                 }
@@ -176,11 +181,6 @@ $color-border-error: #A20000;
 
                 &--ERROR {
                     background-color: $color-dark--error;
-                }
-
-                @keyframes CountDown {
-                    from { transform: scaleX(1); }
-                    to { transform: scaleX(0); }
                 }
             }
         }

@@ -8,7 +8,6 @@ import {
     faExclamationCircle, faTimesCircle, faThumbtack
 } from '@fortawesome/free-solid-svg-icons';
 import formatDistanceStrict from 'date-fns/formatDistanceStrict';
-import './AlertsCard.scss';
 
 export default class AlertsCard extends PureComponent {
     static propTypes = {

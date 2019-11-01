@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import AlertsCard from './Alerts/components/Card/AlertsCard';
-import './Alerts/Alerts.scss';
 import { ALERTS_POSITION_ARRAY, ALERT_TYPES_ARRAY } from './Alerts/config';
 
 export { ALERTS_POSITION } from './Alerts/config';
