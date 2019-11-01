@@ -1,0 +1,74 @@
+
+@import './_variables.scss';
+
+$border-color: #eee;
+
+.ItemPickerView {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    border: 1px solid $border-color;
+    background-color: #fbfbfb;
+
+    &--isSingleSelection {
+        background-color: #fff;
+    }
+
+    &__items {
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        overflow-y: auto;
+        overflow-x: hidden;
+        min-height: 49px;
+        max-height: 112px;
+        cursor: pointer;
+
+        &--isInput {
+            cursor: text;
+        }
+
+        &-wrapper {
+            flex: inherit;
+            display: inherit;
+            flex-wrap: inherit;
+            align-items: inherit;
+            overflow: hidden;
+            padding: 5px;
+            margin-right: 5px;
+
+            &-placeholder {
+                color: $placeholder-color;
+                font-size: 15px;
+            }
+
+            &-processing {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 50px;
+            }
+        }
+    }
+
+    &__dropdown {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background-color: #fff;
+        min-width: 40px;
+        width: 40px;
+        font-size: 24px;
+        border-left: 1px solid $border-color;
+    }
+
+    &__ItemPicker {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+    }
+}

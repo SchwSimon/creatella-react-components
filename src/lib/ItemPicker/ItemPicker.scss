@@ -7,16 +7,23 @@
     overflow: hidden;
 
     &__items {
-        min-width: 300px;
-        max-width: 300px;
+        min-width: 280px;
         max-height: 200px;
         overflow-y: auto;
     }
 
-    &__empty {
+    &__empty,
+    &__processing {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    &__processing {
+        height: 40px;
+    }
+
+    &__empty {
         text-align: center;
         color: gray;
         height: 35px;

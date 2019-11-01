@@ -1,25 +1,24 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
+import Fuse from 'fuse.js';
 import OutsideClick from 'lib/OutsideClick';
+import ActivityIndicator from 'lib/ActivityIndicator';
+import { castArray } from 'lib/utils/castArray';
+
+// Config
+import { ItemPickerGlobalPropTypes, ItemPickerGlobalDefaultProps } from './configs/ItemPickerConfig';
 
 // ItemPicker
 import ItemPickerItem from './ItemPicker/components/Item/ItemPickerItem';
 import ItemPickerSearch from './ItemPicker/components/Search/ItemPickerSearch';
-import { getStateValueByPropsValue } from './ItemPicker/utils/helpers';
-import './ItemPicker/ItemPicker.scss';
+import { computeItemPickerChangeValue } from './ItemPicker/utils/computeItemPickerChangeValue';
 
 export default class ItemPicker extends PureComponent {
     static propTypes = {
+        ...ItemPickerGlobalPropTypes,
         isVisible: PropTypes.bool.isRequired,
-        onChange: PropTypes.func.isRequired,
         onClose: PropTypes.func,
-        items: PropTypes.array,
-        itemsNameKey: PropTypes.string,
-        value: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
-        maxSelections: PropTypes.number,
-        minSelections: PropTypes.number,
-        className: PropTypes.string,
-        renderItemContent: PropTypes.func,
+        outsideClickEvent: PropTypes.string,
         searchRenderItemTreshold: PropTypes.number,
         emptyText: PropTypes.string,
         emptySearchText: PropTypes.string,
@@ -27,13 +26,9 @@ export default class ItemPicker extends PureComponent {
     }
 
     static defaultProps = {
+        ...ItemPickerGlobalDefaultProps,
+        outsideClickEvent: 'click',
         onClose: () => {},
-        items: [],
-        itemsNameKey: 'name',
-        maxSelections: null,
-        minSelections: 0,
-        className: '',
-        renderItemContent: null,
         searchRenderItemTreshold: 8,
         emptyText: 'No items yet',
         emptySearchText: 'No matches',
@@ -47,7 +42,7 @@ export default class ItemPicker extends PureComponent {
 
         this.state = {
             isSearch: items.length > searchRenderItemTreshold,
-            value: getStateValueByPropsValue(value),
+            value: castArray(value),
             search: '',
             searchItems: []
         };
@@ -58,7 +53,7 @@ export default class ItemPicker extends PureComponent {
 
         if (JSON.stringify(prevProps.value) !== JSON.stringify(value)) {
             this.setState({
-                value: getStateValueByPropsValue(value)
+                value: castArray(value)
             });
         }
 
@@ -71,40 +66,24 @@ export default class ItemPicker extends PureComponent {
         }
     }
 
-    onSelectItem = (id, item) => {
+    onSelectItem = (item) => {
         const { maxSelections, minSelections, onChange } = this.props;
         const { value } = this.state;
 
-        if (maxSelections === 1) {
-            if (minSelections === 1) {
-                onChange(id, item);
+        const nextValue = computeItemPickerChangeValue({
+            item,
+            value,
+            maxSelections,
+            minSelections
+        });
 
-                return;
-            }
-
-            onChange(value.indexOf(id) > -1 ? null : id, item);
-
-            return;
+        if (nextValue !== false) {
+            onChange(nextValue, item);
         }
-
-        const filterId = (_id) => _id !== id;
-        const nextValue = value.indexOf(id) > -1 ? value.filter(filterId) : value.concat(id);
-
-        // DO NOTHING:
-        // if selected less than the minimum
-        // if a maximum is set
-        // '- AND if selected more than the maximum
-        // '- AND if the selected is more than the current
-        //  '-> always let the user unselect from the max, even if there are more selected than the maximum
-        if (nextValue.length < minSelections || (maxSelections && nextValue.length > maxSelections && nextValue.length > value.length)) {
-            return;
-        }
-
-        onChange(nextValue, item);
     }
 
     onChangeSearch = (search) => {
-        const { items } = this.props;
+        const { items, itemsNameKey, itemsSearchConfig } = this.props;
 
         search = search.toLowerCase();
 
@@ -117,11 +96,13 @@ export default class ItemPicker extends PureComponent {
             return;
         }
 
-        const filterItem = (item) => item.name.toLowerCase().indexOf(search) > -1;
+        const fuseConfig = itemsSearchConfig || { keys: [itemsNameKey] };
+        const fuse = new Fuse(items, fuseConfig);
+        const results = fuse.search(search);
 
         this.setState({
             search,
-            searchItems: items.filter(filterItem)
+            searchItems: results
         });
     }
 
@@ -143,11 +124,11 @@ export default class ItemPicker extends PureComponent {
 
     render() {
         const {
-            isVisible, items, onClose, className,
+            isVisible, isProcessing, items, onClose, className, outsideClickEvent,
             emptyText, emptySearchText, searchPlaceholderText
         } = this.props;
         const { isSearch, search, searchItems } = this.state;
-        const itemsToRender = search ? searchItems : items;
+        const renderItems = search ? searchItems : items;
 
         if (!isVisible) {
             return null;
@@ -156,6 +137,7 @@ export default class ItemPicker extends PureComponent {
         return (
             <OutsideClick
                 className={`ItemPicker ${className}`}
+                event={outsideClickEvent}
                 onOutsideClick={onClose}>
                 {isSearch && (
                     <ItemPickerSearch
@@ -164,14 +146,20 @@ export default class ItemPicker extends PureComponent {
                 )}
 
                 <div className='ItemPicker__items'>
-                    {itemsToRender.length
-                        ? itemsToRender.map(this.renderItem)
+                    {renderItems.length
+                        ? renderItems.map(this.renderItem)
                         : !search && (
                             <div className='ItemPicker__empty'>
                                 {emptyText}
                             </div>
                         )
                     }
+
+                    {isProcessing && (
+                        <div className='ItemPicker__processing'>
+                            <ActivityIndicator size={20} />
+                        </div>
+                    )}
                 </div>
 
                 {!!(search && !searchItems.length) && (

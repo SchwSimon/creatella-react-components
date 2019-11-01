@@ -8,4 +8,9 @@
     padding: 0 10px;
     height: 34px;
     font-size: 12px;
+    outline: none;
+
+    &::placeholder {
+        color: $placeholder-color;
+    }
 }

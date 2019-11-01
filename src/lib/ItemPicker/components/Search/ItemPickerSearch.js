@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { withThrottledChange } from '../../../HOCs/withThrottledChange';
-import './ItemPickerSearch.scss';
 
 class ItemPickerSearch extends PureComponent {
     static propTypes = {
@@ -59,4 +58,4 @@ class ItemPickerSearch extends PureComponent {
     }
 }
 
-export default withThrottledChange(ItemPickerSearch);
+export default withThrottledChange(ItemPickerSearch, 100);
