@@ -1,5 +1,17 @@
+
+// Global Component Variables
+@import './styles/_variables';
+
+
 // ActivityIndicator
 @import './ActivityIndicator/ActivityIndicator.scss';
+
+// Alerts
+@import './Alerts/Alerts.scss';
+@import './Alerts/components/Card/AlertsCard.scss';
+
+// Avatar
+@import './Avatar/Avatar.scss';
 
 // Button
 @import './Button/Button.scss';
@@ -7,17 +19,15 @@
 // CheckBox
 @import './CheckBox/CheckBox.scss';
 
-// RadioBox
-@import './RadioBox/RadioBox.scss';
-
-// Avatar
-@import './Avatar/Avatar.scss';
-
-// Alerts
-@import './Alerts/Alerts.scss';
-@import './Alerts/components/Card/AlertsCard.scss';
-
 // ItemPicker
 @import './ItemPicker/ItemPicker.scss';
 @import './ItemPicker/components/Item/ItemPickerItem.scss';
 @import './ItemPicker/components/Search/ItemPickerSearch.scss';
+
+// ItemPickerView
+@import './ItemPickerView/ItemPickerView.scss';
+@import './ItemPickerView/components/Item/ItemPickerViewItem.scss';
+@import './ItemPickerView/components/Input/ItemPickerViewInput.scss';
+
+// RadioBox
+@import './RadioBox/RadioBox.scss';
