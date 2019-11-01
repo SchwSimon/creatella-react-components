@@ -164,10 +164,10 @@ import ItemPickerView from 'lib/ItemPickerView';
     itemsSearchConfig           // [Object] default: null see: https://fusejs.io
     renderItemContent           // [Func] default: null
 
+    classNameItemPicker         // [String]
     isItemPicker                // [Bool] default: true
     isToggle                    // [Bool] default: true
     isInput                     // [Bool] default: false
-    classNameItemPicker         // [String]
     childrenLeft                // [Any] default: null
     childrenRight               // [Any] default: null
     placeholder                 // [String] default: ''
@@ -208,9 +208,9 @@ import ItemPicker from 'lib/ItemPicker';
 import Alerts, { ALERTS_POSITION } from 'lib/Alerts';
 
 <Alerts
-    position={ALERTS_POSITION.BOTTOM_LEFT}  // One of {ALERTS_POSITION} !required
-    onDismiss={}                            // pass redux function {dismissAlert} !required
-    alerts={}                               // pass redux store {alerts} !required
+    position    // [String] !required One of {ALERTS_POSITION} !required
+    onDismiss   // [Func] !required pass redux function {dismissAlert} !required
+    alerts      // [Array] !required pass redux store {alerts} !required
 />
 ```
 
@@ -219,9 +219,9 @@ import Alerts, { ALERTS_POSITION } from 'lib/Alerts';
 import Avatar from 'lib/Avatar';
 
 <Avatar
-    className=''
-    src={}          // [String]
-    icon={}         // [Object] FontAwesome Icon
+    className   // [String]
+    src         // [String]
+    icon        // [Object] default: faUserTie FontAwesome Icon
 />
 ```
 
