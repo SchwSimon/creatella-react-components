@@ -20,7 +20,7 @@ export default class ActivityIndicator extends PureComponent {
         const { className, classNameInfo, size, info } = this.props;
 
         return (
-            <span className={`ActivityIndicator ${className}`}>
+            <div className={`ActivityIndicator ${className}`}>
                 <svg
                     className='ActivityIndicator__spinner'
                     aria-label={info || 'loading'}
@@ -43,7 +43,7 @@ export default class ActivityIndicator extends PureComponent {
                         {info}
                     </div>
                 )}
-            </span>
+            </div>
         );
     }
 }

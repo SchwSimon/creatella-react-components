@@ -4,6 +4,7 @@ $duration: 1.5s;
 .ActivityIndicator {
     position: relative;
     display: inline-flex;
+    align-self: center;
     align-items: center;
     justify-content: center;
     stroke: #000;
