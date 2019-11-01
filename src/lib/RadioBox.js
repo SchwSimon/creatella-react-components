@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
-import './RadioBox/RadioBox.scss';
 
 export default class RadioBox extends PureComponent {
     static propTypes = {
