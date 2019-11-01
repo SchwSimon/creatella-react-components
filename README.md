@@ -21,6 +21,8 @@ yarn add @fortawesome/free-solid-svg-icons
 yarn add @fortawesome/react-fontawesome
 // Alerts
 yarn add date-fns
+// ItemPicker, ItemPickerView
+yarn add fuse.js
 ```
 
 ## Usage
@@ -46,14 +48,14 @@ class Example extends Component {
 ## Configure custom styling
 
 ###### 1) see `./src/styles/styles.scss`
-- `@import '_vars';`          Variables
+- `@import '_variables';`       Variables
 - `@import '_normalize';`     Some normalization
 - `@import '_mixins';`        Mixins
 - `@import '_global';`        Global use classes & ids
 - `@import '_components';`    Override / extend component styles
 
 ```scss
-// _vars.scss
+// _variables.scss
 $color-green: #35D367;
 
 // _components.scss
@@ -88,20 +90,20 @@ import { BUTTON_CLASSNAMES } from 'config/style';
 ```jsx
 import Button from 'lib/Button';
 
-<Button
-    className=''
-    classNameLink=''
-    classNameDisabled=''
-    classNameProcessing=''
-    classNameActivityIndicator=''
-    label=''                        // ! Only without children
-    route=''                        // ! Uses "react-router-dom" <Link to={route} />
-    routeProps={}                   // [Object]
-    onClick={}                      // [Func]
-    isDisabled={false}              // [Bool] default: false
-    isProcessing={false}            // [Bool] default: false
-    debounceTime={500}              // [Number] default: 500 (ms)
-    sizeActivityIndicator={20}      // [Number] default: 20
+<Button                         // ! Additional props will be passed to the main container
+    className                   // [String]
+    classNameLink               // [String]
+    classNameDisabled           // [String]
+    classNameProcessing         // [String]
+    classNameActivityIndicator  // [String]
+    label                       // [String] ! Only without children
+    route                       // [String] ! Uses "react-router-dom" <Link to={route} />
+    routeProps                  // [Object]
+    onClick                     // [Func]
+    isDisabled                  // [Bool] default: false
+    isProcessing                // [Bool] default: false
+    debounceTime                // [Number] default: 500 (ms)
+    sizeActivityIndicator       // [Number] default: 20
 />
 ```
 
@@ -110,10 +112,10 @@ import Button from 'lib/Button';
 import ActivityIndicator from 'lib/ActivityIndicator';
 
 <ActivityIndicator
-    className=''
-    classNameInfo=''
-    size={24}           // [Number] default: 24
-    info=''             // [String]
+    className       // [String]
+    classNameInfo   // [String]
+    size            // [Number] default: 24
+    info            // [String]
 />
 ```
 
@@ -122,12 +124,12 @@ import ActivityIndicator from 'lib/ActivityIndicator';
 import Checkbox from 'lib/Checkbox';
 
 <Checkbox
-    className=''
-    isChecked={}    // [Bool] !required
-    onChange={}     // [Func] !required
-    label=''        // [String] ! Only without children
-    value={}>       // [Any] will be passed as second argument to onChange
-    <div />         // [Any]
+    className   // [String]
+    isChecked   // [Bool] !required
+    onChange    // [Func] !required
+    label       // [String] ! Only without children
+    value>      // [Any] will be passed as second argument to onChange
+    <div />     // [Any]
 </Checkbox>
 ```
 
@@ -135,11 +137,43 @@ import Checkbox from 'lib/Checkbox';
 ```jsx
 import OutsideClick from 'lib/OutsideClick';
 
-<OutsideClick
-    onOutsideClick={}   // [Func] !required
-    event='mousedown'>  // [String] default: 'mousedown'
-    <div />             // [Any] !required
+<OutsideClick       // ! Additional props will be passed to the main container
+    onOutsideClick  // [Func] !required
+    event>          // [String] default: 'mousedown'
+    <div />         // [Any] !required
 </OutsideClick>
+```
+
+###### `<ItemPickerView />` & `<ItemPicker />`
+:exclamation: By default, <ItemPicker /> is implemented in <ItemPickerView />
+To turn it off, pass `isItemPicker={false}`
+IF enabled, it takes all available props from <ItemPicker />, except:
+`isVisible`, `onClose` & `className` (use `classNameItemPicker` instead)
+```jsx
+import ItemPickerView from 'lib/ItemPickerView';
+
+<ItemPickerView
+    className                   // [String]
+    isProcessing                // [Bool] default: false
+    onChange                    // [Func] !required
+    value                       // [Number | Array]
+    maxSelections               // [Number] default: null
+    minSelections               // [Number] default: 0
+    items                       // [Array] !required
+    itemsNameKey                // [String] default: 'name'
+    itemsSearchConfig           // [Object] default: null see: https://fusejs.io
+    renderItemContent           // [Func] default: null
+
+    isItemPicker                // [Bool] default: true
+    isToggle                    // [Bool] default: true
+    isInput                     // [Bool] default: false
+    classNameItemPicker         // [String]
+    childrenLeft                // [Any] default: null
+    childrenRight               // [Any] default: null
+    placeholder                 // [String] default: ''
+    placeholderInput            // [String] default: ''
+    onChangeInput               // [Func] default: null
+/>
 ```
 
 ###### `<ItemPicker />`
@@ -147,20 +181,24 @@ import OutsideClick from 'lib/OutsideClick';
 import ItemPicker from 'lib/ItemPicker';
 
 <ItemPicker
-    className=''
-    isVisible={}                    // [Bool] !required
-    onChange={}                     // [Func] !required
-    onClose={}                      // [Func]
-    items={}                        // [Array]
-    itemsNameKey='name'             // [String] default: 'name'
-    value={}                        // [Number | Array]
-    maxSelections={}                // [Number] default: null
-    minSelections={0}               // [Number] default: 0
-    renderItemContent={}            // [Func]
-    searchRenderItemTreshold={8}    // [Number] default: 8
-    emptyText='No items yet'        // [String] default: 'No items yet'
-    emptySearchText='No matches'    // [String] default: 'No matches'
-    searchPlaceholderText='Search..'// [String] default: 'Search..'
+    className                   // [String]
+    isProcessing                // [Bool] default: false
+    onChange                    // [Func] !required
+    value                       // [Number | Array]
+    maxSelections               // [Number] default: null
+    minSelections               // [Number] default: 0
+    items                       // [Array] !required
+    itemsNameKey                // [String] default: 'name'
+    itemsSearchConfig           // [Object] default: null see: https://fusejs.io
+    renderItemContent           // [Func] default: null
+
+    searchRenderItemTreshold    // [Number] default: 8
+    isVisible                   // [Bool] !required
+    onClose                     // [Func] !required
+    emptyText                   // [String] default: 'No items yet'
+    emptySearchText             // [String] default: 'No matches'
+    searchPlaceholderText       // [String] default: 'Search..'
+    outsideClickEvent           // [String] default: 'click' ! Uses <OutsideClick />
 />
 ```
 
@@ -247,11 +285,11 @@ windowWidth     // window.innerWidth
 windowHeight    // window.innerHeight
 ```
 
-## Helpers
+## Utils
 
 ###### `ellipsisString()`
 ```js
-import { ellipsisString } from 'lib/helpers/ellipsisString';
+import { ellipsisString } from 'lib/utils/ellipsisString';
 
 ellipsisString(
     string,     // [String] !isRequired
@@ -260,12 +298,20 @@ ellipsisString(
 );
 ```
 
-###### `ellipsisString()`
+###### `deepCopyObject()`
 ```js
-import { deepCopyObject } from 'lib/helpers/deepCopyObject';
+import { deepCopyObject } from 'lib/utils/deepCopyObject';
 
 deepCopyObject(object);  // [Object] !isRequired
 ```
+
+###### `castArray()`
+```js
+import { castArray } from 'lib/utils/castArray';
+
+castArray() // [Any]
+```
+
 
 ## License
 
