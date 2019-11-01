@@ -8,6 +8,7 @@ import Avatar from 'lib/Avatar';
 import CheckBox from 'lib/CheckBox';
 import RadioBox from 'lib/RadioBox';
 import ItemPicker from 'lib/ItemPicker';
+import ItemPickerView from 'lib/ItemPickerView';
 import { ALERTS_POSITION_ARRAY, ALERT_TYPES_ARRAY } from 'lib/Alerts/config';
 import 'lib/styles.scss';
 
@@ -25,7 +26,7 @@ export default class App extends Component {
         const itempickerItems8 = [];
         const itempickerItems16 = [];
 
-        for (let i = 0; i < 16; i++) {
+        for (let i = 0; i < 200; i++) {
             if (i < 8) {
                 itempickerItems8[i] = {
                     id: i + 1,
@@ -39,10 +40,15 @@ export default class App extends Component {
             };
         }
 
+        itempickerItems8[2].name = 'Tiffany';
+        itempickerItems16[2].name = 'Tiffany';
+        itempickerItems8[3].name = 'Simon';
+        itempickerItems16[3].name = 'Simon';
         itempickerItems8[4].name = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr';
         itempickerItems16[4].name = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr';
 
         this.state = {
+            isItemPickerVisible: false,
             checkedId: 1,
             itempickerItemsActiveIds: [1, 3],
             itempickerItems8,
@@ -54,6 +60,14 @@ export default class App extends Component {
             alertType: ALERT_TYPES_ARRAY[0],
             alerts: []
         };
+    }
+
+    onToggleItemPicker = () => {
+        const { isItemPickerVisible } = this.state;
+
+        this.setState({
+            isItemPickerVisible: !isItemPickerVisible
+        });
     }
 
     onAddAlert = () => {
@@ -99,6 +113,13 @@ export default class App extends Component {
                     <div className='AppHeader' />
 
                     <main className='main'>
+                        <ItemPickerView
+                            onClick={this.onToggleItemPicker}
+                            onChange={(ids) => this.setState({ itempickerItemsActiveIds: ids })}
+                            value={itempickerItemsActiveIds}
+                            // value={null}
+                            items={itempickerItems16} />
+
                         <h1 className='App__h1'>
                             Avatar
                         </h1>
@@ -117,10 +138,12 @@ export default class App extends Component {
 
                         <div className='flex-row flex-ac'>
                             <ItemPicker
-                                onChange={() => {}}
-                                isVisible={true} />
+                                items={[]}
+                                isVisible={true}
+                                onChange={() => {}} />
 
                             <ItemPicker
+                                isProcessing={true}
                                 onChange={(ids) => this.setState({ itempickerItemsActiveIds: ids })}
                                 isVisible={true}
                                 maxSelections={3}
@@ -135,6 +158,7 @@ export default class App extends Component {
                                 items={itempickerItems8} />
 
                             <ItemPicker
+                                onClose={this.onToggleItemPicker}
                                 onChange={(ids) => this.setState({ itempickerItemsActiveIds: ids })}
                                 isVisible={true}
                                 value={itempickerItemsActiveIds}
@@ -163,10 +187,8 @@ export default class App extends Component {
                         </h1>
 
                         <div className='flex-row flex-ac'>
-                            <Button
-                                className='App__button'
-                                title='BUTTON TITLE'>
-                                Default (with hover title)
+                            <Button title='BUTTON TITLE'>
+                                Default no extra styles
                             </Button>
 
                             <Button
