@@ -47,7 +47,7 @@ class Example extends Component {
 
 ## Configure custom styling
 
-###### 1) see `./src/styles/styles.scss`
+### 1) see `./src/styles/styles.scss`
 - `@import '_variables';`       Variables
 - `@import '_normalize';`     Some normalization
 - `@import '_mixins';`        Mixins
@@ -68,7 +68,7 @@ $color-green: #35D367;
 }
 ```
 
-###### 2) create `config/style.js`
+### 2) create `config/style.js`
 ```js
 // Pre-defined button styles classes
 export const BUTTON_CLASSNAMES = {
@@ -76,7 +76,7 @@ export const BUTTON_CLASSNAMES = {
 };
 ```
 
-###### 3) In app usage
+### 3) In app usage
 ```jsx
 import Button from 'lib/Button';
 import { BUTTON_CLASSNAMES } from 'config/style';
@@ -86,7 +86,7 @@ import { BUTTON_CLASSNAMES } from 'config/style';
 
 ## Components
 
-###### `<Button />`
+### `<Button />`
 ```jsx
 import Button from 'lib/Button';
 
@@ -107,7 +107,7 @@ import Button from 'lib/Button';
 />
 ```
 
-###### `<ActivityIndicator />`
+### `<ActivityIndicator />`
 ```jsx
 import ActivityIndicator from 'lib/ActivityIndicator';
 
@@ -119,7 +119,7 @@ import ActivityIndicator from 'lib/ActivityIndicator';
 />
 ```
 
-###### `<Checkbox />`
+### `<Checkbox />`
 ```jsx
 import Checkbox from 'lib/Checkbox';
 
@@ -133,7 +133,7 @@ import Checkbox from 'lib/Checkbox';
 </Checkbox>
 ```
 
-###### `<OutsideClick />`
+### `<OutsideClick />`
 ```jsx
 import OutsideClick from 'lib/OutsideClick';
 
@@ -144,7 +144,7 @@ import OutsideClick from 'lib/OutsideClick';
 </OutsideClick>
 ```
 
-###### `<ItemPickerView />` & `<ItemPicker />`
+### `<ItemPickerView />` & `<ItemPicker />`
 :exclamation: By default, <ItemPicker /> is implemented in <ItemPickerView />
 To turn it off, pass `isItemPicker={false}`
 IF enabled, it takes all available props from <ItemPicker />, except:
@@ -176,7 +176,7 @@ import ItemPickerView from 'lib/ItemPickerView';
 />
 ```
 
-###### `<ItemPicker />`
+### `<ItemPicker />`
 ```jsx
 import ItemPicker from 'lib/ItemPicker';
 
@@ -202,7 +202,7 @@ import ItemPicker from 'lib/ItemPicker';
 />
 ```
 
-###### `<Alerts />`
+### `<Alerts />`
 :exclamation: Use with redux `lib/ReduxReducers/alerts/alerts.js`
 ```jsx
 import Alerts, { ALERTS_POSITION } from 'lib/Alerts';
@@ -214,7 +214,7 @@ import Alerts, { ALERTS_POSITION } from 'lib/Alerts';
 />
 ```
 
-###### `<Avatar />`
+### `<Avatar />`
 ```jsx
 import Avatar from 'lib/Avatar';
 
@@ -227,7 +227,7 @@ import Avatar from 'lib/Avatar';
 
 ## Higher-Order Components
 
-###### `withAsyncCaller()`
+### `withAsyncCaller()`
 ```js
 import { withAsyncCaller } from 'lib/HOCs/withAsyncCaller';
 
@@ -259,7 +259,7 @@ apiCallerProps()
 generateCancelToken()
 ```
 
-###### `withThrottledChange()`
+### `withThrottledChange()`
 ```js
 import { withThrottledChange } from 'lib/HOCs/withThrottledChange';
 
@@ -273,7 +273,7 @@ onChangeThrottled(
 );
 ```
 
-###### `withWindowResizeListener()`
+### `withWindowResizeListener()`
 ```js
 import { withAsyncCaller } from 'lib/HOCs/withAsyncCaller';
 
@@ -287,7 +287,7 @@ windowHeight    // window.innerHeight
 
 ## Utils
 
-###### `ellipsisString()`
+### `ellipsisString()`
 ```js
 import { ellipsisString } from 'lib/utils/ellipsisString';
 
@@ -298,14 +298,14 @@ ellipsisString(
 );
 ```
 
-###### `deepCopyObject()`
+### `deepCopyObject()`
 ```js
 import { deepCopyObject } from 'lib/utils/deepCopyObject';
 
 deepCopyObject(object);  // [Object] !isRequired
 ```
 
-###### `castArray()`
+### `castArray()`
 ```js
 import { castArray } from 'lib/utils/castArray';
 
