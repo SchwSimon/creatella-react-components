@@ -145,9 +145,9 @@ import OutsideClick from 'lib/OutsideClick';
 ```
 
 ### `<ItemPickerView />` & `<ItemPicker />`
-:exclamation: By default, <ItemPicker /> is implemented in <ItemPickerView />
-To turn it off, pass `isItemPicker={false}`
-IF enabled, it takes all available props from <ItemPicker />, except:
+:exclamation: By default, <ItemPicker /> is implemented in <ItemPickerView />  
+To turn it off, pass `isItemPicker={false}`  
+IF enabled, it takes all available props from <ItemPicker />, except:  
 `isVisible`, `onClose` & `className` (use `classNameItemPicker` instead)
 ```jsx
 import ItemPickerView from 'lib/ItemPickerView';
