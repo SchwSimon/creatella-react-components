@@ -1,45 +1,26 @@
-{
-    "extends": [
-        "react-app",
+module.exports = {
+    extends: [
         "eslint:recommended",
-        "idiomatic",
+        "react-app",
         "standard"
     ],
-    "globals": {
-        "Eloquent": true
-    },
-    "rules": {
+    rules: {
         "no-console": [1, { "allow": ["info", "error"] }],
         "no-labels": 0,
-        "indent": [2, 4, {"SwitchCase": 1}],
-        "brace-style": [2, "stroustrup"],
+        "indent": [2, 4, { "SwitchCase": 1 }],
         "jsx-quotes": [2, "prefer-single"],
         "jsx-a11y/href-no-hash": "off",
         "react/jsx-boolean-value": [2, "always"],
-        "react/jsx-closing-bracket-location": [2, {"selfClosing": "after-props", "nonEmpty": "after-props"}],
-        "react/jsx-curly-spacing": [2, "never", {"allowMultiline": false}],
-        "react/jsx-max-props-per-line": [2, {"maximum": 4}],
-        "react/jsx-no-literals": 0,
-        "react/prop-types": [2, {"ignore": ["dispatch"]}],
+        "react/jsx-closing-bracket-location": [2, { "selfClosing": "after-props", "nonEmpty": "after-props" }],
+        "react/jsx-curly-spacing": [2, "never", { "allowMultiline": false }],
+        "react/jsx-max-props-per-line": [2, { "maximum": 3 }],
         "react/self-closing-comp": 2,
         "react/sort-comp": 2,
         "semi": [2, "always"],
-        "space-in-parens": [2, "never"],
-        "array-bracket-spacing": [2, "never"],
-        "one-var": 0,
-        "func-names": 0,
-        "computed-property-spacing": 0,
-        "no-useless-escape": 0,
         "space-before-function-paren": ["error", {
             "anonymous": "never",
             "named": "never",
             "asyncArrow": "ignore"
-        }],
-        "require-jsdoc": ["error", {
-            "require": {
-                "FunctionDeclaration": true,
-                "MethodDefinition": true
-            }
         }],
         "valid-jsdoc": ["error", {
             "prefer": {
@@ -80,4 +61,4 @@
           {"blankLine": "always", "prev": "*", "next": "class" }
         ]
     }
-}
+};
