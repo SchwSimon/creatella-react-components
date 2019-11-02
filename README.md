@@ -256,6 +256,21 @@ import Avatar from 'creatella-react-components/lib/Avatar';
 />
 ```
 
+### `<ErrorBoundary />`
+:exclamation: pass `location.pathname` value from `react-router-dom` as `pathname` prop  
+Required to recover from the error screen by the next location change
+```jsx
+import ErrorBoundary from 'creatella-react-components/lib/ErrorBoundary';
+
+<ErrorBoundary
+    pathname        // [String] !required
+    onError         // [Func]
+    errorChildren>  // [Any] default: 'Oops, an error occurred !'
+    <div />         // [Any] !required
+</ErrorBoundary>
+```
+
+
 ## Higher-Order Components
 
 ### `withAsyncCaller()`
