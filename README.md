@@ -77,7 +77,7 @@ export const BUTTON_CLASSNAMES = {
 
 ### 3) In app usage
 ```jsx
-import Button from 'lib/Button';
+import Button from 'creatella-react-components/lib/Button';
 import { BUTTON_CLASSNAMES } from 'config/style';
 
 <Button className={BUTTON_CLASSNAMES.SOLID_GREEN} />
@@ -87,7 +87,7 @@ import { BUTTON_CLASSNAMES } from 'config/style';
 
 ### `<Button />`
 ```jsx
-import Button from 'lib/Button';
+import Button from 'creatella-react-components/lib/Button';
 
 <Button                         // ! Additional props will be passed to the main container
     className                   // [String]
@@ -108,7 +108,7 @@ import Button from 'lib/Button';
 
 ### `<ActivityIndicator />`
 ```jsx
-import ActivityIndicator from 'lib/ActivityIndicator';
+import ActivityIndicator from 'creatella-react-components/lib/ActivityIndicator';
 
 <ActivityIndicator
     className       // [String]
@@ -120,7 +120,7 @@ import ActivityIndicator from 'lib/ActivityIndicator';
 
 ### `<Checkbox />`
 ```jsx
-import Checkbox from 'lib/Checkbox';
+import Checkbox from 'creatella-react-components/lib/Checkbox';
 
 <Checkbox
     className   // [String]
@@ -134,7 +134,7 @@ import Checkbox from 'lib/Checkbox';
 
 ### `<OutsideClick />`
 ```jsx
-import OutsideClick from 'lib/OutsideClick';
+import OutsideClick from 'creatella-react-components/lib/OutsideClick';
 
 <OutsideClick       // ! Additional props will be passed to the main container
     onOutsideClick  // [Func] !required
@@ -149,7 +149,7 @@ To turn it off, pass `isItemPicker={false}`
 IF enabled, it takes all available props from <ItemPicker />, except:  
 `isVisible`, `onClose` & `className` (use `classNameItemPicker` instead)
 ```jsx
-import ItemPickerView from 'lib/ItemPickerView';
+import ItemPickerView from 'creatella-react-components/lib/ItemPickerView';
 
 <ItemPickerView
     className                   // [String]
@@ -177,7 +177,7 @@ import ItemPickerView from 'lib/ItemPickerView';
 
 ### `<ItemPicker />`
 ```jsx
-import ItemPicker from 'lib/ItemPicker';
+import ItemPicker from 'creatella-react-components/lib/ItemPicker';
 
 <ItemPicker
     className                   // [String]
@@ -203,14 +203,14 @@ import ItemPicker from 'lib/ItemPicker';
 
 ### `<Alerts />`
 ```jsx
-import Alerts, { ALERTS_POSITION } from 'lib/Alerts';
+import Alerts, { ALERTS_POSITION } from 'creatella-react-components/lib/Alerts';
 
 <Alerts
     position // [String] !required One of {ALERTS_POSITION}
 />
 
 // use with redux/dispatch to push alerts
-import { pushAlert } from 'lib/reduxReducers/alerts';
+import { pushAlert } from 'creatella-react-components/lib/reduxReducers/alerts';
 
 pushAlert({
     type                // [String] !required
@@ -223,14 +223,14 @@ pushAlert({
 
 ### `<Helmet />`
 ```jsx
-import Helmet from 'lib/Helmet';
+import Helmet from 'creatella-react-components/lib/Helmet';
 
 <Helmet
     defaultConfig   // [Object] !required
 />
 
 // use with redux/dispatch to set/reset head data
-// import { setHelmetData, resetHelmet } from 'lib/reduxReducers/helmet';
+// import { setHelmetData, resetHelmet } from 'creatella-react-components/lib/reduxReducers/helmet';
 
 setHelmetData({
     description // [String]
@@ -244,7 +244,7 @@ resetHelmet();
 
 ### `<Avatar />`
 ```jsx
-import Avatar from 'lib/Avatar';
+import Avatar from 'creatella-react-components/lib/Avatar';
 
 <Avatar
     className   // [String]
@@ -257,7 +257,7 @@ import Avatar from 'lib/Avatar';
 
 ### `withAsyncCaller()`
 ```js
-import { withAsyncCaller } from 'lib/HOCs/withAsyncCaller';
+import { withAsyncCaller } from 'creatella-react-components/lib/HOCs/withAsyncCaller';
 
 export default withAsyncCaller(MyComponent);
 
@@ -289,7 +289,7 @@ generateCancelToken()
 
 ### `withThrottledChange()`
 ```js
-import { withThrottledChange } from 'lib/HOCs/withThrottledChange';
+import { withThrottledChange } from 'creatella-react-components/lib/HOCs/withThrottledChange';
 
 // Default throttle: 150ms
 export default withThrottledChange(MyComponent, 150);
@@ -303,7 +303,7 @@ onChangeThrottled(
 
 ### `withWindowResizeListener()`
 ```js
-import { withAsyncCaller } from 'lib/HOCs/withAsyncCaller';
+import { withAsyncCaller } from 'creatella-react-components/lib/HOCs/withAsyncCaller';
 
 // Default delay: 100ms
 export default withAsyncCaller(MyComponent, 100);
@@ -317,7 +317,7 @@ windowHeight    // window.innerHeight
 
 ### `ellipsisString()`
 ```js
-import { ellipsisString } from 'lib/utils/ellipsisString';
+import { ellipsisString } from 'creatella-react-components/lib/utils/ellipsisString';
 
 ellipsisString(
     string,     // [String] !isRequired
@@ -328,14 +328,14 @@ ellipsisString(
 
 ### `deepCopyObject()`
 ```js
-import { deepCopyObject } from 'lib/utils/deepCopyObject';
+import { deepCopyObject } from 'creatella-react-components/lib/utils/deepCopyObject';
 
 deepCopyObject(object);  // [Object] !isRequired
 ```
 
 ### `castArray()`
 ```js
-import { castArray } from 'lib/utils/castArray';
+import { castArray } from 'creatella-react-components/lib/utils/castArray';
 
 castArray() // [Any]
 ```
