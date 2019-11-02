@@ -13,16 +13,15 @@ yarn add creatella-react-components
 yarn add node-sass
 yarn add react
 yarn add react-dom
-// Button
-yarn add react-router-dom
-// Alerts, Checkbox, Avatar
-yarn add @fortawesome/fontawesome-svg-core
-yarn add @fortawesome/free-solid-svg-icons
-yarn add @fortawesome/react-fontawesome
-// Alerts
-yarn add date-fns
-// ItemPicker, ItemPickerView
-yarn add fuse.js
+yarn add react-router-dom                   // Button, Helmet
+yarn add redux                              // Alerts, Helmet
+yarn add react-redux                        // Alerts, Helmet
+yarn add react-helmet                       // Helmet
+yarn add @fortawesome/fontawesome-svg-core  // Alerts, Checkbox, Avatar
+yarn add @fortawesome/free-solid-svg-icons  // Alerts, Checkbox, Avatar
+yarn add @fortawesome/react-fontawesome     // Alerts, Checkbox, Avatar
+yarn add date-fns                           // Alerts
+yarn add fuse.js                            // ItemPicker, ItemPickerView
 ```
 
 ## Usage
@@ -203,15 +202,44 @@ import ItemPicker from 'lib/ItemPicker';
 ```
 
 ### `<Alerts />`
-:exclamation: Use with redux `lib/ReduxReducers/alerts/alerts.js`
 ```jsx
 import Alerts, { ALERTS_POSITION } from 'lib/Alerts';
 
 <Alerts
-    position    // [String] !required One of {ALERTS_POSITION} !required
-    onDismiss   // [Func] !required pass redux function {dismissAlert} !required
-    alerts      // [Array] !required pass redux store {alerts} !required
+    position // [String] !required One of {ALERTS_POSITION}
 />
+
+// use with redux/dispatch to push alerts
+import { pushAlert } from 'lib/reduxReducers/alerts';
+
+pushAlert({
+    type                // [String] !required
+    message             // [String] !required
+    isAutoDismiss       // [Bool] default: true
+    animationDuration   // [Number] default: 500
+    dismissDuration     // [Number] default: 4000
+});
+```
+
+### `<Helmet />`
+```jsx
+import Helmet from 'lib/Helmet';
+
+<Helmet
+    defaultConfig   // [Object] !required
+/>
+
+// use with redux/dispatch to set/reset head data
+// import { setHelmetData, resetHelmet } from 'lib/reduxReducers/helmet';
+
+setHelmetData({
+    description // [String]
+    title       // [String]
+    image       // [String]
+    children    // [Any]
+});
+
+resetHelmet();
 ```
 
 ### `<Avatar />`
