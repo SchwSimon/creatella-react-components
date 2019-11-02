@@ -74,8 +74,7 @@ export default class ItemPickerViewInput extends PureComponent {
             if (matchItem && onSubmit(matchItem)) {
                 this.setState({ value: '' });
             }
-        }
-        else if (e.key === 'Backspace' && !value && itemsSelected.length) {
+        } else if (e.key === 'Backspace' && !value && itemsSelected.length) {
             const item = itemsSelected[itemsSelected.length - 1];
             const value = item[itemsNameKey];
 

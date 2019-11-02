@@ -103,15 +103,13 @@ export function withAsyncCaller(Component) {
                     if (onSuccess && this._isMounted) {
                         callback = () => onSuccess(response);
                     }
-                }
-                catch (err) {
+                } catch (err) {
                     response = err;
 
                     if (onError && this._isMounted) {
                         callback = () => onError(err);
                     }
-                }
-                finally {
+                } finally {
                     if (loadingKey) {
                         newState[loadingKey] = false;
                     }
@@ -129,8 +127,7 @@ export function withAsyncCaller(Component) {
                     this.setState({
                         [loadingKey]: true
                     }, request);
-                }
-                else {
+                } else {
                     request();
                 }
             }
