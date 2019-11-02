@@ -1,16 +1,16 @@
-const PUSH_ALERT = 'PUSH_ALERT';
-const DISMISS_ALERT = 'DISMISS_ALERT';
+const ALERTS_PUSH = 'ALERTS_PUSH';
+const ALERTS_DISMISS = 'ALERTS_DISMISS';
 
 export function pushAlert(config) {
     return {
-        type: PUSH_ALERT,
+        type: ALERTS_PUSH,
         config
     };
 }
 
 export function dismissAlert(id) {
     return {
-        type: DISMISS_ALERT,
+        type: ALERTS_DISMISS,
         id
     };
 }
@@ -23,7 +23,7 @@ let INCREMENT_ID = 1;
 
 export default function alerts(state = initialState, action) {
     switch (action.type) {
-        case PUSH_ALERT:
+        case ALERTS_PUSH:
             return {
                 ...state,
                 alerts: state.alerts.concat({
@@ -32,7 +32,7 @@ export default function alerts(state = initialState, action) {
                 })
             };
 
-        case DISMISS_ALERT: {
+        case ALERTS_DISMISS: {
             const { id } = action;
             const filterAlertById = (item) => item.id !== id;
 

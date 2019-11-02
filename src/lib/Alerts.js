@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
+import { dismissAlert } from './reduxReducers/alerts';
 import AlertsCard from './Alerts/components/Card/AlertsCard';
 import { ALERTS_POSITION_ARRAY, ALERT_TYPES_ARRAY } from './Alerts/config';
 
 export { ALERTS_POSITION } from './Alerts/config';
 
-export default class Alerts extends PureComponent {
+class Alerts extends PureComponent {
     static propTypes = {
         position: PropTypes.oneOf(ALERTS_POSITION_ARRAY).isRequired,
-        onDismiss: PropTypes.func.isRequired,
+        dismissAlert: PropTypes.func.isRequired,
         alerts: PropTypes.arrayOf(
             PropTypes.shape({
                 id: PropTypes.number.isRequired,
@@ -20,7 +22,7 @@ export default class Alerts extends PureComponent {
     }
 
     renderAlert = ({ id, ...props }) => {
-        const { onDismiss, position } = this.props;
+        const { dismissAlert, position } = this.props;
 
         return (
             <AlertsCard
@@ -28,7 +30,7 @@ export default class Alerts extends PureComponent {
                 key={id}
                 id={id}
                 position={position}
-                onDismiss={onDismiss} />
+                onDismiss={dismissAlert} />
         );
     }
 
@@ -42,3 +44,19 @@ export default class Alerts extends PureComponent {
         );
     }
 }
+
+function mapStateToProps({ alerts }) {
+    return {
+        ...alerts
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        dismissAlert: (id) => {
+            dispatch(dismissAlert(id));
+        }
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Alerts);

@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { BUTTON_CLASSNAMES } from 'config/style';
 import ActivityIndicator from 'lib/ActivityIndicator';
 import Button from 'lib/Button';
-import Alerts from 'lib/Alerts';
+// import Alerts from 'lib/Alerts';
 import Avatar from 'lib/Avatar';
 import CheckBox from 'lib/CheckBox';
 import RadioBox from 'lib/RadioBox';
@@ -104,7 +104,7 @@ export default class App extends Component {
     render() {
         const {
             itempickerItems8, itempickerItems16, itempickerItemsActiveIds,
-            alerts, alertPosition, isAlertAutoDismiss, isCheckBoxCheck, checkedId
+            isAlertAutoDismiss, isCheckBoxCheck, checkedId
         } = this.state;
 
         return (
@@ -281,11 +281,6 @@ export default class App extends Component {
                                 type='checkbox'
                                 checked={isAlertAutoDismiss}
                                 onChange={(e) => this.setState({ isAlertAutoDismiss: !isAlertAutoDismiss })} />
-
-                            <Alerts
-                                position={alertPosition}
-                                onDismiss={this.onRemoveAlert}
-                                alerts={alerts} />
                         </div>
                     </main>
                 </BrowserRouter>
