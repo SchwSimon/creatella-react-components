@@ -13,7 +13,7 @@ yarn add creatella-react-components
 yarn add node-sass
 yarn add react
 yarn add react-dom
-yarn add react-router-dom                   // Button, Helmet
+yarn add react-router-dom                   // Button
 yarn add redux                              // Alerts, Helmet
 yarn add react-redux                        // Alerts, Helmet
 yarn add react-helmet                       // Helmet
@@ -222,10 +222,13 @@ pushAlert({
 ```
 
 ### `<Helmet />`
+:exclamation: pass `location.pathname` value from `react-router-dom` as `pathname` prop  
+Required to update window.location.href on metatags whenever location path changes
 ```jsx
 import Helmet from 'creatella-react-components/lib/Helmet';
 
 <Helmet
+    pathname        // [String] !required
     defaultConfig   // [Object] !required
 />
 

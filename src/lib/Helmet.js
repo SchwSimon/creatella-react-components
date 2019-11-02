@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { Helmet as ReactHelmet } from 'react-helmet';
 
 class Helmet extends Component {
@@ -88,4 +87,4 @@ function mapStateToProps({ helmet }) {
     };
 }
 
-export default withRouter(connect(mapStateToProps)(Helmet));
+export default connect(mapStateToProps)(Helmet);
