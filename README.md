@@ -138,6 +138,19 @@ import OutsideClick from 'creatella-react-components/lib/OutsideClick';
 </OutsideClick>
 ```
 
+### `<Modal />`
+```jsx
+import Modal from 'creatella-react-components/lib/Modal';
+
+<Modal
+    isVisible       // [Bool] !required
+    onClose         // [Func] !required
+    className       // [String]
+    classNameDialog // [String]
+    <div />         // [Any] !required
+</Modal>
+```
+
 ### `<ItemPickerView />` & `<ItemPicker />`
 :exclamation: By default, <ItemPicker /> is implemented in <ItemPickerView />  
 To turn it off, pass `isItemPicker={false}`  

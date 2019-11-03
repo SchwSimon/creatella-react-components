@@ -9,16 +9,16 @@
 @import '_global';
 @import '_components';
 
-.AppHeader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: $AppHeader-height;
-    background-color: $AppHeader-background-color;
+#root,
+.App {
+    min-height: 100%;
 }
 
 .App {
+    &--withHeader {
+        padding-top: $AppHeader-height;
+    }
+
     &__h1 {
         margin-left: $spacing;
         margin-top: $spacing-double;
@@ -51,4 +51,13 @@
     &__radiobox {
         margin-left: $spacing;
     }
+}
+
+.AppHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $AppHeader-height;
+    background-color: $AppHeader-background-color;
 }

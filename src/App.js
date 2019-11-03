@@ -4,6 +4,7 @@ import { BUTTON_CLASSNAMES } from 'config/style';
 import ActivityIndicator from 'lib/ActivityIndicator';
 import Button from 'lib/Button';
 // import Alerts from 'lib/Alerts';
+import Modal from 'lib/Modal';
 import Avatar from 'lib/Avatar';
 import CheckBox from 'lib/CheckBox';
 import RadioBox from 'lib/RadioBox';
@@ -48,6 +49,7 @@ export default class App extends Component {
         itempickerItems16[4].name = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr';
 
         this.state = {
+            isModalVisible: false,
             isItemPickerVisible: false,
             checkedId: 1,
             itempickerItemsActiveIds: [1, 3],
@@ -93,6 +95,14 @@ export default class App extends Component {
         }));
     }
 
+    onToggleModal = () => {
+        const { isModalVisible } = this.state;
+
+        this.setState({
+            isModalVisible: !isModalVisible
+        });
+    }
+
     renderOption = (value, index) => {
         return (
             <option key={index} value={value}>
@@ -104,7 +114,7 @@ export default class App extends Component {
     render() {
         const {
             itempickerItems8, itempickerItems16, itempickerItemsActiveIds,
-            isAlertAutoDismiss, isCheckBoxCheck, checkedId
+            isAlertAutoDismiss, isCheckBoxCheck, checkedId, isModalVisible
         } = this.state;
 
         return (
@@ -113,6 +123,9 @@ export default class App extends Component {
                     <div className='AppHeader' />
 
                     <main className='main'>
+                        <Button onClick={this.onToggleModal}>
+                            TOGGLE MODAL
+                        </Button>
 
                         <ItemPickerView
                             onClick={this.onToggleItemPicker}
@@ -285,6 +298,10 @@ export default class App extends Component {
                                 onChange={(e) => this.setState({ isAlertAutoDismiss: !isAlertAutoDismiss })} />
                         </div>
                     </main>
+
+                    <Modal
+                        isVisible={isModalVisible}
+                        onClose={this.onToggleModal} />
                 </BrowserRouter>
             </div>
         );

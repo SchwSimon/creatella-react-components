@@ -1,6 +1,7 @@
 
 // Global Component Variables
 @import './styles/_variables';
+@import './styles/_mixins';
 
 
 // ActivityIndicator
@@ -34,3 +35,6 @@
 
 // RadioBox
 @import './RadioBox/RadioBox.scss';
+
+// Modal
+@import './Modal/Modal.scss';

@@ -1,0 +1,60 @@
+
+$zIndexBackDrop: 1500;
+$zIndexModal: $zIndexBackDrop + 100;
+
+.ModalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: $zIndexBackDrop;
+    transition: opacity 150ms linear;
+    background-color: #000;
+    animation-name: FadeIn;
+    animation-iteration-count: 1;
+    animation-duration: 150ms;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    @keyframes FadeIn {
+        from { opacity: 0; }
+        to { opacity: 0.5; }
+    }
+}
+
+.Modal {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    z-index: $zIndexModal;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &__dialog {
+        position: relative;
+        animation-name: MoveIn;
+        animation-iteration-count: 1;
+        animation-duration: 300ms;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+        width: 650px;
+        margin: 30px 10px 0;
+
+        @keyframes MoveIn {
+            from { transform: translateY(-50px); }
+            to { transform: translateY(0); }
+        }
+
+        &-content {
+            margin-bottom: 30px;
+            width: 100%;
+            background-color: #fff;
+        }
+    }
+}
