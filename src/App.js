@@ -113,6 +113,7 @@ export default class App extends Component {
                     <div className='AppHeader' />
 
                     <main className='main'>
+
                         <ItemPickerView
                             onClick={this.onToggleItemPicker}
                             onChange={(ids) => this.setState({ itempickerItemsActiveIds: ids })}
@@ -227,6 +228,7 @@ export default class App extends Component {
                                 onChange={(isChecked, value) => this.setState({ isCheckBoxCheck: !isChecked })} />
 
                             <CheckBox
+                                isSwitch={true}
                                 className='App__checkbox'
                                 isChecked={isCheckBoxCheck}
                                 onChange={(isChecked) => this.setState({ isCheckBoxCheck: !isChecked })} />

@@ -46,13 +46,7 @@ class Example extends Component {
 
 ## Configure custom styling
 
-### 1) see `./src/styles/styles.scss`
-- `@import '_variables';`       Variables
-- `@import '_normalize';`     Some normalization
-- `@import '_mixins';`        Mixins
-- `@import '_global';`        Global use classes & ids
-- `@import '_components';`    Override / extend component styles
-
+### 1) define the global styles & variables
 ```scss
 // _variables.scss
 $color-green: #35D367;
@@ -126,6 +120,7 @@ import Checkbox from 'creatella-react-components/lib/Checkbox';
     className   // [String]
     isChecked   // [Bool] !required
     onChange    // [Func] !required
+    isSwitch    // [Bool] default: false
     label       // [String] ! Only without children
     value>      // [Any] will be passed as second argument to onChange
     <div />     // [Any]
