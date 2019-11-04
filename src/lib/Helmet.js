@@ -17,10 +17,9 @@ class Helmet extends Component {
     }
 
     shouldComponentUpdate(nextProps) {
-        const { location, title, description, image, children } = this.props;
-        const { pathname } = location;
+        const { pathname, title, description, image, children } = this.props;
 
-        if (pathname !== nextProps.location.pathname ||
+        if (pathname !== nextProps.pathname ||
             title !== nextProps.title ||
             description !== nextProps.description ||
             image !== nextProps.image ||
