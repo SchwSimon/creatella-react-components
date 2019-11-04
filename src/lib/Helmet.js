@@ -5,14 +5,19 @@ import { Helmet as ReactHelmet } from 'react-helmet';
 
 class Helmet extends Component {
     static propTypes = {
-        defaultConfig: PropTypes.object.isRequired,
         pathname: PropTypes.string.isRequired,
+        defaultConfig: PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            description: PropTypes.string.isRequired,
+            image: PropTypes.string.isRequired,
+            type: PropTypes.string.isRequired,
+            twitterSite: PropTypes.string,
+            siteName: PropTypes.string,
+            fbAppId: PropTypes.string
+        }).isRequired,
         title: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
-        type: PropTypes.string.isRequired,
-        twitterSite: PropTypes.string.isRequired,
-        siteName: PropTypes.string.isRequired,
         children: PropTypes.any
     }
 
@@ -35,7 +40,7 @@ class Helmet extends Component {
         const { defaultConfig } = this.props;
         const {
             title: dcTitle, description: dcDescription, image: dcImage, children: dcChildren,
-            type, twitterSite, siteName
+            type, twitterSite, siteName, fbAppId
         } = defaultConfig;
         let { title, description, image, children } = this.props;
 
@@ -72,6 +77,10 @@ class Helmet extends Component {
 
                 {siteName && (
                     <meta property='og:site_name' content={siteName} />
+                )}
+
+                {fbAppId && (
+                    <meta property='fb:app_id' content={fbAppId} />
                 )}
 
                 {children}
