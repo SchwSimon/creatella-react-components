@@ -52,6 +52,7 @@ $zIndexModal: $zIndexBackDrop + 100;
         }
 
         &-content {
+            border-radius: 4px;
             margin-bottom: 30px;
             width: 100%;
             background-color: #fff;
