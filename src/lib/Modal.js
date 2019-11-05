@@ -5,13 +5,14 @@ import OutsideClick from './OutsideClick';
 export default class Modal extends PureComponent {
     static propTypes = {
         isVisible: PropTypes.bool.isRequired,
-        onClose: PropTypes.func.isRequired,
+        onClose: PropTypes.func,
         className: PropTypes.string,
         classNameDialog: PropTypes.string,
         children: PropTypes.any.isRequired
     }
 
     static defaultProps = {
+        onClose: () => {},
         className: '',
         classNameDialog: ''
     }
@@ -49,7 +50,7 @@ export default class Modal extends PureComponent {
     onCloseByKey = (e) => {
         const { onClose } = this.props;
 
-        if (e.key === 'Backspace' || e.key === 'Escape') {
+        if (e.key === 'Escape') {
             e.preventDefault();
 
             onClose();
