@@ -81,7 +81,6 @@ export default class Modal extends PureComponent {
                             onOutsideClick={onClose}
                             event='click'>
                             {children}
-                            sadf
                         </OutsideClick>
                     </div>
                 </div>
