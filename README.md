@@ -209,6 +209,26 @@ import ItemPicker from 'creatella-react-components/lib/ItemPicker';
 />
 ```
 
+
+### `<Input />` & `<InputGroup />`
+```jsx
+import Input from 'creatella-react-components/lib/Input';
+import InputGroup from 'creatella-react-components/lib/InputGroup';
+
+<Input
+    className       // [String]
+    isReadOnly      // [Bool] default: false
+    isDisabled      // [Bool] default: false
+    isValid         // [Bool] default: false
+    isInvalid       // [Bool] default: false
+    isTextArea />   // [Bool] default: false
+
+<InputGroup
+    className>      // [String]
+    <Input />       // [Any] !required
+</InputGroup>  
+```
+
 ### `<Alerts />`
 ```jsx
 import Alerts, { ALERTS_POSITION } from 'creatella-react-components/lib/Alerts';

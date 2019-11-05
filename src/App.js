@@ -4,6 +4,8 @@ import { BUTTON_CLASSNAMES } from 'config/style';
 import ActivityIndicator from 'lib/ActivityIndicator';
 import Button from 'lib/Button';
 // import Alerts from 'lib/Alerts';
+import InputGroup from 'lib/InputGroup';
+import Input from 'lib/Input';
 import Modal from 'lib/Modal';
 import Avatar from 'lib/Avatar';
 import CheckBox from 'lib/CheckBox';
@@ -123,6 +125,31 @@ export default class App extends Component {
                     <div className='AppHeader' />
 
                     <main className='main'>
+                        <div>
+                            <InputGroup>
+                                <Input placeholder='Test placeholder' />
+                                <div style={{
+                                    width: 50,
+                                    backgroundColor: 'gray'
+                                }} />
+                            </InputGroup>
+
+                            <Input
+                                placeholder='Test placeholder'
+                                isDisabled={true}
+                                isValid={true} />
+
+                            <Input
+                                placeholder='Test placeholder'
+                                isReadOnly={true}
+                                isInvalid={true} />
+
+                            <Input
+                                placeholder='Test placeholder'
+                                isValid={true}
+                                isTextArea={true} />
+                        </div>
+
                         <Button onClick={this.onToggleModal}>
                             TOGGLE MODAL
                         </Button>
@@ -301,7 +328,9 @@ export default class App extends Component {
 
                     <Modal
                         isVisible={isModalVisible}
-                        onClose={this.onToggleModal} />
+                        onClose={this.onToggleModal}>
+                        AAAA
+                    </Modal>
                 </BrowserRouter>
             </div>
         );
