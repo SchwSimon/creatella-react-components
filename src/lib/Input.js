@@ -22,6 +22,17 @@ export default class Input extends PureComponent {
 
     render() {
         const { className, isReadOnly, isDisabled, isValid, isInvalid, isTextArea, ...props } = this.props;
+        const prefixValid = '--isValid';
+        const prefixInvalid = '--isInvalid';
+
+        let classNamesInvalid = '';
+        let classNamesValid = '';
+
+        if (isInvalid) {
+            classNamesInvalid = `Input${prefixInvalid} ${className ? `${className}${prefixInvalid}` : ''}`;
+        } else if (isValid) {
+            classNamesValid = `Input${prefixValid} ${className ? `${className}${prefixValid}` : ''}`;
+        }
 
         if (isTextArea) {
             return (
@@ -29,7 +40,7 @@ export default class Input extends PureComponent {
                     readOnly={isReadOnly}
                     disabled={isDisabled}
                     {...props}
-                    className={`Input Input--textarea ${isInvalid ? 'Input--isInvalid' : isValid ? 'Input--isValid' : ''} ${className}`} />
+                    className={`Input Input--textarea ${className} ${isInvalid ? classNamesInvalid : isValid ? classNamesValid : ''}`} />
             );
         }
 
@@ -38,7 +49,7 @@ export default class Input extends PureComponent {
                 readOnly={isReadOnly}
                 disabled={isDisabled}
                 {...props}
-                className={`Input ${isInvalid ? 'Input--isInvalid' : isValid ? 'Input--isValid' : ''} ${className}`} />
+                className={`Input ${className} ${isInvalid ? classNamesInvalid : isValid ? classNamesValid : ''}`} />
         );
     }
 }
