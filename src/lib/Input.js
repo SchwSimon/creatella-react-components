@@ -4,6 +4,8 @@ import React, { PureComponent } from 'react';
 export default class Input extends PureComponent {
     static propTypes = {
         className: PropTypes.string,
+        classNameValid: PropTypes.string,
+        classNameInvalid: PropTypes.string,
         isReadOnly: PropTypes.bool,
         isDisabled: PropTypes.bool,
         isValid: PropTypes.bool,
@@ -13,6 +15,8 @@ export default class Input extends PureComponent {
 
     static defaultProps = {
         className: '',
+        classNameValid: '',
+        classNameInvalid: '',
         isReadOnly: false,
         isDisabled: false,
         isValid: false,
@@ -21,17 +25,19 @@ export default class Input extends PureComponent {
     }
 
     render() {
-        const { className, isReadOnly, isDisabled, isValid, isInvalid, isTextArea, ...props } = this.props;
-        const prefixValid = '--isValid';
-        const prefixInvalid = '--isInvalid';
+        const {
+            className, classNameValid, classNameInvalid,
+            isReadOnly, isDisabled, isValid, isInvalid, isTextArea,
+            ...props
+        } = this.props;
 
         let classNamesInvalid = '';
         let classNamesValid = '';
 
         if (isInvalid) {
-            classNamesInvalid = `Input${prefixInvalid} ${className ? `${className}${prefixInvalid}` : ''}`;
+            classNamesInvalid = `Input--isInvalid ${classNameInvalid}`;
         } else if (isValid) {
-            classNamesValid = `Input${prefixValid} ${className ? `${className}${prefixValid}` : ''}`;
+            classNamesValid = `Input--isValid ${classNameValid}`;
         }
 
         if (isTextArea) {
