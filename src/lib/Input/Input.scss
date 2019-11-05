@@ -9,8 +9,11 @@
         color: $placeholder-color;
     }
 
+    &:invalid,
     &:focus {
+        box-shadow: none;
         outline: none;
+        appearance: none;
     }
 
     &--isValid,
