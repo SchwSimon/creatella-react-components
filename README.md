@@ -359,6 +359,29 @@ windowWidth     // window.innerWidth
 windowHeight    // window.innerHeight
 ```
 
+### `withForgotPassword()`
+```js
+import { withForgotPassword } from 'creatella-react-components/lib/HOCs/withThrottledChange';
+
+// Default throttle: 150ms
+export default withForgotPassword(
+    MyComponent,
+    {
+        requestTitle            // [String]
+        requestSuccessText      // [String]
+        resetTitle              // [String]
+        resetSuccessText        // [String]
+        searchQueryKey          // [String]
+        validatorEmail          // [Func] default: (() => true)
+        validatorPassword       // [Func] default: (() => true)
+        onApiRequestError       // [Func] default: (() => '')
+        onApiResetError         // [Func] default: (() => '')
+        apiRequest              // [async Func] !required
+        apiReset                // [async Func] !required
+    }
+);
+```
+
 ## Utils
 
 ### `ellipsisString()`
