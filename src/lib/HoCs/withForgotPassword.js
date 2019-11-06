@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { withAsyncCaller } from './withAsyncCaller';
-import ModalForgotPassword from '../Modals/ModalForgotPassword';
+import ModalForgotPassword from '../Modals/ForgotPassword/ModalForgotPassword';
 
 export function withForgotPassword(Component, configProps) {
     const STORAGEKEY_LOGIN_EMAIL = 'sk-wfp-email';
