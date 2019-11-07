@@ -11,6 +11,7 @@ class Helmet extends Component {
             description: PropTypes.string.isRequired,
             image: PropTypes.string.isRequired,
             type: PropTypes.string.isRequired,
+            language: PropTypes.string.isRequired,
             twitterSite: PropTypes.string,
             siteName: PropTypes.string,
             fbAppId: PropTypes.string
@@ -18,16 +19,18 @@ class Helmet extends Component {
         title: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
+        language: PropTypes.string.isRequired,
         children: PropTypes.any
     }
 
     shouldComponentUpdate(nextProps) {
-        const { pathname, title, description, image, children } = this.props;
+        const { pathname, title, description, image, language, children } = this.props;
 
         if (pathname !== nextProps.pathname ||
             title !== nextProps.title ||
             description !== nextProps.description ||
             image !== nextProps.image ||
+            language !== nextProps.language ||
             children !== nextProps.children) {
             return true;
         }
@@ -37,7 +40,7 @@ class Helmet extends Component {
 
     render() {
         const href = window.location.href;
-        const { defaultConfig } = this.props;
+        const { defaultConfig, language } = this.props;
         const {
             title: dcTitle, description: dcDescription, image: dcImage, children: dcChildren,
             type, twitterSite, siteName, fbAppId
@@ -51,7 +54,11 @@ class Helmet extends Component {
 
         return (
             <ReactHelmet>
-                <title>{title}</title>
+                <html lang={language} />
+
+                <title>
+                    {title}
+                </title>
 
                 <link rel='canonical' href={href} />
                 <meta name='description' content={description} />
@@ -89,9 +96,12 @@ class Helmet extends Component {
     }
 }
 
-function mapStateToProps({ helmet }) {
+function mapStateToProps({ helmet, i18n }) {
+    const { defaultConfig } = helmet;
+
     return {
-        ...helmet
+        ...helmet,
+        language: i18n ? i18n.language : defaultConfig.language
     };
 }
 
