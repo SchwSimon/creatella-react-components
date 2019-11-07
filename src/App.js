@@ -5,6 +5,7 @@ import ActivityIndicator from 'lib/ActivityIndicator';
 import Button from 'lib/Button';
 // import Alerts from 'lib/Alerts';
 import InputGroup from 'lib/InputGroup';
+import Helmet from 'lib/Helmet';
 import Input from 'lib/Input';
 import Modal from 'lib/Modal';
 import Avatar from 'lib/Avatar';
@@ -14,13 +15,6 @@ import ItemPicker from 'lib/ItemPicker';
 import ItemPickerView from 'lib/ItemPickerView';
 import { ALERTS_POSITION_ARRAY, ALERT_TYPES_ARRAY } from 'lib/Alerts/config';
 import 'lib/styles.scss';
-
-// import Button from 'creatella-react-components/lib/Button';
-// import ActivityIndicator from 'creatella-react-components/lib/ActivityIndicator';
-// import 'creatella-react-components/lib/styles.scss';
-
-// Custom App Component Styling
-import 'styles/styles.scss';
 
 export default class App extends Component {
     constructor(props) {
@@ -122,6 +116,11 @@ export default class App extends Component {
         return (
             <div className='App App--withHeader'>
                 <BrowserRouter>
+                    <Helmet
+                        defaultConfig={{
+                            language: 'de'
+                        }} />
+
                     <div className='AppHeader' />
 
                     <main className='main'>
