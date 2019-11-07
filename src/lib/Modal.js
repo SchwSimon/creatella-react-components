@@ -78,8 +78,7 @@ export default class Modal extends PureComponent {
                         role='document'>
                         <OutsideClick
                             className='Modal__dialog-content'
-                            onOutsideClick={onClose}
-                            event='click'>
+                            onOutsideClick={onClose}>
                             {children}
                         </OutsideClick>
                     </div>
