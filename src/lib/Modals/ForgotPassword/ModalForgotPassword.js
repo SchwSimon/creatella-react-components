@@ -7,6 +7,9 @@ import InputGroup from '../../InputGroup';
 import Input from '../../Input';
 import Button from '../../Button';
 
+// TODO: add at the bottom of the reset UI:
+// Click here to request a new password reset <-- toggle to the email UI
+// add mobile styles
 export default class ModalForgotPassword extends PureComponent {
     static propTypes = {
         isProcessing: PropTypes.bool.isRequired,
