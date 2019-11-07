@@ -150,6 +150,10 @@ export function withForgotPassword(Component, configProps) {
             }
         }
 
+        onBackToRequestUI = () => {
+            this.setState({ resetCode: '' });
+        }
+
         render() {
             const { isProcessing, isSuccess, errorMessage } = this.props;
             const {
@@ -183,6 +187,7 @@ export function withForgotPassword(Component, configProps) {
                         email={email}
                         password={password}
                         onClose={this.toggleModal}
+                        onBackToRequestUI={this.onBackToRequestUI}
                         onChangeEmail={this.onChangeEmail}
                         onChangePassword={this.onChangePassword}
                         onSubmitEmail={this.submitEmail}

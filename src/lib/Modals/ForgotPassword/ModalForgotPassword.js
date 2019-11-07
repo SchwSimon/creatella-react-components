@@ -7,9 +7,6 @@ import InputGroup from '../../InputGroup';
 import Input from '../../Input';
 import Button from '../../Button';
 
-// TODO: add at the bottom of the reset UI:
-// Click here to request a new password reset <-- toggle to the email UI
-// add mobile styles
 export default class ModalForgotPassword extends PureComponent {
     static propTypes = {
         isProcessing: PropTypes.bool.isRequired,
@@ -25,6 +22,7 @@ export default class ModalForgotPassword extends PureComponent {
         email: PropTypes.string.isRequired,
         password: PropTypes.string.isRequired,
         onClose: PropTypes.func.isRequired,
+        onBackToRequestUI: PropTypes.func.isRequired,
         onChangeEmail: PropTypes.func.isRequired,
         onChangePassword: PropTypes.func.isRequired,
         errorMessage: PropTypes.string.isRequired
@@ -106,7 +104,8 @@ export default class ModalForgotPassword extends PureComponent {
     renderResetUI = () => {
         const {
             isProcessing, isSuccess, isValidPassword, resetTitle, resetSuccessText,
-            password, onChangePassword, onSubmitPassword, onClose, errorMessage
+            onChangePassword, onSubmitPassword, onClose, onBackToRequestUI,
+            email, password, errorMessage
         } = this.props;
         const { isPasswordVisible } = this.state;
 
@@ -124,6 +123,11 @@ export default class ModalForgotPassword extends PureComponent {
                             Enter your new password
                         </label>
                     )}
+
+                    <Input
+                        className='ModalForgotPassword__content-hiddenEmailInput'
+                        type='email'
+                        value={email} />
 
                     <InputGroup className='ModalForgotPassword__content-inputGroup'>
                         <Input
@@ -165,6 +169,11 @@ export default class ModalForgotPassword extends PureComponent {
                             isProcessing={isProcessing}
                             onClick={onSubmitPassword} />
                     }
+
+                    <Button
+                        className='ModalForgotPassword__button ModalForgotPassword__button--backToRequestUI'
+                        label='Click here to request a new password reset.'
+                        onClick={onBackToRequestUI} />
                 </div>
             </div>
         );
