@@ -40,17 +40,19 @@ class Helmet extends Component {
 
     render() {
         const href = window.location.href;
-        const { defaultConfig, language } = this.props;
+        const { defaultConfig } = this.props;
         const {
             title: dcTitle, description: dcDescription, image: dcImage, children: dcChildren,
-            type, twitterSite, siteName, fbAppId
+            type, twitterSite, siteName, fbAppId, language: dcLanguage
         } = defaultConfig;
-        let { title, description, image, children } = this.props;
+
+        let { title, description, image, children, language } = this.props;
 
         title = dcTitle || title;
         description = dcDescription || description;
         image = dcImage || image;
         children = dcChildren || children;
+        language = language || dcLanguage;
 
         return (
             <ReactHelmet>
@@ -97,11 +99,9 @@ class Helmet extends Component {
 }
 
 function mapStateToProps({ helmet, i18n }) {
-    const { defaultConfig } = helmet;
-
     return {
         ...helmet,
-        language: i18n ? i18n.language : defaultConfig.language
+        language: i18n ? i18n.language : ''
     };
 }
 
