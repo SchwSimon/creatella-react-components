@@ -425,4 +425,4 @@ castArray() // [Any]
 
 ## License
 
-MIT © [SchwSimon](https://github.com/SchwSimon)
+MIT © [SchwSimon](https://github.com/SchwSimon) 
