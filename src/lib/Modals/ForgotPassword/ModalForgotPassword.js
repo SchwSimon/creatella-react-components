@@ -6,6 +6,7 @@ import Modal from '../../Modal';
 import InputGroup from '../../InputGroup';
 import Input from '../../Input';
 import Button from '../../Button';
+import PasswordStrengthMeter from '../../PasswordStrengthMeter';
 
 export default class ModalForgotPassword extends PureComponent {
     static propTypes = {
@@ -15,6 +16,8 @@ export default class ModalForgotPassword extends PureComponent {
         isValidEmail: PropTypes.bool.isRequired,
         isValidPassword: PropTypes.bool.isRequired,
         isResetCode: PropTypes.bool.isRequired,
+        isRenderStrengthMeter: PropTypes.bool.isRequired,
+        zxcvbn: PropTypes.func,
         requestTitle: PropTypes.string.isRequired,
         requestSuccessText: PropTypes.string.isRequired,
         resetTitle: PropTypes.string.isRequired,
@@ -103,9 +106,9 @@ export default class ModalForgotPassword extends PureComponent {
 
     renderResetUI = () => {
         const {
-            isProcessing, isSuccess, isValidPassword, resetTitle, resetSuccessText,
+            isProcessing, isRenderStrengthMeter, isSuccess, isValidPassword, resetTitle, resetSuccessText,
             onChangePassword, onSubmitPassword, onClose, onBackToRequestUI,
-            email, password, errorMessage
+            email, password, errorMessage, zxcvbn
         } = this.props;
         const { isPasswordVisible } = this.state;
 
@@ -146,6 +149,13 @@ export default class ModalForgotPassword extends PureComponent {
                             <FontAwesomeIcon icon={isPasswordVisible ? faEyeSlash : faEye} />
                         </Button>
                     </InputGroup>
+
+                    {isRenderStrengthMeter && (
+                        <PasswordStrengthMeter
+                            className='ModalForgotPassword__content-PasswordStrengthMeter'
+                            zxcvbn={zxcvbn}
+                            password={password} />
+                    )}
 
                     <div className='ModalForgotPassword__content-error'>
                         {errorMessage}

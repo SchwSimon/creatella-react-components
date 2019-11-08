@@ -22,7 +22,7 @@ yarn add @fortawesome/free-solid-svg-icons  // Alerts, Checkbox, Avatar
 yarn add @fortawesome/react-fontawesome     // Alerts, Checkbox, Avatar
 yarn add date-fns                           // Alerts
 yarn add fuse.js                            // ItemPicker, ItemPickerView
-yarn add zxcvbn                             // PasswordStrengthMeter
+yarn add zxcvbn                             // PasswordStrengthMeter, withForgotPassword (if used with useZxcvbn=true)
 ```
 
 ## Usage
@@ -255,6 +255,7 @@ pushAlert({
 import PasswordStrengthMeter from 'creatella-react-components/lib/PasswordStrengthMeter';
 
 <PasswordStrengthMeter
+    zxcvbn          // [Func] by default it will automatically load the module asynchronously
     className       // [String]
     password        // [String] !required
     onChangeScore   // [Func]
@@ -386,7 +387,8 @@ export default withForgotPassword(
         searchQueryKey          // [String]
         validatorEmail          // [Func] default: (() => true)
         validatorPassword       // [Func] default: (() => true)
-        setValidatorPasswordAsync // [async Func]
+        useZxcvbn               // [Bool] default: false
+        zxcvbnMinScore          // [Number] default: 0
         onApiRequestError       // [Func] default: (() => '')
         onApiResetError         // [Func] default: (() => '')
         apiRequest              // [async Func] !required
@@ -425,4 +427,4 @@ castArray() // [Any]
 
 ## License
 
-MIT © [SchwSimon](https://github.com/SchwSimon) 
+MIT © [SchwSimon](https://github.com/SchwSimon)

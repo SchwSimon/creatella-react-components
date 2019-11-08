@@ -9,7 +9,8 @@ export function withForgotPassword(Component, configProps) {
     const {
         requestTitle, requestSuccessText, resetTitle, resetSuccessText,
         onApiRequestError, onApiResetError,
-        validatorEmail, validatorPassword, setValidatorPasswordAsync,
+        validatorEmail, validatorPassword,
+        useZxcvbn, zxcvbnMinScore,
         searchQueryKey: _searchQueryKey,
         apiRequest: _apiRequest, apiReset: _apiReset
     } = configProps;
@@ -23,8 +24,10 @@ export function withForgotPassword(Component, configProps) {
     const _onApiResetError = onApiResetError || (() => '');
 
     const _validatorEmail = validatorEmail || (() => true);
+    const _validatorPassword = validatorPassword || (() => true);
 
-    let _validatorPassword = validatorPassword || (() => true);
+    const _useZxcvbn = !!useZxcvbn;
+    const _zxcvbnMinScore = zxcvbnMinScore || 0;
 
     class WithForgotPassword extends PureComponent {
         static propTypes = {
@@ -36,7 +39,8 @@ export function withForgotPassword(Component, configProps) {
         }
 
         static defaultProps = {
-            isProcessing: !!setValidatorPasswordAsync,
+            isProcessing: _useZxcvbn,
+            isRenderStrengthMeter: false,
             isSuccess: false,
             errorMessage: ''
         }
@@ -78,16 +82,21 @@ export function withForgotPassword(Component, configProps) {
         }
 
         componentDidMount() {
-            this.setValidatorPasswordAsyncFunc();
+            this.setZxcvbn();
         }
 
-        setValidatorPasswordAsyncFunc = async () => {
+        setZxcvbn = async () => {
             const { setOwnProps } = this.props;
 
-            if (setValidatorPasswordAsync) {
-                _validatorPassword = await setValidatorPasswordAsync();
+            if (_useZxcvbn) {
+                const zxcvbn = await import('zxcvbn');
 
-                setOwnProps({ isProcessing: false });
+                this.zxcvbn = zxcvbn.default;
+
+                setOwnProps({
+                    isProcessing: false,
+                    isRenderStrengthMeter: true
+                });
             }
         }
 
@@ -110,10 +119,19 @@ export function withForgotPassword(Component, configProps) {
 
         onChangePassword = (e) => {
             const password = e.target.value;
+            let isValidPassword;
+
+            if (_useZxcvbn && _zxcvbnMinScore && this.zxcvbn) {
+                const passwordScore = this.zxcvbn(password).score;
+
+                isValidPassword = passwordScore >= _zxcvbnMinScore;
+            } else {
+                isValidPassword = _validatorPassword(password);
+            }
 
             this.setState({
                 password,
-                isValidPassword: _validatorPassword(password)
+                isValidPassword
             });
         }
 
@@ -170,7 +188,7 @@ export function withForgotPassword(Component, configProps) {
         }
 
         render() {
-            const { isProcessing, isSuccess, errorMessage } = this.props;
+            const { isProcessing, isRenderStrengthMeter, isSuccess, errorMessage } = this.props;
             const {
                 isVisible, isValidEmail, isValidPassword,
                 email, password, resetCode
@@ -195,6 +213,8 @@ export function withForgotPassword(Component, configProps) {
                         isValidEmail={isValidEmail}
                         isValidPassword={isValidPassword}
                         isResetCode={!!resetCode}
+                        isRenderStrengthMeter={isRenderStrengthMeter}
+                        zxcvbn={this.zxcvbn}
                         requestTitle={_requestTitle}
                         requestSuccessText={_requestSuccessText}
                         resetTitle={_resetTitle}

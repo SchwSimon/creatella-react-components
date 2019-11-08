@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 export default class PasswordStrengthMeter extends Component {
     static propTypes = {
         password: PropTypes.string.isRequired,
+        zxcvbn: PropTypes.func,
         onChangeScore: PropTypes.func,
         className: PropTypes.string
     }
@@ -15,13 +16,18 @@ export default class PasswordStrengthMeter extends Component {
     constructor(props) {
         super(props);
 
+        const { zxcvbn } = props;
+
+        this.zxcvbn = zxcvbn;
         this.state = {
             score: 0
         };
     }
 
     componentDidMount() {
-        this.loadModule();
+        if (!this.zxcvbn) {
+            this.loadModule();
+        }
     }
 
     shouldComponentUpdate(nextProps, nextState) {
