@@ -22,6 +22,7 @@ yarn add @fortawesome/free-solid-svg-icons  // Alerts, Checkbox, Avatar
 yarn add @fortawesome/react-fontawesome     // Alerts, Checkbox, Avatar
 yarn add date-fns                           // Alerts
 yarn add fuse.js                            // ItemPicker, ItemPickerView
+yarn add zxcvbn                             // withPasswordStrength
 ```
 
 ## Usage
@@ -374,6 +375,7 @@ export default withForgotPassword(
         searchQueryKey          // [String]
         validatorEmail          // [Func] default: (() => true)
         validatorPassword       // [Func] default: (() => true)
+        setValidatorPasswordAsync // [async Func]
         onApiRequestError       // [Func] default: (() => '')
         onApiResetError         // [Func] default: (() => '')
         apiRequest              // [async Func] !required

@@ -9,7 +9,7 @@ export function withForgotPassword(Component, configProps) {
     const {
         requestTitle, requestSuccessText, resetTitle, resetSuccessText,
         onApiRequestError, onApiResetError,
-        validatorEmail, validatorPassword,
+        validatorEmail, validatorPassword, setValidatorPasswordAsync,
         searchQueryKey: _searchQueryKey,
         apiRequest: _apiRequest, apiReset: _apiReset
     } = configProps;
@@ -23,7 +23,8 @@ export function withForgotPassword(Component, configProps) {
     const _onApiResetError = onApiResetError || (() => '');
 
     const _validatorEmail = validatorEmail || (() => true);
-    const _validatorPassword = validatorPassword || (() => true);
+
+    let _validatorPassword = validatorPassword || (() => true);
 
     class WithForgotPassword extends PureComponent {
         static propTypes = {
@@ -35,7 +36,7 @@ export function withForgotPassword(Component, configProps) {
         }
 
         static defaultProps = {
-            isProcessing: false,
+            isProcessing: !!setValidatorPasswordAsync,
             isSuccess: false,
             errorMessage: ''
         }
@@ -74,6 +75,18 @@ export function withForgotPassword(Component, configProps) {
                 password: '',
                 resetCode
             };
+        }
+
+        componentDidMount() {
+            this.setValidatorPasswordAsync();
+        }
+
+        setValidatorPasswordAsync = async () => {
+            if (setValidatorPasswordAsync) {
+                _validatorPassword = await setValidatorPasswordAsync();
+
+                setOwnProps({ isProcessing: false });
+            }
         }
 
         toggleModal = () => {
