@@ -1,6 +1,8 @@
+/* eslint-disable no-throw-literal */
+
 import React, { PureComponent } from 'react';
 
-const AXIOS = window._baseAxios;
+const AXIOS = window._baseAxios || { isCancel: () => false };
 
 /**
  * api/async request handler
@@ -39,7 +41,7 @@ export function withAsyncCaller(Component) {
         }
 
         generateCancelToken = (isAutoHandling = true) => {
-            if (AXIOS) {
+            if (AXIOS.CancelToken) {
                 const cancelToken = AXIOS.CancelToken.source();
 
                 if (isAutoHandling) {
@@ -72,14 +74,24 @@ export function withAsyncCaller(Component) {
 
         caller = async (func, ...args) => {
             if (this._isMounted) {
-                const response = await func(...args);
+                try {
+                    const response = await func(...args);
 
-                if (this._isMounted) {
-                    return response;
+                    if (this._isMounted) {
+                        return response;
+                    }
+
+                    throw false;
+                } catch (err) {
+                    // If using without axios cancellation, isCancel() will never return true
+                    if (!this._isMounted || AXIOS.isCancel(err)) {
+                        throw false;
+                    }
+
+                    // Forward all throws not caused by component unmount or cancelled requests
+                    throw err;
                 }
             }
-
-            throw new Error('Component did unmount while async call');
         }
 
         callerProps = (config, ...args) => {
@@ -89,6 +101,7 @@ export function withAsyncCaller(Component) {
             } = config;
 
             const request = async () => {
+                let isCancelled = false;
                 let newState = {};
                 let response;
                 let callback;
@@ -96,25 +109,31 @@ export function withAsyncCaller(Component) {
                 try {
                     response = await api(...args);
 
-                    if (responseKey) {
-                        newState[responseKey] = responseDataKey ? response[responseDataKey] : response;
-                    }
+                    if (this._isMounted) {
+                        if (responseKey) {
+                            newState[responseKey] = responseDataKey ? response[responseDataKey] : response;
+                        }
 
-                    if (onSuccess && this._isMounted) {
-                        callback = () => onSuccess(response);
+                        if (onSuccess) {
+                            callback = () => onSuccess(response);
+                        }
                     }
                 } catch (err) {
-                    response = err;
+                    if (!this._isMounted && AXIOS.isCancel(err)) {
+                        isCancelled = true;
+                    } else {
+                        response = err;
 
-                    if (onError && this._isMounted) {
-                        callback = () => onError(err);
+                        if (onError) {
+                            callback = () => onError(err);
+                        }
                     }
                 } finally {
-                    if (loadingKey) {
-                        newState[loadingKey] = false;
-                    }
+                    if (this._isMounted && !isCancelled) {
+                        if (loadingKey) {
+                            newState[loadingKey] = false;
+                        }
 
-                    if (this._isMounted) {
                         newState = (responseKey || loadingKey) ? newState : null;
 
                         this.setState(newState, callback);
