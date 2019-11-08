@@ -78,10 +78,12 @@ export function withForgotPassword(Component, configProps) {
         }
 
         componentDidMount() {
-            this.setValidatorPasswordAsync();
+            this.setValidatorPasswordAsyncFunc();
         }
 
-        setValidatorPasswordAsync = async () => {
+        setValidatorPasswordAsyncFunc = async () => {
+            const { setOwnProps } = this.props;
+
             if (setValidatorPasswordAsync) {
                 _validatorPassword = await setValidatorPasswordAsync();
 

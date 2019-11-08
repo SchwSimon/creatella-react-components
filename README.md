@@ -22,7 +22,7 @@ yarn add @fortawesome/free-solid-svg-icons  // Alerts, Checkbox, Avatar
 yarn add @fortawesome/react-fontawesome     // Alerts, Checkbox, Avatar
 yarn add date-fns                           // Alerts
 yarn add fuse.js                            // ItemPicker, ItemPickerView
-yarn add zxcvbn                             // withPasswordStrength
+yarn add zxcvbn                             // PasswordStrengthMeter
 ```
 
 ## Usage
@@ -248,6 +248,17 @@ pushAlert({
     animationDuration   // [Number] default: 500
     dismissDuration     // [Number] default: 4000
 });
+```
+
+### `<PasswordStrengthMeter />`
+```jsx
+import PasswordStrengthMeter from 'creatella-react-components/lib/PasswordStrengthMeter';
+
+<PasswordStrengthMeter
+    className       // [String]
+    password        // [String] !required
+    onChangeScore   // [Func]
+/>
 ```
 
 ### `<Helmet />`
