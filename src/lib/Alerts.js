@@ -11,6 +11,7 @@ class Alerts extends PureComponent {
     static propTypes = {
         position: PropTypes.oneOf(ALERTS_POSITION_ARRAY).isRequired,
         dismissAlert: PropTypes.func.isRequired,
+        renderTimeDisplay: PropTypes.func,
         alerts: PropTypes.arrayOf(
             PropTypes.shape({
                 id: PropTypes.number.isRequired,
@@ -22,7 +23,7 @@ class Alerts extends PureComponent {
     }
 
     renderAlert = ({ id, ...props }) => {
-        const { dismissAlert, position } = this.props;
+        const { dismissAlert, position, renderTimeDisplay } = this.props;
 
         return (
             <AlertsCard
@@ -30,7 +31,8 @@ class Alerts extends PureComponent {
                 key={id}
                 id={id}
                 position={position}
-                onDismiss={dismissAlert} />
+                onDismiss={dismissAlert}
+                renderTimeDisplay={renderTimeDisplay} />
         );
     }
 

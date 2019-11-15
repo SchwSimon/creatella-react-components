@@ -235,14 +235,15 @@ import InputGroup from 'creatella-react-components/lib/InputGroup';
 import Alerts, { ALERTS_POSITION } from 'creatella-react-components/lib/Alerts';
 
 <Alerts
-    position // [String] !required One of {ALERTS_POSITION}
+    renderTimeDisplay   // [Func]
+    position            // [String] !required One of {ALERTS_POSITION}
 />
 
 // use with redux/dispatch to push alerts
-import { pushAlert } from 'creatella-react-components/lib/reduxReducers/alerts';
+import { pushAlert, ALERT_TYPES } from 'creatella-react-components/lib/reduxReducers/alerts';
 
 pushAlert({
-    type                // [String] !required
+    type                // [String] !required (one of ALERT_TYPES)
     message             // [String] !required
     isAutoDismiss       // [Bool] default: true
     animationDuration   // [Number] default: 500

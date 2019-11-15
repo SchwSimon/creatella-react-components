@@ -16,6 +16,7 @@ export default class AlertsCard extends PureComponent {
         type: PropTypes.string.isRequired,
         position: PropTypes.string.isRequired,
         onDismiss: PropTypes.func.isRequired,
+        renderTimeDisplay: PropTypes.func,
         isAutoDismiss: PropTypes.bool,
         animationDuration: PropTypes.number,
         dismissDuration: PropTypes.number
@@ -30,7 +31,7 @@ export default class AlertsCard extends PureComponent {
     constructor(props) {
         super(props);
 
-        const { type, dismissDuration } = props;
+        const { type, dismissDuration, renderTimeDisplay } = props;
         let icon;
 
         switch (type) {
@@ -61,7 +62,7 @@ export default class AlertsCard extends PureComponent {
             dismissTimeout: null,
             dismissedTimeout: null,
             timestamp: new Date(),
-            timeDisplay: 'just now',
+            timeDisplay: renderTimeDisplay ? renderTimeDisplay() : 'just now',
             icon
         };
     }
@@ -124,10 +125,13 @@ export default class AlertsCard extends PureComponent {
     }
 
     onUpdateTime = () => {
+        const { renderTimeDisplay } = this.props;
         const { timestamp } = this.state;
 
         this.setState({
-            timeDisplay: formatDistanceStrict(timestamp, new Date(), { addSuffix: true })
+            timeDisplay: renderTimeDisplay
+                ? renderTimeDisplay(timestamp)
+                : formatDistanceStrict(timestamp, new Date(), { addSuffix: true })
         });
     }
 
