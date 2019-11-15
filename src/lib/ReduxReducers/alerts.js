@@ -1,3 +1,5 @@
+export { ALERT_TYPES } from '../Alerts/config';
+
 const ALERTS_PUSH = 'ALERTS_PUSH';
 const ALERTS_DISMISS = 'ALERTS_DISMISS';
 
