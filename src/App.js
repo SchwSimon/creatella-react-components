@@ -5,7 +5,6 @@ import ActivityIndicator from 'lib/ActivityIndicator';
 import Button from 'lib/Button';
 // import Alerts from 'lib/Alerts';
 import InputGroup from 'lib/InputGroup';
-import Helmet from 'lib/Helmet';
 import Input from 'lib/Input';
 import Modal from 'lib/Modal';
 import Avatar from 'lib/Avatar';
@@ -48,6 +47,7 @@ class App extends Component {
             isModalVisible: false,
             isItemPickerVisible: false,
             checkedId: 1,
+            itempickerValue: 1,
             itempickerItemsActiveIds: [1, 3],
             itempickerItems8,
             itempickerItems16,
@@ -110,17 +110,13 @@ class App extends Component {
     render() {
         const {
             itempickerItems8, itempickerItems16, itempickerItemsActiveIds,
-            isAlertAutoDismiss, isCheckBoxCheck, checkedId, isModalVisible
+            isAlertAutoDismiss, isCheckBoxCheck, checkedId, isModalVisible,
+            itempickerValue
         } = this.state;
 
         return (
             <div className='App App--withHeader'>
                 <BrowserRouter>
-                    <Helmet
-                        defaultConfig={{
-                            language: 'de'
-                        }} />
-
                     <div className='AppHeader' />
 
                     <main className='main'>
@@ -155,9 +151,10 @@ class App extends Component {
 
                         <ItemPickerView
                             onClick={this.onToggleItemPicker}
-                            onChange={(ids) => this.setState({ itempickerItemsActiveIds: ids })}
-                            value={itempickerItemsActiveIds}
+                            onChange={(itempickerValue) => this.setState({ itempickerValue })}
+                            // value={itempickerItemsActiveIds}
                             // value={null}
+                            value={itempickerValue}
                             items={itempickerItems16} />
 
                         <h1 className='App__h1'>

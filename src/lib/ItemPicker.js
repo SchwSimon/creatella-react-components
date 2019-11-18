@@ -42,7 +42,7 @@ export default class ItemPicker extends PureComponent {
 
         this.state = {
             isSearch: items.length > searchRenderItemTreshold,
-            value: castArray(value),
+            valueArray: castArray(value),
             search: '',
             searchItems: []
         };
@@ -53,7 +53,7 @@ export default class ItemPicker extends PureComponent {
 
         if (JSON.stringify(prevProps.value) !== JSON.stringify(value)) {
             this.setState({
-                value: castArray(value)
+                valueArray: castArray(value)
             });
         }
 
@@ -67,8 +67,7 @@ export default class ItemPicker extends PureComponent {
     }
 
     onSelectItem = (item) => {
-        const { maxSelections, minSelections, onChange } = this.props;
-        const { value } = this.state;
+        const { maxSelections, minSelections, onChange, value } = this.props;
 
         const nextValue = computeItemPickerChangeValue({
             item,
@@ -108,7 +107,7 @@ export default class ItemPicker extends PureComponent {
 
     renderItem = (item) => {
         const { renderItemContent, itemsNameKey } = this.props;
-        const { value } = this.state;
+        const { valueArray } = this.state;
         const { id, [itemsNameKey]: name } = item;
 
         return (
@@ -117,7 +116,7 @@ export default class ItemPicker extends PureComponent {
                 {...item}
                 item={item}
                 onSelect={this.onSelectItem}
-                isActive={value.indexOf(id) > -1}
+                isActive={valueArray.indexOf(id) > -1}
                 content={renderItemContent ? renderItemContent(item) : name} />
         );
     }
