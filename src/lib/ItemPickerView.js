@@ -163,9 +163,9 @@ export default class ItemPickerView extends PureComponent {
                 {childrenLeft}
 
                 <div
-                    className={`ItemPickerView__items ${isRenderInput ? 'ItemPickerView__items--isInput' : ''}`}
+                    className={`ItemPickerView__items ${isSingleSelection ? 'ItemPickerView__items--isSingleSelection' : ''} ${isRenderInput ? 'ItemPickerView__items--isInput' : ''}`}
                     onClick={isRenderInput ? this.onFocusInput : onClickFunc}>
-                    <div className='ItemPickerView__items-wrapper'>
+                    <div className={`ItemPickerView__items-wrapper ${isSingleSelection ? 'ItemPickerView__items-wrapper--isSingleSelection' : ''}`}>
                         {isProcessing && (
                             <div className='ItemPickerView__items-wrapper-processing'>
                                 <ActivityIndicator size={20} />

@@ -26,6 +26,11 @@ $border-color: #eee;
         max-height: 112px;
         cursor: pointer;
 
+        &--isSingleSelection {
+            min-height: 100%;
+            max-height: none;
+        }
+
         &--isInput {
             cursor: text;
         }
@@ -38,6 +43,10 @@ $border-color: #eee;
             overflow: hidden;
             padding: 5px;
             margin-right: 5px;
+
+            &--isSingleSelection {
+                padding: 0;
+            }
 
             &-placeholder {
                 color: $placeholder-color;
