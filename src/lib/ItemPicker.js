@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import Fuse from 'fuse.js';
-import OutsideClick from 'lib/OutsideClick';
-import ActivityIndicator from 'lib/ActivityIndicator';
-import { castArray } from 'lib/utils/castArray';
+import OutsideClick from './OutsideClick';
+import ActivityIndicator from './ActivityIndicator';
+import { castArray } from './utils/castArray';
 
 // Config
 import { ItemPickerGlobalPropTypes, ItemPickerGlobalDefaultProps } from './configs/ItemPickerConfig';

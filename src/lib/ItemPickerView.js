@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
-import ActivityIndicator from 'lib/ActivityIndicator';
-import { castArray } from 'lib/utils/castArray';
+import ActivityIndicator from './ActivityIndicator';
+import { castArray } from './utils/castArray';
 
 // Config
 import { ItemPickerGlobalPropTypes, ItemPickerGlobalDefaultProps } from './configs/ItemPickerConfig';
