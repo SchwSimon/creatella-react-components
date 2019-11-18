@@ -162,7 +162,11 @@ import ItemPickerView from 'creatella-react-components/lib/ItemPickerView';
 
 <ItemPickerView
     className                   // [String]
+    classNameValid              // [String]
+    classNameInvalid            // [String]
     isProcessing                // [Bool] default: false
+    isValid                     // [Bool] default: false
+    isInvalid                   // [Bool] default: false
     onChange                    // [Func] !required
     value                       // [Number | Array]
     maxSelections               // [Number] default: null

@@ -19,9 +19,13 @@ import ItemPickerViewInput from './ItemPickerView/components/Input/ItemPickerVie
 export default class ItemPickerView extends PureComponent {
     static propTypes = {
         ...ItemPickerGlobalPropTypes,
+        classNameValid: PropTypes.string,
+        classNameInvalid: PropTypes.string,
         isItemPicker: PropTypes.bool,
         isToggle: PropTypes.bool,
         isInput: PropTypes.bool,
+        isValid: PropTypes.bool,
+        isInvalid: PropTypes.bool,
         classNameItemPicker: PropTypes.string,
         childrenLeft: PropTypes.any,
         childrenRight: PropTypes.any,
@@ -32,8 +36,12 @@ export default class ItemPickerView extends PureComponent {
 
     static defaultProps = {
         ...ItemPickerGlobalDefaultProps,
+        classNameValid: '',
+        classNameInvalid: '',
         isItemPicker: true,
         isToggle: true,
+        isValid: false,
+        isInvalid: false,
         isInput: false,
         classNameItemPicker: '',
         childrenLeft: null,
@@ -146,24 +154,31 @@ export default class ItemPickerView extends PureComponent {
         );
     }
 
-    // TODO: see if we can fit itemPicker in here for a default setup
-    // so we also with toggling logic by default
     render() {
         const {
-            className, items, itemsNameKey, itemsSearchConfig, childrenLeft, childrenRight,
+            className, classNameInvalid, classNameValid, items, itemsNameKey, itemsSearchConfig, childrenLeft, childrenRight,
             isProcessing, placeholder, onClick, isInput, isToggle, placeholderInput, onChangeInput,
-            isItemPicker, classNameItemPicker
+            isItemPicker, classNameItemPicker, isValid, isInvalid
         } = this.props;
         const { selectedItems, isMaxSelected, isSingleSelection, isItemPickerVisible } = this.state;
         const isRenderInput = isInput && !isMaxSelected;
         const onClickFunc = isItemPicker ? this.onToggleItemPicker : onClick;
+
+        let classNamesInvalid = '';
+        let classNamesValid = '';
+
+        if (isInvalid) {
+            classNamesInvalid = `ItemPickerView__items--isInvalid ${classNameInvalid}`;
+        } else if (isValid) {
+            classNamesValid = `ItemPickerView__items--isValid ${classNameValid}`;
+        }
 
         return (
             <div className={`ItemPickerView ${isSingleSelection ? 'ItemPickerView--isSingleSelection' : ''} ${className}`}>
                 {childrenLeft}
 
                 <div
-                    className={`ItemPickerView__items ${isSingleSelection ? 'ItemPickerView__items--isSingleSelection' : ''} ${isRenderInput ? 'ItemPickerView__items--isInput' : ''}`}
+                    className={`ItemPickerView__items ${isSingleSelection ? 'ItemPickerView__items--isSingleSelection' : ''} ${isRenderInput ? 'ItemPickerView__items--isInput' : ''} ${isInvalid ? classNamesInvalid : isValid ? classNamesValid : ''}`}
                     onClick={isRenderInput ? this.onFocusInput : onClickFunc}>
                     <div className={`ItemPickerView__items-wrapper ${isSingleSelection ? 'ItemPickerView__items-wrapper--isSingleSelection' : ''}`}>
                         {isProcessing && (
