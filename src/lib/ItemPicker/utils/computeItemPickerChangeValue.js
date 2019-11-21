@@ -12,7 +12,7 @@ export function computeItemPickerChangeValue({ item, value, minSelections, maxSe
             return value.indexOf(id) > -1 ? [] : [id];
         }
 
-        return value === id ? null : id;
+        return value === id ? 0 : id;
     }
 
     const filterId = (_id) => _id !== id;

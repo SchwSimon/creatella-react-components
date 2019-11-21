@@ -58,7 +58,7 @@ export default class ItemPickerView extends PureComponent {
         const valueArray = castArray(value);
         const filterItem = (item) => valueArray.indexOf(item.id) > -1;
         const selectedItems = items.filter(filterItem);
-        const isSingleSelection = typeof value === 'number' || value === null || maxSelections === 1;
+        const isSingleSelection = typeof value === 'number' || maxSelections === 1;
 
         this.focusInput = null;
         this.REF_INPUT = null;
@@ -70,14 +70,15 @@ export default class ItemPickerView extends PureComponent {
         };
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps) {
         const { value, items, maxSelections } = this.props;
 
-        if (JSON.stringify(prevProps.value) !== JSON.stringify(value)) {
+        if (JSON.stringify(value) !== JSON.stringify(prevProps.value) ||
+            JSON.stringify(items) !== JSON.stringify(prevProps.items)) {
             const valueArray = castArray(value);
             const filterItem = (item) => valueArray.indexOf(item.id) > -1;
             const selectedItems = items.filter(filterItem);
-            const isSingleSelection = typeof value === 'number' || value === null || maxSelections === 1;
+            const isSingleSelection = typeof value === 'number' || maxSelections === 1;
 
             this.setState({
                 selectedItems,
