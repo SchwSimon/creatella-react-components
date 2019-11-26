@@ -2,7 +2,7 @@
     display: inline-flex;
     border: 0 none;
     padding: 0 10px;
-    width: 100%;
+    flex: 1 auto;
     background-color: #fff;
     transition-property: border-color, color, background-color;
     transition-duration: 180ms;
