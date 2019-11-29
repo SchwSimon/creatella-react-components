@@ -394,8 +394,6 @@ export default withForgotPassword(
         validatorPassword       // [Func] default: (() => true)
         useZxcvbn               // [Bool] default: false
         zxcvbnMinScore          // [Number] default: 0
-        onApiRequestError       // [Func] default: (() => '')
-        onApiResetError         // [Func] default: (() => '')
         apiRequest              // [async Func] !required
         apiReset                // [async Func] !required
     }

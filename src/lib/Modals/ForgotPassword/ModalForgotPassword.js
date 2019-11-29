@@ -27,8 +27,7 @@ export default class ModalForgotPassword extends PureComponent {
         onClose: PropTypes.func.isRequired,
         onBackToRequestUI: PropTypes.func.isRequired,
         onChangeEmail: PropTypes.func.isRequired,
-        onChangePassword: PropTypes.func.isRequired,
-        errorMessage: PropTypes.string.isRequired
+        onChangePassword: PropTypes.func.isRequired
     }
 
     constructor(props) {
@@ -50,7 +49,7 @@ export default class ModalForgotPassword extends PureComponent {
     renderRequestUI = () => {
         const {
             isProcessing, isSuccess, isValidEmail, requestTitle, requestSuccessText,
-            email, onChangeEmail, onSubmitEmail, errorMessage
+            email, onChangeEmail, onSubmitEmail
         } = this.props;
 
         return (
@@ -81,10 +80,6 @@ export default class ModalForgotPassword extends PureComponent {
                             placeholder='E-Mail'
                             onChange={onChangeEmail} />
                     </InputGroup>
-
-                    <div className='ModalForgotPassword__content-error'>
-                        {errorMessage}
-                    </div>
                 </div>
 
                 <div className='ModalForgotPassword__footer'>
@@ -108,7 +103,7 @@ export default class ModalForgotPassword extends PureComponent {
         const {
             isProcessing, isRenderStrengthMeter, isSuccess, isValidPassword, resetTitle, resetSuccessText,
             onChangePassword, onSubmitPassword, onClose, onBackToRequestUI,
-            email, password, errorMessage, zxcvbn
+            email, password, zxcvbn
         } = this.props;
         const { isPasswordVisible } = this.state;
 
@@ -156,10 +151,6 @@ export default class ModalForgotPassword extends PureComponent {
                             zxcvbn={zxcvbn}
                             password={password} />
                     )}
-
-                    <div className='ModalForgotPassword__content-error'>
-                        {errorMessage}
-                    </div>
                 </div>
 
                 <div className='ModalForgotPassword__footer'>
