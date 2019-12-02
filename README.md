@@ -334,7 +334,7 @@ apiCaller(async/promise function, arg1, arg2, arg3, ...)
 // same as apiCaller without cancel token
 asyncCaller()
 // usable with props only, the last arg will always be a Axios CancelToken
-asyncCallerProps({
+apiCallerProps({
     api,                // [Func] !required
     responseKey,        // [String]
     responseDataKey,    // [String]
@@ -343,7 +343,7 @@ asyncCallerProps({
     onError,            // [Func]
 }, arg1, arg2, arg3, ...)    
 // same as apiCaller without cancel token
-apiCallerProps()
+asyncCallerProps()
 
 // For custom cancellation handling
 // NOTE: pass false, if you don't want the HOC to auto cancel the request on unmount
