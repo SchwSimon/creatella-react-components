@@ -120,12 +120,26 @@ import Checkbox from 'creatella-react-components/lib/Checkbox';
 <Checkbox
     className   // [String]
     isChecked   // [Bool] !required
-    onChange    // [Func] !required
+    onChange    // [Func]
     isSwitch    // [Bool] default: false
     label       // [String] ! Only without children
     value>      // [Any] will be passed as second argument to onChange
     <div />     // [Any]
 </Checkbox>
+```
+
+### `<RadioBox />`
+```jsx
+import RadioBox from 'creatella-react-components/lib/RadioBox';
+
+<RadioBox
+    className   // [String]
+    id          // [Number] !required
+    checkedId   // [Bool] !required
+    onChange    // [Func]
+    label>      // [String] ! Only without children
+    <div />     // [Any]
+</RadioBox>
 ```
 
 ### `<OutsideClick />`
