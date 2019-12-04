@@ -1,6 +1,7 @@
 
 $switch-padding: 5px;
-$switch-width: 40px + (2 * $switch-padding);
+$switch-padding-total: 2 * $switch-padding;
+$switch-width: 40px + $switch-padding-total;
 $switch-dot-diameter: 20px;
 
 .CheckBox {
@@ -41,7 +42,7 @@ $switch-dot-diameter: 20px;
             }
 
             &--checked {
-                $translateX: translateX($switch-width - $switch-dot-diameter);
+                $translateX: translateX($switch-width - ($switch-dot-diameter + $switch-padding-total));
 
                 transform-origin: right;
                 transform: $translateX;
