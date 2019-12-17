@@ -2,7 +2,7 @@
 
 import React, { PureComponent } from 'react';
 
-const AXIOS = window._baseAxios || { isCancel: () => false };
+const AXIOS = window._BaseAxios || { isCancel: () => false };
 
 /**
  * api/async request handler
