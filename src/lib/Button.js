@@ -32,7 +32,7 @@ export default class Button extends PureComponent {
         label: '',
         isDisabled: false,
         isProcessing: false,
-        debounceTime: 500,
+        debounceTime: 300,
         sizeActivityIndicator: 20
     }
 
