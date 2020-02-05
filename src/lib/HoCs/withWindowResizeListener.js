@@ -6,7 +6,7 @@ import React, { PureComponent } from 'react';
  * @param {Number} delay
  * @returns {Component}
  */
-export default function withWindowResizeListener(Component, delay = 100) {
+export function withWindowResizeListener(Component, delay = 100) {
     return class WithWindowResizeListener extends PureComponent {
         constructor(props) {
             super(props);

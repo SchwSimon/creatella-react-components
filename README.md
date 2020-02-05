@@ -381,10 +381,10 @@ onChangeThrottled(
 
 ### `withWindowResizeListener()`
 ```js
-import { withAsyncCaller } from 'creatella-react-components/lib/HOCs/withAsyncCaller';
+import { withWindowResizeListener } from 'creatella-react-components/lib/HOCs/withWindowResizeListener';
 
 // Default delay: 100ms
-export default withAsyncCaller(MyComponent, 100);
+export default withWindowResizeListener(MyComponent, 100);
 
 // props
 windowWidth     // window.innerWidth
