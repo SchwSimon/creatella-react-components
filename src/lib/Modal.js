@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
+import { createPortal } from 'react-dom';
 import OutsideClick from './OutsideClick';
 
 export default class Modal extends PureComponent {
@@ -64,7 +65,7 @@ export default class Modal extends PureComponent {
             return null;
         }
 
-        return (
+        return createPortal(
             <>
                 <div className='ModalBackdrop' />
 
@@ -83,7 +84,8 @@ export default class Modal extends PureComponent {
                         </OutsideClick>
                     </div>
                 </div>
-            </>
+            </>,
+            document.body
         );
     }
 }
