@@ -5,12 +5,13 @@ export default class ErrorBoundary extends Component {
     static propTypes = {
         pathname: PropTypes.string.isRequired,
         onError: PropTypes.func,
-        errorChildren: PropTypes.any,
+        fallbackMessage: PropTypes.string,
+        fallbackScreen: PropTypes.any,
         children: PropTypes.any
     }
 
     static defaultProps = {
-        errorChildren: 'Oops, an error occurred !'
+        fallbackMessage: 'Oops, an error occurred !'
     }
 
     static getDerivedStateFromError() {
@@ -57,13 +58,13 @@ export default class ErrorBoundary extends Component {
     }
 
     render() {
-        const { errorChildren, children } = this.props;
+        const { fallbackMessage, fallbackScreen, children } = this.props;
         const { isError } = this.state;
 
         if (isError) {
-            return (
+            return fallbackScreen || (
                 <div className='ErrorBoundary'>
-                    {errorChildren}
+                    {fallbackMessage}
                 </div>
             );
         }
