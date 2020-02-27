@@ -96,10 +96,8 @@ $border-color: #eee;
     }
 
     &__ItemPicker {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        margin-top: 5px;
+        position: fixed;
+        margin-top: 3px;
         width: 100%;
         z-index: 1;
     }
