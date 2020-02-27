@@ -21,6 +21,7 @@ export default class ItemPickerView extends PureComponent {
         ...ItemPickerGlobalPropTypes,
         classNameValid: PropTypes.string,
         classNameInvalid: PropTypes.string,
+        classNameDropdown: PropTypes.string,
         isItemPicker: PropTypes.bool,
         isToggle: PropTypes.bool,
         isInput: PropTypes.bool,
@@ -38,6 +39,7 @@ export default class ItemPickerView extends PureComponent {
         ...ItemPickerGlobalDefaultProps,
         classNameValid: '',
         classNameInvalid: '',
+        classNameDropdown: '',
         isItemPicker: true,
         isToggle: true,
         isValid: false,
@@ -157,7 +159,7 @@ export default class ItemPickerView extends PureComponent {
 
     render() {
         const {
-            className, classNameInvalid, classNameValid, items, itemsNameKey, itemsSearchConfig, childrenLeft, childrenRight,
+            className, classNameInvalid, classNameValid, classNameDropdown, items, itemsNameKey, itemsSearchConfig, childrenLeft, childrenRight,
             isProcessing, placeholder, onClick, isInput, isToggle, placeholderInput, onChangeInput,
             isItemPicker, classNameItemPicker, isValid, isInvalid
         } = this.props;
@@ -215,7 +217,7 @@ export default class ItemPickerView extends PureComponent {
 
                 {isToggle && (
                     <div
-                        className='ItemPickerView__dropdown'
+                        className={`ItemPickerView__dropdown ${classNameDropdown}`}
                         onClick={onClickFunc}>
                         <FontAwesomeIcon icon={faCaretDown} />
                     </div>
