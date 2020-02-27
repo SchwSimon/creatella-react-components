@@ -62,13 +62,14 @@ export default class ItemPickerView extends PureComponent {
         const selectedItems = items.filter(filterItem);
         const isSingleSelection = typeof value === 'number' || maxSelections === 1;
 
+        this.REF_CONTAINER = React.createRef();
         this.focusInput = null;
-        this.REF_INPUT = null;
         this.state = {
             isItemPickerVisible: false,
             selectedItems,
             isSingleSelection,
-            isMaxSelected: isSingleSelection || (maxSelections && maxSelections <= selectedItems.length)
+            isMaxSelected: isSingleSelection || (maxSelections && maxSelections <= selectedItems.length),
+            itemPickerStyle: {}
         };
     }
 
@@ -100,9 +101,25 @@ export default class ItemPickerView extends PureComponent {
 
     onToggleItemPicker = () => {
         const { isItemPickerVisible } = this.state;
+        let refPosY = 0;
+        let refPosX = 0;
+        let refWidth = 200;
+
+        if (this.REF_CONTAINER.current) {
+            const { top, left, width, height } = this.REF_CONTAINER.current.getBoundingClientRect();
+
+            refPosY = top + height;
+            refPosX = left;
+            refWidth = width;
+        }
 
         this.setState({
-            isItemPickerVisible: !isItemPickerVisible
+            isItemPickerVisible: !isItemPickerVisible,
+            itemPickerStyle: {
+                top: refPosY,
+                left: refPosX,
+                maxWidth: refWidth
+            }
         });
     }
 
@@ -163,7 +180,7 @@ export default class ItemPickerView extends PureComponent {
             isProcessing, placeholder, onClick, isInput, isToggle, placeholderInput, onChangeInput,
             isItemPicker, classNameItemPicker, isValid, isInvalid
         } = this.props;
-        const { selectedItems, isMaxSelected, isSingleSelection, isItemPickerVisible } = this.state;
+        const { selectedItems, isMaxSelected, isSingleSelection, isItemPickerVisible, itemPickerStyle } = this.state;
         const isRenderInput = isInput && !isMaxSelected;
         const onClickFunc = isItemPicker ? this.onToggleItemPicker : onClick;
 
@@ -177,7 +194,9 @@ export default class ItemPickerView extends PureComponent {
         }
 
         return (
-            <div className={`ItemPickerView ${isSingleSelection ? 'ItemPickerView--isSingleSelection' : ''} ${className}`}>
+            <div
+                ref={this.REF_CONTAINER}
+                className={`ItemPickerView ${isSingleSelection ? 'ItemPickerView--isSingleSelection' : ''} ${className}`}>
                 {childrenLeft}
 
                 <div
@@ -228,6 +247,8 @@ export default class ItemPickerView extends PureComponent {
                 {isItemPicker && (
                     <ItemPicker
                         {...this.props}
+                        style={itemPickerStyle}
+                        domPortalNode={window.document.body}
                         className={`ItemPickerView__ItemPicker ${classNameItemPicker}`}
                         isVisible={isItemPickerVisible}
                         onClose={this.onToggleItemPicker} />

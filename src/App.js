@@ -150,6 +150,7 @@ class App extends Component {
                         </Button>
 
                         <ItemPickerView
+                            className='App__ItemPickerView'
                             onClick={this.onToggleItemPicker}
                             onChange={(itempickerValue) => this.setState({ itempickerValue })}
                             // value={itempickerItemsActiveIds}

@@ -25,6 +25,10 @@
         margin-bottom: $spacing;
     }
 
+    &__ItemPickerView {
+        width: 200px;
+    }
+
     &__avatar {
         min-width: 50px;
         width: 50px;

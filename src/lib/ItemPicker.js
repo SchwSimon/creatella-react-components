@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
+import { createPortal } from 'react-dom';
 import Fuse from 'fuse.js';
 import OutsideClick from './OutsideClick';
 import ActivityIndicator from './ActivityIndicator';
@@ -22,7 +23,9 @@ export default class ItemPicker extends PureComponent {
         searchRenderItemTreshold: PropTypes.number,
         emptyText: PropTypes.string,
         emptySearchText: PropTypes.string,
-        searchPlaceholderText: PropTypes.string
+        searchPlaceholderText: PropTypes.string,
+        domPortalNode: PropTypes.any, // A native dom node
+        style: PropTypes.object
     }
 
     static defaultProps = {
@@ -32,7 +35,8 @@ export default class ItemPicker extends PureComponent {
         searchRenderItemTreshold: 8,
         emptyText: 'No items yet',
         emptySearchText: 'No matches',
-        searchPlaceholderText: 'Search..'
+        searchPlaceholderText: 'Search..',
+        style: {}
     }
 
     constructor(props) {
@@ -124,7 +128,7 @@ export default class ItemPicker extends PureComponent {
     render() {
         const {
             isVisible, isProcessing, items, onClose, className, outsideClickEvent,
-            emptyText, emptySearchText, searchPlaceholderText
+            emptyText, emptySearchText, searchPlaceholderText, domPortalNode, style
         } = this.props;
         const { isSearch, search, searchItems } = this.state;
         const renderItems = search ? searchItems : items;
@@ -133,9 +137,10 @@ export default class ItemPicker extends PureComponent {
             return null;
         }
 
-        return (
+        const JSX = (
             <OutsideClick
                 className={`ItemPicker ${className}`}
+                style={style}
                 event={outsideClickEvent}
                 onOutsideClick={onClose}>
                 {isSearch && (
@@ -168,5 +173,7 @@ export default class ItemPicker extends PureComponent {
                 )}
             </OutsideClick>
         );
+
+        return domPortalNode ? createPortal(JSX, domPortalNode) : JSX;
     }
 }
