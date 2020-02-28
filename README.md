@@ -334,8 +334,12 @@ import ErrorBoundary from 'creatella-react-components/lib/ErrorBoundary';
 ## Higher-Order Components
 
 ### `withAsyncCaller()`
+:exclamation: define `window._withAsyncCallerAxios` if using `apiCaller` or `apiCallerProps`
 ```js
 import { withAsyncCaller } from 'creatella-react-components/lib/HOCs/withAsyncCaller';
+
+// define ocne globally
+window._withAsyncCallerAxios = AXIOS_REFERENCE;
 
 export default withAsyncCaller(MyComponent);
 

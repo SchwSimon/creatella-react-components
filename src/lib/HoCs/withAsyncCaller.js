@@ -2,7 +2,10 @@
 
 import React, { PureComponent } from 'react';
 
-const AXIOS = window._BaseAxios || { isCancel: () => false };
+// This is required when using apiCaller or apiCallerProps
+// to be able to cancel the requests
+// simply globally assign a axios reference
+const AXIOS = window._withAsyncCallerAxios;
 
 /**
  * api/async request handler
