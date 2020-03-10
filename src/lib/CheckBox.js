@@ -9,7 +9,7 @@ export default class CheckBox extends PureComponent {
         isSwitch: PropTypes.bool,
         onChange: PropTypes.func,
         className: PropTypes.string,
-        label: PropTypes.string,
+        label: PropTypes.any,
         children: PropTypes.any,
         value: PropTypes.any
     }
