@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
+import { createPortal } from 'react-dom';
 import { connect } from 'react-redux';
 import { dismissAlert } from './reduxReducers/alerts';
 import AlertsCard from './Alerts/components/Card/AlertsCard';
@@ -39,10 +40,11 @@ class Alerts extends PureComponent {
     render() {
         const { alerts, position } = this.props;
 
-        return (
+        return createPortal(
             <div className={`Alerts Alerts--${position}`}>
                 {alerts.map(this.renderAlert)}
-            </div>
+            </div>,
+            document.body
         );
     }
 }
