@@ -3,6 +3,7 @@
     border: 0 none;
     padding: 0 10px;
     flex: 1 auto;
+    min-width: 0;
     background-color: #fff;
     transition-property: border-color, color, background-color;
     transition-duration: 180ms;
