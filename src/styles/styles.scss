@@ -25,6 +25,7 @@
         margin-bottom: $spacing;
     }
 
+
     &__ItemPickerView {
         width: 200px;
     }
@@ -53,6 +54,20 @@
 
     &__checkbox,
     &__radiobox {
+        margin-left: $spacing;
+    }
+
+    &__SliderRangePicker {
+        // text-align: center;
+        padding: 0 20px;
+    }
+
+    &__Rating {
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    &__Utils {
         margin-left: $spacing;
     }
 }

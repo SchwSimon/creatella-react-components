@@ -1,0 +1,78 @@
+@import 'styles/_variables';
+
+.SliderRangePicker {
+    $color: $SliderRangePicker-active-color;
+    $disabled-color: $SliderRangePicker-disabled-color;
+    $base-color: $SliderRangePicker-base-color;
+    $height: 18px;
+    $track-height: 4px;
+
+
+    padding: 0 $height/2;
+    position: relative;
+    text-align: center;
+    height: $height;
+
+    &__base {
+        position: absolute;
+        top: ($height - $track-height) / 2;
+        left: 0;
+        height: $track-height;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: $base-color;
+    }
+
+    &__container {
+        $container: &;
+
+        height: 100%;
+        padding: ($height - $track-height)/2 0;
+
+        &-track {
+            position: relative;
+            display: inline-block;
+            height: $track-height;
+            vertical-align: top;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: transparent;
+
+            &-active {
+                position: absolute;
+                transform: translateX(-$height / 2);
+                height: $track-height;
+                background-color: $color;
+
+                #{$container}--disabled & {
+                    background-color: $disabled-color;
+                }
+            }
+
+            &-slider-container {
+                position: absolute;
+                left: 0;
+                top: - ($height - $track-height) / 2;
+                width: $height;
+                height: $height;
+
+
+                &-slider {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    transform: translateX(-50%);
+                    background-color: $color;
+                    border-radius: 50%;
+                    cursor: pointer;
+
+                    #{$container}--disabled & {
+                        background-color: $disabled-color;
+                    }
+                }
+            }
+        }
+    }
+}

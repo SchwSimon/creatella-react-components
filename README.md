@@ -316,6 +316,31 @@ import Avatar from 'creatella-react-components/lib/Avatar';
 />
 ```
 
+### `<SliderRangePicker />`
+```jsx
+import SliderRangePicker from 'creatella-react-components/lib/SliderRangePicker';
+
+<SliderRangePicker
+    className
+    minValue                    // [Number] !isRequired            
+    maxValue                    // [Number] !isRequired            
+    step                        // [Number] !isRequired   
+    value                       // [Number | Object] !isRequired
+    onChange                    // [Func]
+/>
+```
+
+### `<Rating />`
+```jsx
+import Rating from 'creatella-react-components/lib/Rating';
+
+<Rating
+    className                   // [String]
+    rate                        // [Number]
+    spacing                     // [Number]
+/>
+```
+
 ### `<ErrorBoundary />`
 :exclamation: pass `location.pathname` value from `react-router-dom` as `pathname` prop  
 Required to recover from the error screen by the next location change
@@ -443,6 +468,46 @@ deepCopyObject(object);  // [Object] !isRequired
 import { castArray } from 'creatella-react-components/lib/utils/castArray';
 
 castArray() // [Any]
+```
+
+### `currencify()`
+```js
+import { currencify } from 'creatella-react-components/lib/utils/currencify';
+
+currencify(
+    price,      // [Number] !isRequired
+    signed,     // [Bool]
+    symbol      // [String] 
+)
+```
+
+### `fixFloating()`
+```js
+import { fixFloating } from 'creatella-react-components/lib/utils/fixFloating';
+
+fixFloating(
+    num,         // [Number] !isRequired
+    precision,   // [Number] default: 2
+    addZero      // [Bool] default: false
+)
+```
+
+### `formatDuration()`
+```js
+import { formatDuration } from 'creatella-react-components/lib/utils/formatDuration';
+
+formatDuration(
+    duration,    // [Number] !isRequired
+    twoDigits,   // [Bool] default: false
+    only         // [Array]
+)
+```
+
+### `isMobile()`
+```js
+import { isMobile } from 'creatella-react-components/lib/utils/isMobile';
+
+isMobile()
 ```
 
 

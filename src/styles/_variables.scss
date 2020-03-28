@@ -1,4 +1,12 @@
 //-------------------------------------//
+
+// BROWSER PREFIXES
+$browser-prefixes: 'webkit',
+    'moz',
+    'ms',
+    'o';
+
+
 // MEDIA QUERIES
 $media-lg: 1200px;
 $media-md: 992px;
@@ -81,6 +89,14 @@ $RadioBox-hover-border: 7px solid #e9dcf7;
 $RadioBox-hover-background-color: rgba(#AE77EA, 0.5);
 $RadioBox-checked-border: 7px solid #e9dcf7;
 $RadioBox-checked-background-color: #AE77EA;
+
+// Rating
+$Rating-default-color: #F2C94C;
+
+// Slider Range Picker
+$SliderRangePicker-active-color: #AE77EA;
+$SliderRangePicker-base-color: #dfdfdf;
+$SliderRangePicker-disabled-color: darken(#dfdfdf, 5%);
 
 // $formcontrol-label-fontsize: 16px;
 // $formcontrol-fontsize: 14px;

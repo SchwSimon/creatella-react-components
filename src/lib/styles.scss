@@ -3,6 +3,11 @@
 @import './styles/_variables';
 @import './styles/_mixins';
 
+// Slider Range Picker
+@import './SliderRangePicker/SliderRangePicker.scss';
+
+// Rating
+@import './Rating/Rating.scss';
 
 // ActivityIndicator
 @import './ActivityIndicator/ActivityIndicator.scss';

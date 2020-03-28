@@ -1,0 +1,31 @@
+@import 'styles/_variables';
+@import 'styles/_mixins';
+
+.Rating {
+    display: inline-block;
+    text-align: left;
+    unicode-bidi: bidi-override;
+    color: transparent;
+    font-size: 22px;
+    position: relative;
+    padding: 0;
+
+    @include with-browser-prefix(text-stroke, 1px $Rating-default-color);
+
+    &__top {
+        color: $Rating-default-color;
+        padding: 0;
+        position: absolute;
+        z-index: 1;
+        display: block;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+    }
+
+    &__bottom {
+        padding: 0;
+        display: block;
+        z-index: 0;
+    }
+}
