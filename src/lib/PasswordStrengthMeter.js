@@ -27,6 +27,8 @@ export default class PasswordStrengthMeter extends Component {
     componentDidMount() {
         if (!this.zxcvbn) {
             this.loadModule();
+        } else {
+            this.setPasswordScore();
         }
     }
 
