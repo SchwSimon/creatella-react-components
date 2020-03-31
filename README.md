@@ -189,6 +189,7 @@ import ItemPickerView from 'creatella-react-components/lib/ItemPickerView';
     itemsNameKey                // [String] default: 'name'
     itemsSearchConfig           // [Object] default: null see: https://fusejs.io
     renderItemContent           // [Func] default: null
+    renderActiveItemContent     // [Func] default: null
 
     classNameItemPicker         // [String]
     isItemPicker                // [Bool] default: true

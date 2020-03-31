@@ -32,7 +32,8 @@ export default class ItemPickerView extends PureComponent {
         childrenRight: PropTypes.any,
         placeholder: PropTypes.string,
         placeholderInput: PropTypes.string,
-        onChangeInput: PropTypes.func
+        onChangeInput: PropTypes.func,
+        renderActiveItemContent: PropTypes.func
     }
 
     static defaultProps = {
@@ -50,7 +51,8 @@ export default class ItemPickerView extends PureComponent {
         childrenRight: null,
         placeholder: '',
         placeholderInput: '...',
-        onChangeInput: null
+        onChangeInput: null,
+        renderActiveItemContent: null
     }
 
     constructor(props) {
@@ -159,9 +161,10 @@ export default class ItemPickerView extends PureComponent {
     }
 
     renderItem = (item) => {
-        const { renderItemContent, itemsNameKey } = this.props;
+        const { renderItemContent, renderActiveItemContent, itemsNameKey } = this.props;
         const { isSingleSelection } = this.state;
         const { id, [itemsNameKey]: name } = item;
+        const renderContent = renderActiveItemContent || renderItemContent;
 
         return (
             <ItemPickerViewItem
@@ -170,7 +173,7 @@ export default class ItemPickerView extends PureComponent {
                 isSingleSelection={isSingleSelection}
                 item={item}
                 onRemove={this.onRemoveItem}
-                content={renderItemContent ? renderItemContent(item) : name} />
+                content={renderContent ? renderContent(item) : name} />
         );
     }
 
