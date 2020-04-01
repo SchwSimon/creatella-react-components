@@ -132,9 +132,17 @@ export default class ItemPicker extends PureComponent {
         } = this.props;
         const { isSearch, search, searchItems } = this.state;
         const renderItems = search ? searchItems : items;
+        const classNames = { items: '', itemsEmpty: '', itemsProcessing: '', empty: '' };
 
         if (!isVisible) {
             return null;
+        }
+
+        if (className) {
+            classNames.items = `${className}__items`;
+            classNames.itemsEmpty = `${className}__items-empty`;
+            classNames.itemsProcessing = `${className}__items-processing`;
+            classNames.empty = `${className}__empty`;
         }
 
         const JSX = (
@@ -149,25 +157,25 @@ export default class ItemPicker extends PureComponent {
                         onChange={this.onChangeSearch} />
                 )}
 
-                <div className='ItemPicker__items'>
+                <div className={`ItemPicker__items ${classNames.items}`}>
                     {renderItems.length
                         ? renderItems.map(this.renderItem)
                         : (!search && !!emptyText) && (
-                            <div className='ItemPicker__empty'>
+                            <div className={`ItemPicker__items-empty ${classNames.itemsEmpty}`}>
                                 {emptyText}
                             </div>
                         )
                     }
 
                     {isProcessing && (
-                        <div className='ItemPicker__processing'>
+                        <div className={`ItemPicker__items-processing ${classNames.itemsProcessing}`}>
                             <ActivityIndicator size={20} />
                         </div>
                     )}
                 </div>
 
                 {!!(search && !searchItems.length) && (
-                    <div className='ItemPicker__empty'>
+                    <div className={`ItemPicker__empty ${classNames.empty}`}>
                         {emptySearchText}
                     </div>
                 )}
