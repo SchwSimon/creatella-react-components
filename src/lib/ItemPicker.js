@@ -152,7 +152,7 @@ export default class ItemPicker extends PureComponent {
                 <div className='ItemPicker__items'>
                     {renderItems.length
                         ? renderItems.map(this.renderItem)
-                        : !search && (
+                        : (!search && !!emptyText) && (
                             <div className='ItemPicker__empty'>
                                 {emptyText}
                             </div>
