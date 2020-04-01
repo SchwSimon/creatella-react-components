@@ -10,17 +10,17 @@
     &__items {
         max-height: 200px;
         overflow-y: auto;
-    }
 
-    &__empty,
-    &__processing {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+        &-empty,
+        &-processing {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    &__processing {
-        height: 40px;
+        &-processing {
+            height: 40px;
+        }
     }
 
     &__empty {
