@@ -113,6 +113,7 @@ export default class ItemPicker extends PureComponent {
         const { renderItemContent, itemsNameKey } = this.props;
         const { valueArray } = this.state;
         const { id, [itemsNameKey]: name } = item;
+        const isActive = valueArray.indexOf(id) > -1;
 
         return (
             <ItemPickerItem
@@ -120,8 +121,8 @@ export default class ItemPicker extends PureComponent {
                 {...item}
                 item={item}
                 onSelect={this.onSelectItem}
-                isActive={valueArray.indexOf(id) > -1}
-                content={renderItemContent ? renderItemContent(item) : name} />
+                isActive={isActive}
+                content={renderItemContent ? renderItemContent(item, isActive) : name} />
         );
     }
 
