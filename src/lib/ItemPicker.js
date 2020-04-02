@@ -128,7 +128,7 @@ export default class ItemPicker extends PureComponent {
 
     render() {
         const {
-            isVisible, isProcessing, items, onClose, className, outsideClickEvent,
+            isVisible, isProcessing, items, onClose, className, outsideClickEvent, onChangeSearch,
             emptyText, emptySearchText, searchPlaceholderText, domPortalNode, style
         } = this.props;
         const { isSearch, search, searchItems } = this.state;
@@ -155,7 +155,7 @@ export default class ItemPicker extends PureComponent {
                 {isSearch && (
                     <ItemPickerSearch
                         placeholder={searchPlaceholderText}
-                        onChange={this.onChangeSearch} />
+                        onChange={onChangeSearch || this.onChangeSearch} />
                 )}
 
                 <div className={`ItemPicker__items ${classNames.items}`}>

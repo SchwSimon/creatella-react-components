@@ -182,6 +182,7 @@ import ItemPickerView from 'creatella-react-components/lib/ItemPickerView';
     isValid                     // [Bool] default: false
     isInvalid                   // [Bool] default: false
     onChange                    // [Func] !required
+    onChangeSearch              // [Func]
     value                       // [Number | Array]
     maxSelections               // [Number] default: null
     minSelections               // [Number] default: 0
@@ -211,6 +212,7 @@ import ItemPicker from 'creatella-react-components/lib/ItemPicker';
     className                   // [String]
     isProcessing                // [Bool] default: false
     onChange                    // [Func] !required
+    onChangeSearch              // [Func]
     value                       // [Number | Array]
     maxSelections               // [Number] default: null
     minSelections               // [Number] default: 0

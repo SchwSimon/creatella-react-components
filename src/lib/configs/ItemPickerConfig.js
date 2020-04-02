@@ -4,6 +4,7 @@ export const ItemPickerGlobalPropTypes = {
     isProcessing: PropTypes.bool,
     className: PropTypes.string,
     onChange: PropTypes.func.isRequired,
+    onChangeSearch: PropTypes.func,
     value: PropTypes.oneOfType([
         PropTypes.number,
         PropTypes.arrayOf(PropTypes.number)
@@ -23,5 +24,6 @@ export const ItemPickerGlobalDefaultProps = {
     itemsSearchConfig: null,
     maxSelections: null,
     minSelections: 0,
-    renderItemContent: null
+    renderItemContent: null,
+    onChangeSearch: null
 };
