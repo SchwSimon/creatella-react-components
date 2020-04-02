@@ -24,7 +24,9 @@
     }
 
     &__empty {
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: gray;
         height: 35px;
         font-size: 14px;
