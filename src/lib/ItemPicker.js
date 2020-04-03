@@ -142,10 +142,12 @@ export default class ItemPicker extends PureComponent {
         }
 
         if (className) {
-            classNames.items = `${className}__items`;
-            classNames.itemsEmpty = `${className}__items-empty`;
-            classNames.itemsProcessing = `${className}__items-processing`;
-            classNames.empty = `${className}__empty`;
+            const classes = className.trim().split(' ');
+
+            classNames.items = `${classes.join('__items')}__items`;
+            classNames.itemsEmpty = `${classes.join('__items-empty')}__items-empty`;
+            classNames.itemsProcessing = `${classes.join('__items-processing')}__items-processing`;
+            classNames.empty = `${classes.join('__empty')}__empty`;
         }
 
         const JSX = (
