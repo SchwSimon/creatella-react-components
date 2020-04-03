@@ -69,7 +69,7 @@ export default class ItemPickerViewInput extends PureComponent {
             const fuseConfig = itemsSearchConfig || { keys: [itemsNameKey] };
             const fuse = new Fuse(items, fuseConfig);
             const results = fuse.search(value);
-            const matchItem = results && results[0];
+            const matchItem = results.length && results[0].item;
 
             if (matchItem && onSubmit(matchItem)) {
                 this.setState({ value: '' });

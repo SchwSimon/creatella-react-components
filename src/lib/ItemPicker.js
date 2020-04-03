@@ -104,10 +104,11 @@ export default class ItemPicker extends PureComponent {
         const fuseConfig = itemsSearchConfig || { keys: [itemsNameKey] };
         const fuse = new Fuse(items, fuseConfig);
         const results = fuse.search(search);
+        const mapItem = ({ item }) => item;
 
         this.setState({
             search,
-            searchItems: results
+            searchItems: results.map(mapItem)
         });
     }
 
