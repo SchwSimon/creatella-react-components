@@ -6,7 +6,8 @@ class ItemPickerSearch extends PureComponent {
     static propTypes = {
         onChangeThrottled: PropTypes.func.isRequired,
         onChange: PropTypes.func.isRequired,
-        placeholder: PropTypes.string.isRequired
+        placeholder: PropTypes.string.isRequired,
+        isAutoFocus: PropTypes.bool.isRequired
     }
 
     constructor(props) {
@@ -19,7 +20,11 @@ class ItemPickerSearch extends PureComponent {
     }
 
     componentDidMount() {
-        requestAnimationFrame(this.focusInput);
+        const { isAutoFocus } = this.state;
+
+        if (isAutoFocus) {
+            requestAnimationFrame(this.focusInput);
+        }
     }
 
     focusInput = () => {

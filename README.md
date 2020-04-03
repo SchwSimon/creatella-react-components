@@ -223,6 +223,7 @@ import ItemPicker from 'creatella-react-components/lib/ItemPicker';
 
     searchRenderItemTreshold    // [Number] default: 8
     isVisible                   // [Bool] !required
+    isSearchAutoFocus           // [Bool] default: true
     onClose                     // [Func] !required
     emptyText                   // [String] default: 'No items yet'
     emptySearchText             // [String] default: 'No matches'

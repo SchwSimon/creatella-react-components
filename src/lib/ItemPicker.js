@@ -18,6 +18,7 @@ export default class ItemPicker extends PureComponent {
     static propTypes = {
         ...ItemPickerGlobalPropTypes,
         isVisible: PropTypes.bool.isRequired,
+        isSearchAutoFocus: PropTypes.bool,
         onClose: PropTypes.func,
         outsideClickEvent: PropTypes.string,
         searchRenderItemTreshold: PropTypes.number,
@@ -30,6 +31,7 @@ export default class ItemPicker extends PureComponent {
 
     static defaultProps = {
         ...ItemPickerGlobalDefaultProps,
+        isSearchAutoFocus: true,
         outsideClickEvent: 'click',
         onClose: () => {},
         searchRenderItemTreshold: 8,
@@ -129,7 +131,7 @@ export default class ItemPicker extends PureComponent {
     render() {
         const {
             isVisible, isProcessing, items, onClose, className, outsideClickEvent, onChangeSearch,
-            emptyText, emptySearchText, searchPlaceholderText, domPortalNode, style
+            emptyText, emptySearchText, searchPlaceholderText, domPortalNode, style, isSearchAutoFocus
         } = this.props;
         const { isSearch, search, searchItems } = this.state;
         const renderItems = search ? searchItems : items;
@@ -154,6 +156,7 @@ export default class ItemPicker extends PureComponent {
                 onOutsideClick={onClose}>
                 {isSearch && (
                     <ItemPickerSearch
+                        isAutoFocus={isSearchAutoFocus}
                         placeholder={searchPlaceholderText}
                         onChange={onChangeSearch || this.onChangeSearch} />
                 )}
