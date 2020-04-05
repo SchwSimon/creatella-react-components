@@ -21,6 +21,14 @@ import { formatDuration } from 'lib/utils/formatDuration';
 import { ALERTS_POSITION_ARRAY, ALERT_TYPES_ARRAY } from 'lib/Alerts/config';
 import 'lib/styles.scss';
 
+const rateSteps = [
+    1,
+    0.5,
+    0.25,
+    0.2,
+    0.1
+];
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -70,7 +78,8 @@ class App extends Component {
                 },
                 50
             ],
-            rate: 2.5
+            rate: 2.5,
+            rateStepIndex: 0
         };
     }
 
@@ -133,7 +142,7 @@ class App extends Component {
         const {
             itempickerItems8, itempickerItems16, itempickerItemsActiveIds,
             isAlertAutoDismiss, isCheckBoxCheck, checkedId, isModalVisible,
-            itempickerValue, sliderRangePicker, rate
+            itempickerValue, sliderRangePicker, rate, rateStepIndex
         } = this.state;
 
         return (
@@ -376,6 +385,37 @@ class App extends Component {
                         </h1>
 
                         <div className='App__Rating'>
+                            <h2 className='App__Rating-title'>Click To Rate</h2>
+                            Rate Step : {fixFloating(rateSteps[rateStepIndex])}
+                            <br/>
+                            <div className='App__Rating-steps'>
+                                {rateSteps.map((step, index) => (
+                                    <RadioBox
+                                        key={index}
+                                        className='App__Rating-steps-step'
+                                        id={index}
+                                        label={step.toString()}
+                                        checkedId={rateStepIndex}
+                                        onChange={stepIndex => this.setState({ rateStepIndex: stepIndex })} />
+                                ))}
+                            </div>
+                            <br/>
+                            <br/>
+                            Rate: {fixFloating(rate)}
+                            <br/>
+                            <br/>
+                            <Rating step={rateSteps[rateStepIndex]} onChange={rate => this.setState({ rate })} rate={rate}
+                                spacing={2} />
+                            <br />
+                            <Rating step={rateSteps[rateStepIndex]} onChange={rate => this.setState({ rate })} rate={rate}
+                                spacing={2} />
+                            <br />
+                            <Rating step={rateSteps[rateStepIndex]} onChange={rate => this.setState({ rate })} rate={rate}
+                                spacing={5} />
+                            <br />
+                            <Rating step={rateSteps[rateStepIndex]} onChange={rate => this.setState({ rate })} rate={rate}
+                                spacing={10} />
+                            <h2 className='App__Rating-title'>Read-Only</h2>
                             <SliderRangePicker
                                 maxValue={5}
                                 minValue={0}
@@ -383,18 +423,16 @@ class App extends Component {
                                 value={rate}
                                 onChange={rate => this.setState({ rate })} />
                             <br/>
-                            {fixFloating(rate)}
+                            Rate: {fixFloating(rate)}
                             <br/>
                             <br/>
-                            <Rating rate={rate} spacing={2} />
+                            <Rating readOnly={true} rate={rate} spacing={2} />
                             <br />
-                            <Rating rate={rate} spacing={2} />
+                            <Rating readOnly={true} rate={rate} spacing={2} />
                             <br />
-                            <Rating rate={rate} spacing={5} />
+                            <Rating readOnly={true} rate={rate} spacing={5} />
                             <br />
-                            <Rating rate={rate} spacing={10} />
-                            <br />
-                            <Rating rate={rate} spacing={15} />
+                            <Rating readOnly={true} rate={rate} spacing={10} />
                         </div>
 
                         <h1 className='App__h1'>

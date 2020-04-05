@@ -9,11 +9,16 @@
     font-size: 22px;
     position: relative;
     padding: 0;
+    cursor: pointer;
 
-    @include with-browser-prefix(text-stroke, 1px $Rating-default-color);
+    &--read-only {
+        cursor: default;
+    }
+
+    @include with-browser-prefix(text-stroke, 1px #F2C94C); // TO_BE_FIXED : color does not exist in palette;
 
     &__top {
-        color: $Rating-default-color;
+        color: #F2C94C; // TO_BE_FIXED : color does not exist in palette;
         padding: 0;
         position: absolute;
         z-index: 1;

@@ -63,6 +63,16 @@
     }
 
     &__Rating {
+        &-title {
+            text-align: left;
+        }
+
+        &-steps {
+            &-step {
+                margin: 0 $spacing-half;
+            }
+        }
+
         text-align: center;
         padding: 0 20px;
     }

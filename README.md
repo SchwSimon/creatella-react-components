@@ -337,7 +337,10 @@ import Rating from 'creatella-react-components/lib/Rating';
 <Rating
     className                   // [String]
     rate                        // [Number]
-    spacing                     // [Number]
+    onChange                    // [Func]
+    step                        // [Number] default: 1
+    spacing                     // [Number] default: 5
+    readOnly                    // [Bool] default: false
 />
 ```
 
