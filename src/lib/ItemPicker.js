@@ -5,6 +5,7 @@ import Fuse from 'fuse.js';
 import OutsideClick from './OutsideClick';
 import ActivityIndicator from './ActivityIndicator';
 import { castArray } from './utils/castArray';
+import { classify } from './utils/classify';
 
 // Config
 import { ItemPickerGlobalPropTypes, ItemPickerGlobalDefaultProps } from './configs/ItemPickerConfig';
@@ -143,12 +144,10 @@ export default class ItemPicker extends PureComponent {
         }
 
         if (className) {
-            const classes = className.replace(/ +(?= )/g, '').trim().split(' ');
-
-            classNames.items = `${classes.join('__items ')}__items`;
-            classNames.itemsEmpty = `${classes.join('__items-empty ')}__items-empty`;
-            classNames.itemsProcessing = `${classes.join('__items-processing ')}__items-processing`;
-            classNames.empty = `${classes.join('__empty ')}__empty`;
+            classNames.items = classify(className, '__items');
+            classNames.itemsEmpty = classify(className, '__items-empty');
+            classNames.itemsProcessing = classify(className, '__items-processing');
+            classNames.empty = classify(className, '__empty');
         }
 
         const JSX = (
