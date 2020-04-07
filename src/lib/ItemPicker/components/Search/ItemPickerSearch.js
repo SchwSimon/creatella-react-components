@@ -63,4 +63,4 @@ class ItemPickerSearch extends PureComponent {
     }
 }
 
-export default withThrottledChange(ItemPickerSearch, 100);
+export default withThrottledChange(ItemPickerSearch, 250);
