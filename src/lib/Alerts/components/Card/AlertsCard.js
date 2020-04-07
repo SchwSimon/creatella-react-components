@@ -16,17 +16,11 @@ export default class AlertsCard extends PureComponent {
         type: PropTypes.string.isRequired,
         position: PropTypes.string.isRequired,
         onDismiss: PropTypes.func.isRequired,
-        renderTimeDisplay: PropTypes.func,
-        isAutoDismiss: PropTypes.bool,
-        animationDuration: PropTypes.number,
-        dismissDuration: PropTypes.number
+        isAutoDismiss: PropTypes.bool.isRequired,
+        animationDuration: PropTypes.number.isRequired,
+        dismissDuration: PropTypes.number.isRequired,
+        renderTimeDisplay: PropTypes.func
     };
-
-    static defaultProps = {
-        isAutoDismiss: true,
-        animationDuration: 500,
-        dismissDuration: 4000
-    }
 
     constructor(props) {
         super(props);

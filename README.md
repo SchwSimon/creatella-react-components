@@ -255,21 +255,26 @@ import InputGroup from 'creatella-react-components/lib/InputGroup';
 ### `<Alerts />`
 ```jsx
 import Alerts, { ALERTS_POSITION } from 'creatella-react-components/lib/Alerts';
+// ALERTS_POSITION => TOP_CENTER, TOP_LEFT, TOP_RIGHT, BOTTOM_CENTER, BOTTOM_LEFT, BOTTOM_RIGHT
 
 <Alerts
     renderTimeDisplay   // [Func]
     position            // [String] !required One of {ALERTS_POSITION}
+    isAutoDismiss       // [Bool] default: true
+    animationDuration   // [Number] default: 500
+    dismissDuration     // [Number] default: 4000
 />
 
 // use with redux/dispatch to push alerts
 import { pushAlert, ALERT_TYPES } from 'creatella-react-components/lib/reduxReducers/alerts';
+// ALERT_TYPES => INFO, SUCCESS, WARNING, ERROR
 
 pushAlert({
     type                // [String] !required (one of ALERT_TYPES)
     message             // [String] !required
-    isAutoDismiss       // [Bool] default: true
-    animationDuration   // [Number] default: 500
-    dismissDuration     // [Number] default: 4000
+    isAutoDismiss       // [Bool] default: see <Alerts />
+    animationDuration   // [Number] default: see <Alerts />
+    dismissDuration     // [Number] default: see <Alerts />
 });
 ```
 

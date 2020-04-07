@@ -12,7 +12,6 @@ class Alerts extends PureComponent {
     static propTypes = {
         position: PropTypes.oneOf(ALERTS_POSITION_ARRAY).isRequired,
         dismissAlert: PropTypes.func.isRequired,
-        renderTimeDisplay: PropTypes.func,
         alerts: PropTypes.arrayOf(
             PropTypes.shape({
                 id: PropTypes.number.isRequired,
@@ -20,14 +19,30 @@ class Alerts extends PureComponent {
                 position: PropTypes.oneOf(ALERTS_POSITION_ARRAY),
                 message: PropTypes.any.isRequired
             }).isRequired
-        ).isRequired
+        ).isRequired,
+        isAutoDismiss: PropTypes.bool,
+        animationDuration: PropTypes.number,
+        dismissDuration: PropTypes.number,
+        renderTimeDisplay: PropTypes.func
+    }
+
+    static defaultProps = {
+        isAutoDismiss: true,
+        animationDuration: 500,
+        dismissDuration: 4000
     }
 
     renderAlert = ({ id, ...props }) => {
-        const { dismissAlert, position, renderTimeDisplay } = this.props;
+        const {
+            dismissAlert, position, renderTimeDisplay,
+            isAutoDismiss, animationDuration, dismissDuration
+        } = this.props;
 
         return (
             <AlertsCard
+                isAutoDismiss={isAutoDismiss}
+                animationDuration={animationDuration}
+                dismissDuration={dismissDuration}
                 {...props}
                 key={id}
                 id={id}
