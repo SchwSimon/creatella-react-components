@@ -157,7 +157,8 @@ export default class ModalForgotPassword extends PureComponent {
                     <Input
                         className='ModalForgotPassword__content-hiddenEmailInput'
                         type='email'
-                        value={email} />
+                        value={email}
+                        defaultValue={email} />
 
                     <InputGroup className='ModalForgotPassword__content-inputGroup'>
                         <Input
