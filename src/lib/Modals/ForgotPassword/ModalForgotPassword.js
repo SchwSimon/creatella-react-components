@@ -75,6 +75,8 @@ export default class ModalForgotPassword extends PureComponent {
         this.setState({ isPasswordVisible: !isPasswordVisible });
     }
 
+    onChangehiddenEmailInputDummy = () => {}
+
     renderRequestUI = () => {
         const {
             isProcessing, isSuccess, isValidEmail,
@@ -158,7 +160,7 @@ export default class ModalForgotPassword extends PureComponent {
                         className='ModalForgotPassword__content-hiddenEmailInput'
                         type='email'
                         value={email}
-                        defaultValue={email} />
+                        onChange={this.onChangehiddenEmailInputDummy} />
 
                     <InputGroup className='ModalForgotPassword__content-inputGroup'>
                         <Input
