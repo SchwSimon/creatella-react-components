@@ -412,10 +412,7 @@ import { withForgotPassword } from 'creatella-react-components/lib/HOCs/withThro
 export default withForgotPassword(
     MyComponent,
     {
-        requestTitle            // [String]
-        requestSuccessText      // [String]
-        resetTitle              // [String]
-        resetSuccessText        // [String]
+        textConfig              // [Object] see src/lib/Modals/ForgotPassword/ModalForgotPassword
         searchQueryKey          // [String]
         validatorEmail          // [Func] default: (() => true)
         validatorPassword       // [Func] default: (() => true)

@@ -7,23 +7,18 @@ export function withForgotPassword(Component, configProps) {
     const STORAGEKEY_LOGIN_EMAIL = 'sk-wfp-email';
 
     const {
-        requestTitle, requestSuccessText, resetTitle, resetSuccessText,
         validatorEmail, validatorPassword,
         useZxcvbn, zxcvbnMinScore,
         searchQueryKey: _searchQueryKey,
         apiRequest: _apiRequest, apiReset: _apiReset
     } = configProps;
+    let { textConfig: _textConfig } = configProps;
 
     const _validatorEmail = validatorEmail || (() => true);
     const _validatorPassword = validatorPassword || (() => true);
 
     const _useZxcvbn = !!useZxcvbn;
     const _zxcvbnMinScore = zxcvbnMinScore || 0;
-
-    let _requestTitle = requestTitle || '';
-    let _requestSuccessText = requestSuccessText || '';
-    let _resetTitle = resetTitle || '';
-    let _resetSuccessText = resetSuccessText || '';
 
     class WithForgotPassword extends PureComponent {
         static propTypes = {
@@ -80,13 +75,8 @@ export function withForgotPassword(Component, configProps) {
         }
 
         // to be compatible with i18n
-        setTextConfig = (config) => {
-            const { requestTitle, requestSuccessText, resetTitle, resetSuccessText } = config;
-
-            _requestTitle = requestTitle || _requestTitle;
-            _requestSuccessText = requestSuccessText || _requestSuccessText;
-            _resetTitle = resetTitle || _resetTitle;
-            _resetSuccessText = resetSuccessText || _resetSuccessText;
+        setTextConfig = (textConfig) => {
+            _textConfig = textConfig;
 
             this.forceUpdate();
         }
@@ -216,10 +206,6 @@ export function withForgotPassword(Component, configProps) {
                         isResetCode={!!resetCode}
                         isRenderStrengthMeter={isRenderStrengthMeter}
                         zxcvbn={this.zxcvbn}
-                        requestTitle={_requestTitle}
-                        requestSuccessText={_requestSuccessText}
-                        resetTitle={_resetTitle}
-                        resetSuccessText={_resetSuccessText}
                         email={email}
                         password={password}
                         onClose={this.toggleModal}
@@ -227,7 +213,8 @@ export function withForgotPassword(Component, configProps) {
                         onChangeEmail={this.onChangeEmail}
                         onChangePassword={this.onChangePassword}
                         onSubmitEmail={this.submitEmail}
-                        onSubmitPassword={this.submitPassword} />
+                        onSubmitPassword={this.submitPassword}
+                        {..._textConfig} />
                 </>
             );
         }

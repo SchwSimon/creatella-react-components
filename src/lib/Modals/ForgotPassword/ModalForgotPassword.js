@@ -17,17 +17,48 @@ export default class ModalForgotPassword extends PureComponent {
         isValidPassword: PropTypes.bool.isRequired,
         isResetCode: PropTypes.bool.isRequired,
         isRenderStrengthMeter: PropTypes.bool.isRequired,
+
+        //
         zxcvbn: PropTypes.func,
-        requestTitle: PropTypes.string.isRequired,
-        requestSuccessText: PropTypes.string.isRequired,
-        resetTitle: PropTypes.string.isRequired,
-        resetSuccessText: PropTypes.string.isRequired,
+
+        // data
         email: PropTypes.string.isRequired,
         password: PropTypes.string.isRequired,
+
+        // change handlers
         onClose: PropTypes.func.isRequired,
         onBackToRequestUI: PropTypes.func.isRequired,
         onChangeEmail: PropTypes.func.isRequired,
-        onChangePassword: PropTypes.func.isRequired
+        onChangePassword: PropTypes.func.isRequired,
+
+        // Text
+        emailTitle: PropTypes.string.isRequired,
+        emailInputLabel: PropTypes.string.isRequired,
+        emailInputPlaceholder: PropTypes.string.isRequired,
+        emailSubmit: PropTypes.string.isRequired,
+        emailSuccess: PropTypes.string.isRequired,
+        passwordTitle: PropTypes.string.isRequired,
+        passwordInputLabel: PropTypes.string.isRequired,
+        passwordInputPlaceholder: PropTypes.string.isRequired,
+        passwordSubmit: PropTypes.string.isRequired,
+        passwordSuccess: PropTypes.string.isRequired,
+        passwordRequestNewEmail: PropTypes.string.isRequired,
+        backToLogin: PropTypes.string.isRequired
+    }
+
+    static defaultProps = {
+        emailTitle: 'Forgot your password ?',
+        emailInputLabel: 'Enter your email',
+        emailInputPlaceholder: 'e-mail@email.com',
+        emailSubmit: 'Confirm',
+        emailSuccess: 'An email with further instructions has been sent to you.',
+        passwordTitle: 'Set a new password',
+        passwordInputLabel: 'Enter your new password',
+        passwordInputPlaceholder: '******',
+        passwordSubmit: 'Confirm',
+        passwordSuccess: 'You can now login with your new password.',
+        passwordRequestNewEmail: 'Click here to request a new password reset.',
+        backToLogin: 'Back to Login'
     }
 
     constructor(props) {
@@ -41,21 +72,20 @@ export default class ModalForgotPassword extends PureComponent {
     onTogglePasswordVisibility = () => {
         const { isPasswordVisible } = this.state;
 
-        this.setState({
-            isPasswordVisible: !isPasswordVisible
-        });
+        this.setState({ isPasswordVisible: !isPasswordVisible });
     }
 
     renderRequestUI = () => {
         const {
-            isProcessing, isSuccess, isValidEmail, requestTitle, requestSuccessText,
+            isProcessing, isSuccess, isValidEmail,
+            emailTitle, emailInputLabel, emailInputPlaceholder, emailSubmit, emailSuccess,
             email, onChangeEmail, onSubmitEmail
         } = this.props;
 
         return (
             <div className='ModalForgotPassword'>
                 <div className='ModalForgotPassword__title'>
-                    {requestTitle}
+                    {emailTitle}
                 </div>
 
                 <div className='ModalForgotPassword__content'>
@@ -63,7 +93,7 @@ export default class ModalForgotPassword extends PureComponent {
                         <label
                             className='ModalForgotPassword__content-label'
                             htlmfor='ModalForgotPassword__content-inputGroup-input'>
-                            Enter your email
+                            {emailInputLabel}
                         </label>
                     )}
 
@@ -77,7 +107,7 @@ export default class ModalForgotPassword extends PureComponent {
                             type='email'
                             autoComplete='email'
                             value={email}
-                            placeholder='E-Mail'
+                            placeholder={emailInputPlaceholder}
                             onChange={onChangeEmail} />
                     </InputGroup>
                 </div>
@@ -85,11 +115,11 @@ export default class ModalForgotPassword extends PureComponent {
                 <div className='ModalForgotPassword__footer'>
                     {isSuccess
                         ? <div className='ModalForgotPassword__footer-success'>
-                            {requestSuccessText}
+                            {emailSuccess}
                         </div>
                         : <Button
                             className='ModalForgotPassword__button ModalForgotPassword__button--confirm'
-                            label='Confirm'
+                            label={emailSubmit}
                             isDisabled={!isValidEmail}
                             isProcessing={isProcessing}
                             onClick={onSubmitEmail} />
@@ -101,7 +131,9 @@ export default class ModalForgotPassword extends PureComponent {
 
     renderResetUI = () => {
         const {
-            isProcessing, isRenderStrengthMeter, isSuccess, isValidPassword, resetTitle, resetSuccessText,
+            isProcessing, isRenderStrengthMeter, isSuccess, isValidPassword,
+            passwordTitle, passwordInputLabel, passwordInputPlaceholder, passwordSubmit,
+            passwordSuccess, passwordRequestNewEmail, backToLogin,
             onChangePassword, onSubmitPassword, onClose, onBackToRequestUI,
             email, password, zxcvbn
         } = this.props;
@@ -110,7 +142,7 @@ export default class ModalForgotPassword extends PureComponent {
         return (
             <div className='ModalForgotPassword'>
                 <div className='ModalForgotPassword__title'>
-                    {resetTitle}
+                    {passwordTitle}
                 </div>
 
                 <div className='ModalForgotPassword__content'>
@@ -118,7 +150,7 @@ export default class ModalForgotPassword extends PureComponent {
                         <label
                             className='ModalForgotPassword__content-label'
                             htlmfor='ModalForgotPassword__content-inputGroup-input'>
-                            Enter your new password
+                            {passwordInputLabel}
                         </label>
                     )}
 
@@ -135,7 +167,7 @@ export default class ModalForgotPassword extends PureComponent {
                             isDisabled={isProcessing || isSuccess}
                             isReadOnly={isSuccess}
                             value={password}
-                            placeholder='Password'
+                            placeholder={passwordInputPlaceholder}
                             onChange={onChangePassword} />
 
                         <Button
@@ -156,16 +188,16 @@ export default class ModalForgotPassword extends PureComponent {
                 <div className='ModalForgotPassword__footer'>
                     {isSuccess
                         ? <div className='ModalForgotPassword__footer-success'>
-                            {resetSuccessText}
+                            {passwordSuccess}
 
                             <Button
                                 className='ModalForgotPassword__button ModalForgotPassword__button--toLogin'
-                                label='Back to Login'
+                                label={backToLogin}
                                 onClick={onClose} />
                         </div>
                         : <Button
                             className='ModalForgotPassword__button ModalForgotPassword__button--confirm'
-                            label='Confirm'
+                            label={passwordSubmit}
                             isDisabled={!isValidPassword}
                             isProcessing={isProcessing}
                             onClick={onSubmitPassword} />
@@ -173,7 +205,7 @@ export default class ModalForgotPassword extends PureComponent {
 
                     <Button
                         className='ModalForgotPassword__button ModalForgotPassword__button--backToRequestUI'
-                        label='Click here to request a new password reset.'
+                        label={passwordRequestNewEmail}
                         onClick={onBackToRequestUI} />
                 </div>
             </div>
