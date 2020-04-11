@@ -304,7 +304,8 @@ import Helmet from 'creatella-react-components/lib/Helmet';
 // use with redux/dispatch to set/reset head data
 // import { setHelmetData, resetHelmet } from 'creatella-react-components/lib/reduxReducers/helmet';
 
-// extraTags = [<meta />, <meta />];
+// extraTags = [<meta key={1} />, <meta key={2} />];
+// NOTE: you need to manually provide a key due to the way 'react-helmet' is handling the rendering
 setHelmetData({
     description // [String]
     title       // [String]

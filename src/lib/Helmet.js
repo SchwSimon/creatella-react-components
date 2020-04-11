@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Helmet as ReactHelmet } from 'react-helmet';
 
@@ -36,14 +36,6 @@ class Helmet extends Component {
         }
 
         return false;
-    }
-
-    renderExtraTag = (tag, index) => {
-        return (
-            <Fragment key={index}>
-                {tag}
-            </Fragment>
-        );
     }
 
     render() {
@@ -99,7 +91,7 @@ class Helmet extends Component {
                     <meta property='fb:app_id' content={fbAppId} />
                 )}
 
-                {extraTags && extraTags.map(this.renderExtraTag)}
+                {extraTags}
             </ReactHelmet>
         );
     }
