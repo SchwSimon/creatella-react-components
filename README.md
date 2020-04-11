@@ -304,11 +304,12 @@ import Helmet from 'creatella-react-components/lib/Helmet';
 // use with redux/dispatch to set/reset head data
 // import { setHelmetData, resetHelmet } from 'creatella-react-components/lib/reduxReducers/helmet';
 
+// extraTags = [<meta />, <meta />];
 setHelmetData({
     description // [String]
     title       // [String]
     image       // [String]
-    children    // [Any]
+    extraTags   // [Array] default: null
 });
 
 resetHelmet();

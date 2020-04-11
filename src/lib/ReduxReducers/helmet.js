@@ -18,7 +18,7 @@ const initialState = {
     description: '',
     title: '',
     image: '',
-    children: null
+    extraTags: null
 };
 
 export default function helmet(state = initialState, action) {

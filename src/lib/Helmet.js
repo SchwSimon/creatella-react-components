@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Helmet as ReactHelmet } from 'react-helmet';
 
@@ -20,38 +20,45 @@ class Helmet extends Component {
         description: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
         language: PropTypes.string.isRequired,
-        children: PropTypes.any
+        extraTags: PropTypes.array
     }
 
     shouldComponentUpdate(nextProps) {
-        const { pathname, title, description, image, language, children } = this.props;
+        const { pathname, title, description, image, language, extraTags } = this.props;
 
         if (pathname !== nextProps.pathname ||
             title !== nextProps.title ||
             description !== nextProps.description ||
             image !== nextProps.image ||
             language !== nextProps.language ||
-            children !== nextProps.children) {
+            extraTags !== nextProps.extraTags) {
             return true;
         }
 
         return false;
     }
 
+    renderExtraTag = (tag, index) => {
+        return (
+            <Fragment key={index}>
+                {tag}
+            </Fragment>
+        );
+    }
+
     render() {
         const href = window.location.href;
         const { defaultConfig } = this.props;
         const {
-            title: dcTitle, description: dcDescription, image: dcImage, children: dcChildren,
+            title: dcTitle, description: dcDescription, image: dcImage,
             type, twitterSite, siteName, fbAppId, language: dcLanguage
         } = defaultConfig;
 
-        let { title, description, image, children, language } = this.props;
+        let { title, description, image, language, extraTags } = this.props;
 
         title = dcTitle || title;
         description = dcDescription || description;
         image = dcImage || image;
-        children = dcChildren || children;
         language = language || dcLanguage;
 
         return (
@@ -92,7 +99,7 @@ class Helmet extends Component {
                     <meta property='fb:app_id' content={fbAppId} />
                 )}
 
-                {children}
+                {extraTags && extraTags.map(this.renderExtraTag)}
             </ReactHelmet>
         );
     }
