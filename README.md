@@ -266,7 +266,7 @@ import Alerts, { ALERTS_POSITION } from 'creatella-react-components/lib/Alerts';
 />
 
 // use with redux/dispatch to push alerts
-import { pushAlert, ALERT_TYPES } from 'creatella-react-components/lib/reduxReducers/alerts';
+import { pushAlert, dismissAllAlerts, ALERT_TYPES } from 'creatella-react-components/lib/reduxReducers/alerts';
 // ALERT_TYPES => INFO, SUCCESS, WARNING, ERROR
 
 pushAlert({
@@ -276,6 +276,8 @@ pushAlert({
     animationDuration   // [Number] default: see <Alerts />
     dismissDuration     // [Number] default: see <Alerts />
 });
+
+dismissAllAlerts();
 ```
 
 ### `<PasswordStrengthMeter />`

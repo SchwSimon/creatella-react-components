@@ -1,7 +1,8 @@
 export { ALERT_TYPES } from '../Alerts/config';
 
 const ALERTS_PUSH = 'ALERTS_PUSH';
-const ALERTS_DISMISS = 'ALERTS_DISMISS';
+const ALERTS_DISMISS_BY_ID = 'ALERTS_DISMISS_BY_ID';
+const ALERTS_DISMISS_ALL = 'ALERTS_DISMISS_ALL';
 
 export function pushAlert(config) {
     return {
@@ -12,8 +13,14 @@ export function pushAlert(config) {
 
 export function dismissAlert(id) {
     return {
-        type: ALERTS_DISMISS,
+        type: ALERTS_DISMISS_BY_ID,
         id
+    };
+}
+
+export function dismissAllAlerts() {
+    return {
+        type: ALERTS_DISMISS_ALL
     };
 }
 
@@ -34,13 +41,20 @@ export default function alerts(state = initialState, action) {
                 })
             };
 
-        case ALERTS_DISMISS: {
+        case ALERTS_DISMISS_BY_ID: {
             const { id } = action;
             const filterAlertById = (item) => item.id !== id;
 
             return {
                 ...state,
                 alerts: state.alerts.filter(filterAlertById)
+            };
+        }
+
+        case ALERTS_DISMISS_ALL: {
+            return {
+                ...state,
+                alerts: []
             };
         }
 
