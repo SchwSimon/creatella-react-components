@@ -198,6 +198,7 @@ import ItemPickerView from 'creatella-react-components/lib/ItemPickerView';
     isInput                     // [Bool] default: false
     childrenLeft                // [Any] default: null
     childrenRight               // [Any] default: null
+    childrenToggle              // [Any] default: null
     placeholder                 // [String] default: ''
     placeholderInput            // [String] default: ''
     onChangeInput               // [Func] default: null
