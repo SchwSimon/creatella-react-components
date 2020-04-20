@@ -16,28 +16,6 @@ import { computeItemPickerChangeValue } from './ItemPicker/utils/computeItemPick
 import ItemPickerViewItem from './ItemPickerView/components/Item/ItemPickerViewItem';
 import ItemPickerViewInput from './ItemPickerView/components/Input/ItemPickerViewInput';
 
-window._ItemPickerView = {
-    defaultProps: {
-        ...ItemPickerGlobalDefaultProps,
-        classNameValid: '',
-        classNameInvalid: '',
-        classNameDropdown: '',
-        isItemPicker: true,
-        isToggle: true,
-        isValid: false,
-        isInvalid: false,
-        isInput: false,
-        classNameItemPicker: '',
-        childrenLeft: null,
-        childrenRight: null,
-        childrenToggle: null,
-        placeholder: '',
-        placeholderInput: '...',
-        onChangeInput: null,
-        renderActiveItemContent: null
-    }
-};
-
 export default class ItemPickerView extends PureComponent {
     static propTypes = {
         ...ItemPickerGlobalPropTypes,
@@ -59,7 +37,26 @@ export default class ItemPickerView extends PureComponent {
         renderActiveItemContent: PropTypes.func
     }
 
-    static defaultProps = window._ItemPickerView.defaultProps;
+    static defaultProps = {
+        ...ItemPickerGlobalDefaultProps,
+        classNameValid: '',
+        classNameInvalid: '',
+        classNameDropdown: '',
+        isItemPicker: true,
+        isToggle: true,
+        isValid: false,
+        isInvalid: false,
+        isInput: false,
+        classNameItemPicker: '',
+        childrenLeft: null,
+        childrenRight: null,
+        childrenToggle: null,
+        placeholder: '',
+        placeholderInput: '...',
+        onChangeInput: null,
+        renderActiveItemContent: null,
+        ...(window._ItemPickerView_defaultProps || {})
+    }
 
     constructor(props) {
         super(props);

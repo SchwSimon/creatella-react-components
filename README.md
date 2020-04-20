@@ -175,7 +175,7 @@ IF enabled, it takes all available props from <ItemPicker />, except:
 import ItemPickerView from 'creatella-react-components/lib/ItemPickerView';
 
 // Set global default props
-// window._ItemPickerView.defaultProps
+// window._ItemPickerView_defaultProps
 
 <ItemPickerView
     className                   // [String]
