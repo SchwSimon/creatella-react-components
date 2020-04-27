@@ -91,8 +91,9 @@ import Button from 'creatella-react-components/lib/Button';
     classNameProcessing         // [String]
     classNameActivityIndicator  // [String]
     label                       // [String] ! Only without children
-    route                       // [String] ! Uses "react-router-dom" <Link to={route} />
-    routeProps                  // [Object]
+    href                        // [String] ! Uses native anchor <a />
+    route                       // [String] ! Uses "react-router-dom" <Link to={{ pathname: route }} />
+    routeProps                  // [Object] ! passed to <Link to={{ state: routeProps }}
     onClick                     // [Func]
     isDisabled                  // [Bool] default: false
     isProcessing                // [Bool] default: false

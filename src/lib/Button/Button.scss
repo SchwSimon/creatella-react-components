@@ -21,23 +21,4 @@
     &--processing {
         opacity: 0.6;
     }
-
-    &__link {
-        display: inherit;
-        flex-direction: inherit;
-        justify-content: inherit;
-        align-items: inherit;
-        text-align: inherit;
-        cursor: inherit;
-        user-select: inherit;
-        height: 100%;
-        width: 100%;
-
-        &:link,
-        &:hover,
-        &:focus,
-        &:visited {
-            color: inherit;
-        }
-    }
 }

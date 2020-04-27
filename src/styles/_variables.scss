@@ -15,8 +15,8 @@ $color-green: #35D367;
 $color-red: #E63939;
 $color-lightgray: #E1E8EE;
 
-$color-link: $background-color-body;
-$color-link-hover: lighten($background-color-body, 4%);
+$color-link: $color-body;
+$color-link-hover: lighten($color-body, 4%);
 
 //-------------------------------------//
 // FONTS

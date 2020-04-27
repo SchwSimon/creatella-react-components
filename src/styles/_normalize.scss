@@ -28,15 +28,16 @@ h1, h2, h3, h4, h5, h6 { /* stylelint-disable-line */
 a {
     text-decoration: none;
     color: $color-link;
+    outline: none;
+
+    // &:link,
+    // &:visited {
+    //     color: $color-link;
+    // }
 
     &:hover,
     &:focus {
         text-decoration: none;
-        color: $color-link-hover;
-    }
-
-    &:link,
-    &:visited {
-        color: $color-link;
+        // color: $color-link-hover;
     }
 }

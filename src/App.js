@@ -120,6 +120,50 @@ class App extends Component {
                     <div className='AppHeader' />
 
                     <main className='main'>
+                        <h1 className='App__h1'>
+                            Buttons
+                        </h1>
+
+                        <div className='flex-row flex-ac'>
+                            <Button title='BUTTON TITLE'>
+                                Default no extra styles
+                            </Button>
+
+                            <Button
+                                className='App__button'
+                                isProcessing={true}>
+                                Processing
+                            </Button>
+
+                            <Button
+                                className='App__button'
+                                isDisabled={true}>
+                                Disabled
+                            </Button>
+
+                            <Button
+                                className='App__button'
+                                style={{ padding: 30 }}
+                                route='/test'
+                                isDisabled={true}
+                                onClick={() => window.alert('Ok')}>
+                                Internal Route
+                            </Button>
+
+                            <Button
+                                className='App__button'
+                                style={{ padding: 30 }}
+                                href='https://www.google.com'
+                                isDisabled={true}
+                                onClick={() => window.alert('Ok')}>
+                                Native Anchor
+                            </Button>
+
+                            <Button className={BUTTON_CLASSNAMES.SOLID_GREEN}>
+                                Custom solid Green
+                            </Button>
+                        </div>
+
                         <div>
                             <InputGroup>
                                 <Input placeholder='Test placeholder' />
@@ -218,38 +262,6 @@ class App extends Component {
                             <ActivityIndicator
                                 className='App__loading'
                                 info='This is a info text, going on a bit more.' />
-                        </div>
-
-                        <h1 className='App__h1'>
-                            Buttons
-                        </h1>
-
-                        <div className='flex-row flex-ac'>
-                            <Button title='BUTTON TITLE'>
-                                Default no extra styles
-                            </Button>
-
-                            <Button
-                                className='App__button'
-                                isProcessing={true}>
-                                Processing
-                            </Button>
-
-                            <Button
-                                className='App__button'
-                                isDisabled={true}>
-                                Disabled
-                            </Button>
-
-                            <Button
-                                className='App__button'
-                                route='#'>
-                                Route
-                            </Button>
-
-                            <Button className={BUTTON_CLASSNAMES.SOLID_GREEN}>
-                                Custom solid Green
-                            </Button>
                         </div>
 
                         <h1 className='App__h1'>

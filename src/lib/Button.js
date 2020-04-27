@@ -75,35 +75,62 @@ export default class Button extends PureComponent {
             onClick, label, route, routeProps, isDisabled, isProcessing, children, sizeActivityIndicator,
             debounceTime, href, ...props
         } = this.props;
+        const classNameMain = (
+            `Button
+            ${isDisabled ? `Button--disabled ${classNameDisabled}` : ''}
+            ${isProcessing ? `Button--processing ${classNameProcessing}` : ''}
+            ${className}`
+        );
 
+        if (route) {
+            // Internal Route
+            return (
+                <Link
+                    {...props}
+                    className={classNameMain}
+                    onClick={this.onClick}
+                    to={{ pathname: route, state: routeProps }}>
+                    {isProcessing
+                        ? <ActivityIndicator
+                            classNameLoader={classNameActivityIndicator}
+                            size={sizeActivityIndicator} />
+                        : children || label
+                    }
+                </Link>
+            );
+        }
+
+        if (href) {
+            // Native Anchor
+            return (
+                <a
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    {...props}
+                    className={classNameMain}
+                    onClick={this.onClick}
+                    href={href}>
+                    {isProcessing
+                        ? <ActivityIndicator
+                            classNameLoader={classNameActivityIndicator}
+                            size={sizeActivityIndicator} />
+                        : children || label
+                    }
+                </a>
+            );
+        }
+
+        // Custom Button
         return (
             <span
                 {...props}
-                className={`Button ${isDisabled ? `Button--disabled ${classNameDisabled}` : ''} ${isProcessing ? `Button--processing ${classNameProcessing}` : ''} ${className}`}
+                className={classNameMain}
                 onClick={this.onClick}>
                 {isProcessing
                     ? <ActivityIndicator
                         classNameLoader={classNameActivityIndicator}
                         size={sizeActivityIndicator} />
-                    : route
-                        ? <Link
-                            className={`Button__link ${classNameLink}`}
-                            to={{
-                                pathname: route,
-                                state: routeProps
-                            }}>
-                            {children || label}
-                        </Link>
-                        : href
-                            ? <a
-                                className={`Button__link ${classNameLink}`}
-                                href={href}
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                {...routeProps}>
-                                {children || label}
-                            </a>
-                            : children || label
+                    : children || label
                 }
             </span>
         );
