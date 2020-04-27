@@ -11,6 +11,7 @@ export default class Button extends PureComponent {
         classNameProcessing: PropTypes.string,
         classNameActivityIndicator: PropTypes.string,
         label: PropTypes.string,
+        href: PropTypes.string,
         route: PropTypes.string,
         routeProps: PropTypes.object,
         isDisabled: PropTypes.bool,
@@ -27,8 +28,9 @@ export default class Button extends PureComponent {
         classNameProcessing: '',
         classNameActivityIndicator: '',
         classNameLink: '',
+        href: null,
         route: null,
-        routeProps: null,
+        routeProps: {},
         label: '',
         isDisabled: false,
         isProcessing: false,
@@ -69,8 +71,9 @@ export default class Button extends PureComponent {
 
     render() {
         const {
-            className, classNameDisabled, classNameProcessing, classNameLink, classNameActivityIndicator, onClick,
-            label, route, routeProps, isDisabled, isProcessing, children, sizeActivityIndicator, debounceTime, ...props
+            className, classNameDisabled, classNameProcessing, classNameLink, classNameActivityIndicator,
+            onClick, label, route, routeProps, isDisabled, isProcessing, children, sizeActivityIndicator,
+            debounceTime, href, ...props
         } = this.props;
 
         return (
@@ -91,7 +94,16 @@ export default class Button extends PureComponent {
                             }}>
                             {children || label}
                         </Link>
-                        : children || label
+                        : href
+                            ? <a
+                                className={`Button__link ${classNameLink}`}
+                                href={href}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                {...routeProps}>
+                                {children || label}
+                            </a>
+                            : children || label
                 }
             </span>
         );
