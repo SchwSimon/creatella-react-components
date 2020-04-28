@@ -7,16 +7,14 @@ $media-xs: 480px;
 
 //-------------------------------------//
 // COLORS
-
-$background-color-body: #ececec;
-$color-body: #334150;
-
 $color-green: #35D367;
 $color-red: #E63939;
 $color-lightgray: #E1E8EE;
 
+$color-body: #334150;
 $color-link: $color-body;
-$color-link-hover: lighten($color-body, 4%);
+
+$background-color-body: #ececec;
 
 //-------------------------------------//
 // FONTS
