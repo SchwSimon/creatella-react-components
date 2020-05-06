@@ -158,6 +158,7 @@ export default class ItemPicker extends PureComponent {
                 onOutsideClick={onClose}>
                 {isSearch && (
                     <ItemPickerSearch
+                        search={search}
                         isAutoFocus={isSearchAutoFocus}
                         placeholder={searchPlaceholderText}
                         onChange={onChangeSearch || this.onChangeSearch} />

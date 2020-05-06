@@ -7,15 +7,18 @@ class ItemPickerSearch extends PureComponent {
         onChangeThrottled: PropTypes.func.isRequired,
         onChange: PropTypes.func.isRequired,
         placeholder: PropTypes.string.isRequired,
+        search: PropTypes.string,
         isAutoFocus: PropTypes.bool.isRequired
     }
 
     constructor(props) {
         super(props);
 
+        const { search } = props;
+
         this.REF_SEARCH = React.createRef();
         this.state = {
-            search: ''
+            search: search || ''
         };
     }
 
