@@ -7,21 +7,25 @@ export default class Avatar extends PureComponent {
     static propTypes = {
         src: PropTypes.string,
         icon: PropTypes.object,
+        style: PropTypes.object,
         className: PropTypes.string
     }
 
     static defaultProps = {
         icon: faUserTie,
+        style: {},
         className: ''
     }
 
     render() {
-        const { src, icon, className } = this.props;
+        const { src, icon, className, style, ...props } = this.props;
 
         return (
             <div
+                {...props}
                 className={`Avatar ${className}`}
                 style={{
+                    ...style,
                     backgroundImage: `url(${src})`
                 }}>
                 {!src && (
