@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { BUTTON_CLASSNAMES } from 'config/style';
 import ActivityIndicator from 'lib/ActivityIndicator';
 import Button from 'lib/Button';
+import Rating from 'lib/Rating';
 // import Alerts from 'lib/Alerts';
 import InputGroup from 'lib/InputGroup';
 import Input from 'lib/Input';
@@ -12,8 +13,21 @@ import CheckBox from 'lib/CheckBox';
 import RadioBox from 'lib/RadioBox';
 import ItemPicker from 'lib/ItemPicker';
 import ItemPickerView from 'lib/ItemPickerView';
+import SliderRangePicker from 'lib/SliderRangePicker';
+import { fixFloating } from 'lib/utils/fixFloating';
+import { currencify } from 'lib/utils/currencify';
+import { isMobile } from 'lib/utils/isMobile';
+import { formatDuration } from 'lib/utils/formatDuration';
 import { ALERTS_POSITION_ARRAY, ALERT_TYPES_ARRAY } from 'lib/Alerts/config';
 import 'lib/styles.scss';
+
+const rateSteps = [
+    1,
+    0.5,
+    0.25,
+    0.2,
+    0.1
+];
 
 class App extends Component {
     constructor(props) {
@@ -56,7 +70,16 @@ class App extends Component {
             isAlertAutoDismiss: true,
             alertPosition: ALERTS_POSITION_ARRAY[0],
             alertType: ALERT_TYPES_ARRAY[0],
-            alerts: []
+            alerts: [],
+            sliderRangePicker: [
+                {
+                    max: 100,
+                    min: 0
+                },
+                50
+            ],
+            rate: 2.5,
+            rateStepIndex: 0
         };
     }
 
@@ -99,6 +122,14 @@ class App extends Component {
         });
     }
 
+    onSliderRangeChange = index => value => {
+        const { sliderRangePicker } = this.state;
+
+        this.setState({
+            sliderRangePicker: sliderRangePicker.map((item, i) => i === index ? value : item)
+        });
+    }
+
     renderOption = (value, index) => {
         return (
             <option key={index} value={value}>
@@ -111,7 +142,7 @@ class App extends Component {
         const {
             itempickerItems8, itempickerItems16, itempickerItemsActiveIds,
             isAlertAutoDismiss, isCheckBoxCheck, checkedId, isModalVisible,
-            itempickerValue
+            itempickerValue, sliderRangePicker, rate, rateStepIndex
         } = this.state;
 
         return (
@@ -332,6 +363,168 @@ class App extends Component {
                                 type='checkbox'
                                 checked={isAlertAutoDismiss}
                                 onChange={(e) => this.setState({ isAlertAutoDismiss: !isAlertAutoDismiss })} />
+                        </div>
+
+                        <h1 className='App__h1'>
+                            Slider Range Picker
+                        </h1>
+
+                        <div className='App__SliderRangePicker'>
+                            <SliderRangePicker
+                                maxValue={100}
+                                minValue={0}
+                                step={1}
+                                value={sliderRangePicker[0]}
+                                onChange={this.onSliderRangeChange(0)} />
+                            {sliderRangePicker[0].min}, {sliderRangePicker[0].max}
+                            <SliderRangePicker
+                                maxValue={100}
+                                minValue={0}
+                                step={1}
+                                value={sliderRangePicker[1]}
+                                onChange={this.onSliderRangeChange(1)} />
+                            {sliderRangePicker[1]}
+                            <SliderRangePicker
+                                maxValue={100}
+                                minValue={0}
+                                step={1}
+                                disabled={true}
+                                value={{ max: 70, min: 10 }} />
+                        </div>
+
+                        <h1 className='App__h1'>
+                            Rating
+                        </h1>
+
+                        <div className='App__Rating'>
+                            <h2 className='App__Rating-title'>Click To Rate</h2>
+                            Rate Step : {fixFloating(rateSteps[rateStepIndex])}
+                            <br/>
+                            <div className='App__Rating-steps'>
+                                {rateSteps.map((step, index) => (
+                                    <RadioBox
+                                        key={index}
+                                        className='App__Rating-steps-step'
+                                        id={index}
+                                        label={step.toString()}
+                                        checkedId={rateStepIndex}
+                                        onChange={stepIndex => this.setState({ rateStepIndex: stepIndex })} />
+                                ))}
+                            </div>
+                            <br/>
+                            <br/>
+                            Rate: {fixFloating(rate)}
+                            <br/>
+                            <br/>
+                            <Rating step={rateSteps[rateStepIndex]} onChange={rate => this.setState({ rate })} rate={rate}
+                                spacing={2} />
+                            <br />
+                            <Rating step={rateSteps[rateStepIndex]} onChange={rate => this.setState({ rate })} rate={rate}
+                                spacing={2} />
+                            <br />
+                            <Rating step={rateSteps[rateStepIndex]} onChange={rate => this.setState({ rate })} rate={rate}
+                                spacing={5} />
+                            <br />
+                            <Rating step={rateSteps[rateStepIndex]} onChange={rate => this.setState({ rate })} rate={rate}
+                                spacing={10} />
+                            <h2 className='App__Rating-title'>Read-Only</h2>
+                            <SliderRangePicker
+                                maxValue={5}
+                                minValue={0}
+                                step={0.01}
+                                value={rate}
+                                onChange={rate => this.setState({ rate })} />
+                            <br/>
+                            Rate: {fixFloating(rate)}
+                            <br/>
+                            <br/>
+                            <Rating readOnly={true} rate={rate} spacing={2} />
+                            <br />
+                            <Rating readOnly={true} rate={rate} spacing={2} />
+                            <br />
+                            <Rating readOnly={true} rate={rate} spacing={5} />
+                            <br />
+                            <Rating readOnly={true} rate={rate} spacing={10} />
+                        </div>
+
+                        <h1 className='App__h1'>
+                            Utils
+                        </h1>
+
+                        <div className='App__Utils'>
+                            <h2>isMobile</h2>
+                            <ul>
+                                <li>
+                                    is this a mobile device: {isMobile ? 'Yes' : 'No'}
+                                </li>
+                            </ul>
+                            <h2>fixFloating</h2>
+                            <ul>
+                                <li>
+                                    100 / 3 = {100 / 3}
+                                    <br />
+                                    fixFloating(100 / 3) = {fixFloating(100 / 3)}
+                                </li>
+                            </ul>
+                            <h2>currencify</h2>
+                            <ul>
+                                <li>
+                                    $(100 / 3) = ${100 / 3}
+                                    <br />
+                                    currencify(100 / 3, false, "$") = {currencify(100 / 3, false, '$')}
+                                </li>
+                                <li>
+                                    $(100 / 3) = ${100 / 3}
+                                    <br />
+                                    currencify(100 / 3, true, "$") = {currencify(100 / 3, true, '$')}
+                                </li>
+                                <li>
+                                    $(-100 / 3) = ${-100 / 3}
+                                    <br />
+                                    currencify(-100 / 3, false, "$") = {currencify(-100 / 3, false, '$')}
+                                </li>
+                                <li>
+                                    $(5) = ${5}
+                                    <br />
+                                    currencify(5, false, "$") = {currencify(5, false, '$')}
+                                </li>
+                                <li>
+                                    $(5.6) = ${5.6}
+                                    <br />
+                                    currencify(5.6, false, "$") = {currencify(5.6, false, '$')}
+                                </li>
+                            </ul>
+                            <h2>formatDuration</h2>
+                            <ul>
+                                <li>
+                                    formatDuration(2 * 24 + 3600 * 2 + 3 * 60 + 12)
+                                    <br />
+                                    {JSON.stringify(
+                                        formatDuration(2 * 24 + 3600 * 2 + 3 * 60 + 12)
+                                    )}
+                                </li>
+                                <li>
+                                    formatDuration(2 * 24 + 3600 * 2 + 3 * 60 + 12, true)
+                                    <br />
+                                    {JSON.stringify(
+                                        formatDuration(2 * 24 + 3600 * 2 + 3 * 60 + 12, true)
+                                    )}
+                                </li>
+                                <li>
+                                    formatDuration(2 * 24 + 3600 * 2 + 3 * 60 + 12, false, ['days'])
+                                    <br />
+                                    {JSON.stringify(
+                                        formatDuration(2 * 24 + 3600 * 2 + 3 * 60 + 12, false, ['days'])
+                                    )}
+                                </li>
+                                <li>
+                                    formatDuration(2 * 24 + 3600 * 2 + 3 * 60 + 12, false, ['days', 'seconds'])
+                                    <br />
+                                    {JSON.stringify(
+                                        formatDuration(2 * 24 + 3600 * 2 + 3 * 60 + 12, false, ['days', 'seconds'])
+                                    )}
+                                </li>
+                            </ul>
                         </div>
                     </main>
 

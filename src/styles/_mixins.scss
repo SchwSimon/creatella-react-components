@@ -25,3 +25,12 @@
         @content;
     }
 }
+
+// add prefixes
+@mixin with-browser-prefix($prop, $val) {
+    #{$prop}: $val;
+
+    @each $prefix in $browser-prefixes {
+        -#{$prefix}-#{$prop}: $val;
+    }
+}

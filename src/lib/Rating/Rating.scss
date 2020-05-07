@@ -1,0 +1,36 @@
+@import 'styles/_variables';
+@import 'styles/_mixins';
+
+.Rating {
+    display: inline-block;
+    text-align: left;
+    unicode-bidi: bidi-override;
+    color: transparent;
+    font-size: 22px;
+    position: relative;
+    padding: 0;
+    cursor: pointer;
+
+    &--read-only {
+        cursor: default;
+    }
+
+    @include with-browser-prefix(text-stroke, 1px #F2C94C); // TO_BE_FIXED : color does not exist in palette;
+
+    &__top {
+        color: #F2C94C; // TO_BE_FIXED : color does not exist in palette;
+        padding: 0;
+        position: absolute;
+        z-index: 1;
+        display: block;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+    }
+
+    &__bottom {
+        padding: 0;
+        display: block;
+        z-index: 0;
+    }
+}
