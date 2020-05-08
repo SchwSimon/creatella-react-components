@@ -39,7 +39,8 @@ export default class ItemPicker extends PureComponent {
         emptySearchText: 'No matches',
         searchPlaceholderText: 'Search..',
         domPortalNode: null,
-        style: {}
+        style: {},
+        ...(window._ItemPicker_defaultProps || {})
     }
 
     constructor(props) {

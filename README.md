@@ -211,6 +211,9 @@ import ItemPickerView from 'creatella-react-components/lib/ItemPickerView';
 ```jsx
 import ItemPicker from 'creatella-react-components/lib/ItemPicker';
 
+// Set global default props
+// window._ItemPicker_defaultProps
+
 <ItemPicker
     className                   // [String]
     isProcessing                // [Bool] default: false
