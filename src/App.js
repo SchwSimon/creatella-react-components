@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { BUTTON_CLASSNAMES } from 'config/style';
 import ActivityIndicator from 'lib/ActivityIndicator';
+import { setHelmetData, resetHelmet } from 'lib/reduxReducers/helmet';
+import Helmet from 'lib/Helmet';
 import Button from 'lib/Button';
 // import Alerts from 'lib/Alerts';
 import InputGroup from 'lib/InputGroup';
@@ -60,6 +63,14 @@ class App extends Component {
         };
     }
 
+    // componentDidMount() {
+    //     setTimeout(() => {
+    //         this.props.setMetaTags({
+    //             title: 'UPDATE'
+    //         });
+    //     }, 1500)
+    // }
+
     onToggleItemPicker = () => {
         const { isItemPickerVisible } = this.state;
 
@@ -116,6 +127,8 @@ class App extends Component {
 
         return (
             <div className='App App--withHeader'>
+                <Helmet defaultConfig={{ title: 'Default config' }} />
+
                 <BrowserRouter>
                     <div className='AppHeader' />
 
@@ -346,4 +359,15 @@ class App extends Component {
     }
 }
 
-export default App;
+function mapDispatchToProps(dispatch) {
+    return {
+        setMetaTags: (data) => {
+            dispatch(setHelmetData(data));
+        },
+        resetMetaTags: () => {
+            dispatch(resetHelmet());
+        }
+    };
+}
+
+export default connect(null, mapDispatchToProps)(App);
