@@ -14,7 +14,7 @@ export default class ErrorBoundary extends Component {
         fallbackMessage: 'Oops, an error occurred !'
     }
 
-    static getDerivedStateFromError() {
+    static getDerivedStateFromError() { // eslint-disable-line react/sort-comp
         return {
             isError: true
         };
