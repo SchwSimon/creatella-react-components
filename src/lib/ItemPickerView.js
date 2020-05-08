@@ -55,6 +55,7 @@ export default class ItemPickerView extends PureComponent {
         placeholderInput: '...',
         onChangeInput: null,
         renderActiveItemContent: null,
+        domPortalNode: window.document.body,
         ...(window._ItemPickerView_defaultProps || {})
     }
 
@@ -105,26 +106,27 @@ export default class ItemPickerView extends PureComponent {
     }
 
     onToggleItemPicker = () => {
+        const { domPortalNode } = this.props;
         const { isItemPickerVisible } = this.state;
-        let refPosY = 0;
-        let refPosX = 0;
-        let refWidth = 200;
+        const itemPickerStyle = {};
 
-        if (this.REF_CONTAINER.current) {
-            const { top, left, width, height } = this.REF_CONTAINER.current.getBoundingClientRect();
+        if (domPortalNode !== null) {
+            itemPickerStyle.top = 0;
+            itemPickerStyle.left = 0;
+            itemPickerStyle.maxWidth = 200;
 
-            refPosY = top + height;
-            refPosX = left;
-            refWidth = width;
+            if (this.REF_CONTAINER.current) {
+                const { top, left, width, height } = this.REF_CONTAINER.current.getBoundingClientRect();
+
+                itemPickerStyle.top = top + height;
+                itemPickerStyle.left = left;
+                itemPickerStyle.maxWidth = width;
+            }
         }
 
         this.setState({
             isItemPickerVisible: !isItemPickerVisible,
-            itemPickerStyle: {
-                top: refPosY,
-                left: refPosX,
-                maxWidth: refWidth
-            }
+            itemPickerStyle
         });
     }
 
@@ -252,7 +254,6 @@ export default class ItemPickerView extends PureComponent {
 
                 {isItemPicker && (
                     <ItemPicker
-                        domPortalNode={window.document.body}
                         {...this.props}
                         style={itemPickerStyle}
                         className={`ItemPickerView__ItemPicker ${classNameItemPicker}`}

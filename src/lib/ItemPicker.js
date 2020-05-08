@@ -26,7 +26,6 @@ export default class ItemPicker extends PureComponent {
         emptyText: PropTypes.string,
         emptySearchText: PropTypes.string,
         searchPlaceholderText: PropTypes.string,
-        domPortalNode: PropTypes.any, // A native dom node
         style: PropTypes.object
     }
 
@@ -39,6 +38,7 @@ export default class ItemPicker extends PureComponent {
         emptyText: 'No items yet',
         emptySearchText: 'No matches',
         searchPlaceholderText: 'Search..',
+        domPortalNode: null,
         style: {}
     }
 

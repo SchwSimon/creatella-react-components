@@ -14,7 +14,8 @@ export const ItemPickerGlobalPropTypes = {
     items: PropTypes.array.isRequired,
     itemsNameKey: PropTypes.string,
     itemsSearchConfig: PropTypes.object,
-    renderItemContent: PropTypes.func
+    renderItemContent: PropTypes.func,
+    domPortalNode: PropTypes.any
 };
 
 export const ItemPickerGlobalDefaultProps = {
