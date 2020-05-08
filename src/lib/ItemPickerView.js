@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import ActivityIndicator from './ActivityIndicator';
 import { castArray } from './utils/castArray';
+import { classify } from './utils/classify';
 
 // Config
 import { ItemPickerGlobalPropTypes, ItemPickerGlobalDefaultProps } from './configs/ItemPickerConfig';
@@ -19,15 +20,11 @@ import ItemPickerViewInput from './ItemPickerView/components/Input/ItemPickerVie
 export default class ItemPickerView extends PureComponent {
     static propTypes = {
         ...ItemPickerGlobalPropTypes,
-        classNameValid: PropTypes.string,
-        classNameInvalid: PropTypes.string,
-        classNameDropdown: PropTypes.string,
         isItemPicker: PropTypes.bool,
         isToggle: PropTypes.bool,
         isInput: PropTypes.bool,
         isValid: PropTypes.bool,
         isInvalid: PropTypes.bool,
-        classNameItemPicker: PropTypes.string,
         childrenLeft: PropTypes.any,
         childrenRight: PropTypes.any,
         childrenToggle: PropTypes.any,
@@ -39,15 +36,12 @@ export default class ItemPickerView extends PureComponent {
 
     static defaultProps = {
         ...ItemPickerGlobalDefaultProps,
-        classNameValid: '',
-        classNameInvalid: '',
-        classNameDropdown: '',
+        style: {},
         isItemPicker: true,
         isToggle: true,
         isValid: false,
         isInvalid: false,
         isInput: false,
-        classNameItemPicker: '',
         childrenLeft: null,
         childrenRight: null,
         childrenToggle: null,
@@ -184,35 +178,66 @@ export default class ItemPickerView extends PureComponent {
 
     render() {
         const {
-            className, classNameInvalid, classNameValid, classNameDropdown, items, itemsNameKey, itemsSearchConfig, childrenLeft, childrenRight,
+            className, items, itemsNameKey, itemsSearchConfig, childrenLeft, childrenRight,
             isProcessing, placeholder, onClick, isInput, isToggle, placeholderInput, onChangeInput, childrenToggle,
-            isItemPicker, classNameItemPicker, isValid, isInvalid
+            isItemPicker, isValid, isInvalid, style
         } = this.props;
         const { selectedItems, isMaxSelected, isSingleSelection, isItemPickerVisible, itemPickerStyle } = this.state;
         const isRenderInput = isInput && !isMaxSelected;
         const onClickFunc = isItemPicker ? this.onToggleItemPicker : onClick;
+        const classNames = {
+            items: '',
+            items__isValid: '',
+            itemsWrapper: '',
+            itemsWrapperProcessing: '',
+            itemsWrapperPlaceholder: '',
+            dropdown: '',
+            itempicker: ''
+        };
 
-        let classNamesInvalid = '';
-        let classNamesValid = '';
-
-        if (isInvalid) {
-            classNamesInvalid = `ItemPickerView__items--isInvalid ${classNameInvalid}`;
-        } else if (isValid) {
-            classNamesValid = `ItemPickerView__items--isValid ${classNameValid}`;
+        if (className) {
+            classNames.items = classify(className, '__items');
+            classNames.items__isValid = classify(className, '__items--isValid');
+            classNames.items__isInvalid = classify(className, '__items--isInvalid');
+            classNames.itemsWrapper = classify(className, '__items-wrapper');
+            classNames.itemsWrapperProcessing = classify(className, '__items-wrapper-processing');
+            classNames.itemsWrapperPlaceholder = classify(className, '__items-wrapper-placeholder');
+            classNames.dropdown = classify(className, '__dropdown');
+            classNames.itempicker = classify(className, '__ItemPicker');
         }
 
         return (
             <div
                 ref={this.REF_CONTAINER}
-                className={`ItemPickerView ${isSingleSelection ? 'ItemPickerView--isSingleSelection' : ''} ${className}`}>
+                className={`
+                    ItemPickerView
+                    ${isSingleSelection ? 'ItemPickerView--isSingleSelection' : ''}
+                    ${className}
+                `}
+                style={style}>
                 {childrenLeft}
 
                 <div
-                    className={`ItemPickerView__items ${isSingleSelection ? 'ItemPickerView__items--isSingleSelection' : ''} ${isRenderInput ? 'ItemPickerView__items--isInput' : ''} ${isInvalid ? classNamesInvalid : isValid ? classNamesValid : ''}`}
+                    className={`
+                        ItemPickerView__items
+                        ${isSingleSelection ? 'ItemPickerView__items--isSingleSelection' : ''}
+                        ${isRenderInput ? 'ItemPickerView__items--isInput' : ''}
+                        ${isInvalid ? `ItemPickerView__items--isInvalid ${classNames.items__isInvalid}` : isValid ? `ItemPickerView__items--isValid ${classNames.items__isValid}` : ''}
+                        ${classNames.items}
+                    `}
                     onClick={isRenderInput ? this.onFocusInput : onClickFunc}>
-                    <div className={`ItemPickerView__items-wrapper ${isSingleSelection ? 'ItemPickerView__items-wrapper--isSingleSelection' : ''}`}>
+                    <div
+                        className={`
+                            ItemPickerView__items-wrapper
+                            ${isSingleSelection ? 'ItemPickerView__items-wrapper--isSingleSelection' : ''}
+                            ${classNames.itemsWrapper}
+                        `}>
                         {isProcessing && (
-                            <div className='ItemPickerView__items-wrapper-processing'>
+                            <div
+                                className={`
+                                    ItemPickerView__items-wrapper-processing
+                                    ${classNames.itemsWrapperProcessing}
+                                `}>
                                 <ActivityIndicator size={20} />
                             </div>
                         )}
@@ -220,7 +245,11 @@ export default class ItemPickerView extends PureComponent {
                         {selectedItems.length
                             ? selectedItems.map(this.renderItem)
                             : !!(isSingleSelection && !isProcessing) && (
-                                <div className='ItemPickerView__items-wrapper-placeholder'>
+                                <div
+                                    className={`
+                                        ItemPickerView__items-wrapper-placeholder
+                                        ${classNames.itemsWrapperPlaceholder}
+                                    `}>
                                     {placeholder}
                                 </div>
                             )
@@ -244,7 +273,10 @@ export default class ItemPickerView extends PureComponent {
 
                 {isToggle && (
                     <div
-                        className={`ItemPickerView__dropdown ${classNameDropdown}`}
+                        className={`
+                            ItemPickerView__dropdown
+                            ${classNames.dropdown}
+                        `}
                         onClick={onClickFunc}>
                         {childrenToggle || <FontAwesomeIcon icon={faCaretDown} />}
                     </div>
@@ -256,7 +288,10 @@ export default class ItemPickerView extends PureComponent {
                     <ItemPicker
                         {...this.props}
                         style={itemPickerStyle}
-                        className={`ItemPickerView__ItemPicker ${classNameItemPicker}`}
+                        className={`
+                            ItemPickerView__ItemPicker
+                            ${classNames.itempicker}
+                        `}
                         isVisible={isItemPickerVisible}
                         onClose={this.onToggleItemPicker} />
                 )}

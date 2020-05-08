@@ -171,7 +171,7 @@ import Modal from 'creatella-react-components/lib/Modal';
 :exclamation: By default, <ItemPicker /> is implemented in <ItemPickerView />  
 To turn it off, pass `isItemPicker={false}`  
 IF enabled, it takes all available props from <ItemPicker />, except:  
-`isVisible`, `onClose` & `className` (use `classNameItemPicker` instead)
+`isVisible`, `onClose` & `className`
 ```jsx
 import ItemPickerView from 'creatella-react-components/lib/ItemPickerView';
 
@@ -180,8 +180,6 @@ import ItemPickerView from 'creatella-react-components/lib/ItemPickerView';
 
 <ItemPickerView
     className                   // [String]
-    classNameValid              // [String]
-    classNameInvalid            // [String]
     isProcessing                // [Bool] default: false
     isValid                     // [Bool] default: false
     isInvalid                   // [Bool] default: false
@@ -196,7 +194,6 @@ import ItemPickerView from 'creatella-react-components/lib/ItemPickerView';
     renderItemContent           // [Func] default: null
     renderActiveItemContent     // [Func] default: null
 
-    classNameItemPicker         // [String]
     isItemPicker                // [Bool] default: true
     isToggle                    // [Bool] default: true
     isInput                     // [Bool] default: false
