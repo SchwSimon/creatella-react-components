@@ -206,6 +206,7 @@ import ItemPickerView from 'creatella-react-components/lib/ItemPickerView';
     placeholder                 // [String] default: ''
     placeholderInput            // [String] default: ''
     onChangeInput               // [Func] default: null
+    domPortalNode               // [Any] default: window.document.body
 />
 ```
 
@@ -225,6 +226,7 @@ import ItemPicker from 'creatella-react-components/lib/ItemPicker';
     itemsNameKey                // [String] default: 'name'
     itemsSearchConfig           // [Object] default: null see: https://fusejs.io
     renderItemContent           // [Func] default: null
+    domPortalNode               // [Any] default: null
 
     searchRenderItemTreshold    // [Number] default: 8
     isVisible                   // [Bool] !required

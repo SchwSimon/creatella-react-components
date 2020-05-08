@@ -252,9 +252,9 @@ export default class ItemPickerView extends PureComponent {
 
                 {isItemPicker && (
                     <ItemPicker
+                        domPortalNode={window.document.body}
                         {...this.props}
                         style={itemPickerStyle}
-                        domPortalNode={window.document.body}
                         className={`ItemPickerView__ItemPicker ${classNameItemPicker}`}
                         isVisible={isItemPickerVisible}
                         onClose={this.onToggleItemPicker} />
