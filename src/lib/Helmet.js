@@ -48,9 +48,9 @@ class Helmet extends Component {
 
         let { title, description, image, language, extraTags } = this.props;
 
-        title = dcTitle || title;
-        description = dcDescription || description;
-        image = dcImage || image;
+        title = title || dcTitle;
+        description = description || dcDescription;
+        image = image || dcImage;
         language = language || dcLanguage;
 
         return (
