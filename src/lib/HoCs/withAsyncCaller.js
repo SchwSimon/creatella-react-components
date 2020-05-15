@@ -2,18 +2,18 @@
 
 import React, { PureComponent } from 'react';
 
-// This is required when using apiCaller or apiCallerProps
-// to be able to cancel the requests
-// simply globally assign a axios reference
-const AXIOS = window._withAsyncCallerAxios || { isCancel: () => false };
-// If using without axios cancellation, isCancel() should behave like not existing
-
 /**
  * api/async request handler
  * @param {Component} Component
  * @returns {Component}
  */
 export function withAsyncCaller(Component) {
+    // This is required when using apiCaller or apiCallerProps
+    // to be able to cancel the requests
+    // simply globally assign a axios reference
+    const AXIOS = window._withAsyncCallerAxios || { isCancel: () => false };
+    // If using without axios cancellation, isCancel() should behave like not existing
+
     return class WithAsyncCaller extends PureComponent {
         constructor(props) {
             super(props);
