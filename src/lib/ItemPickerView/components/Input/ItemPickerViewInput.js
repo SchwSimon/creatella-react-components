@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import Fuse from 'fuse.js';
+import ItemPickerViewItem from '../Item/ItemPickerViewItem';
+import OutsideClick from '../../../OutsideClick';
 
 export default class ItemPickerViewInput extends PureComponent {
     static propTypes = {
@@ -21,6 +23,10 @@ export default class ItemPickerViewInput extends PureComponent {
 
         this.REF_INPUT = React.createRef();
         this.state = {
+            isMatchVisible: false,
+            match: null,
+            matchPosX: 0,
+            matchPosY: 0,
             value: ''
         };
     }
@@ -52,47 +58,91 @@ export default class ItemPickerViewInput extends PureComponent {
     onChangeValue = (e) => {
         const { onChangeInput } = this.props;
         const value = e.target.value;
+        const nextState = { value };
 
-        this.setState({ value });
+        if (!value) {
+            nextState.isMatchVisible = false;
+            nextState.match = null;
+        }
+
+        this.setState(nextState);
 
         onChangeInput && onChangeInput(value);
     }
 
-    onKeyDown = (e) => {
+    onKeyUp = (e) => {
         const {
             onSubmit, onRemove, itemsSelected,
             itemsNameKey, items, itemsSearchConfig
         } = this.props;
         const { value } = this.state;
 
-        if (e.key === 'Enter' && value) {
-            const fuseConfig = itemsSearchConfig || { keys: [itemsNameKey] };
-            const fuse = new Fuse(items, fuseConfig);
-            const results = fuse.search(value);
-            const matchItem = results.length && results[0].item;
-
-            if (matchItem && onSubmit(matchItem)) {
-                this.setState({ value: '' });
-            }
-        } else if (e.key === 'Backspace' && !value && itemsSelected.length) {
+        if (e.key === 'Backspace' && !value && itemsSelected.length) {
             const item = itemsSelected[itemsSelected.length - 1];
             const value = item[itemsNameKey];
 
             this.blurInput();
 
-            this.setState({ value });
+            this.setState({ value, match: item, isMatchVisible: true });
 
             onRemove(item);
 
             requestAnimationFrame(() => {
                 this.focusInput(value.length);
             });
+        } else if (value) {
+            const fuseConfig = itemsSearchConfig || { keys: [itemsNameKey] };
+            const fuse = new Fuse(items, fuseConfig);
+            const results = fuse.search(value);
+            const matchItem = results.length && results[0].item;
+            const { top, left } = this.REF_INPUT.current.getBoundingClientRect();
+            const nextState = {
+                isMatchVisible: true,
+                match: matchItem,
+                matchPosX: left,
+                matchPosY: top
+            };
+
+            if (e.key === 'Enter' && matchItem && onSubmit(matchItem)) {
+                nextState.value = '';
+                nextState.match = null;
+            }
+
+            this.setState(nextState);
         }
+    }
+
+    onSelectMatch = () => {
+        const { onSubmit } = this.props;
+        const { match } = this.state;
+
+        onSubmit(match);
+
+        this.setState({
+            isMatchVisible: false,
+            match: null,
+            value: ''
+        });
+    }
+
+    onShowMatch = () => {
+        const { match } = this.state;
+        const { top, left } = this.REF_INPUT.current.getBoundingClientRect();
+
+        this.setState({
+            isMatchVisible: !!match,
+            matchPosX: left,
+            matchPosY: top
+        });
+    }
+
+    onHideMatch = () => {
+        this.setState({ isMatchVisible: false });
     }
 
     render() {
         const { placeholder, placeholderInput, itemsSelected } = this.props;
-        const { value } = this.state;
+        const { value, isMatchVisible, match, matchPosX, matchPosY } = this.state;
 
         return (
             <div className='ItemPickerViewInput'>
@@ -101,8 +151,23 @@ export default class ItemPickerViewInput extends PureComponent {
                     className='ItemPickerViewInput__input'
                     placeholder={!itemsSelected.length ? placeholder : placeholderInput}
                     value={value}
-                    onKeyDown={this.onKeyDown}
+                    onFocus={this.onShowMatch}
+                    onKeyUp={this.onKeyUp}
                     onChange={this.onChangeValue} />
+
+                {(isMatchVisible && !!match) && (
+                    <OutsideClick
+                        className='ItemPickerViewInput__match'
+                        style={{
+                            left: matchPosX - 5,
+                            top: matchPosY + 20
+                        }}
+                        onOutsideClick={this.onHideMatch}>
+                        <ItemPickerViewItem onClick={this.onSelectMatch}>
+                            {match.name}
+                        </ItemPickerViewItem>
+                    </OutsideClick>
+                )}
             </div>
         );
     }

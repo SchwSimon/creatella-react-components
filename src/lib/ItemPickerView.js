@@ -171,8 +171,9 @@ export default class ItemPickerView extends PureComponent {
                 {...item}
                 isSingleSelection={isSingleSelection}
                 item={item}
-                onRemove={this.onRemoveItem}
-                content={renderContent ? renderContent(item) : name} />
+                onRemove={this.onRemoveItem}>
+                {renderContent ? renderContent(item) : name}
+            </ItemPickerViewItem>
         );
     }
 

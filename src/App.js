@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -122,7 +123,7 @@ class App extends Component {
         const {
             itempickerItems8, itempickerItems16, itempickerItemsActiveIds,
             isAlertAutoDismiss, isCheckBoxCheck, checkedId, isModalVisible,
-            itempickerValue
+            itempickerValue, itempickerValues
         } = this.state;
 
         return (
@@ -210,8 +211,24 @@ class App extends Component {
                             className='App__ItemPickerView'
                             onClick={this.onToggleItemPicker}
                             onChange={(itempickerValue) => this.setState({ itempickerValue })}
-                            // value={itempickerItemsActiveIds}
-                            // value={null}
+                            value={itempickerValue}
+                            items={itempickerItems16} />
+
+                        <ItemPickerView
+                            className='App__ItemPickerView'
+                            onClick={this.onToggleItemPicker}
+                            onChange={(itempickerItemsActiveIds) => this.setState({ itempickerItemsActiveIds })}
+                            isInput={true}
+                            value={itempickerItemsActiveIds}
+                            items={itempickerItems16} />
+
+                        <ItemPickerView
+                            className='App__ItemPickerView'
+                            placeholder='test'
+                            onClick={this.onToggleItemPicker}
+                            onChange={(itempickerValue) => this.setState({ itempickerValue })}
+                            isInput={true}
+                            maxSelections={1}
                             value={itempickerValue}
                             items={itempickerItems16} />
 

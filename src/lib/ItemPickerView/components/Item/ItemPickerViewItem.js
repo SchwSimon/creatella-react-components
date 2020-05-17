@@ -3,29 +3,46 @@ import React, { PureComponent } from 'react';
 
 export default class ItemPickerViewItem extends PureComponent {
     static propTypes = {
-        isSingleSelection: PropTypes.bool.isRequired,
-        onRemove: PropTypes.func.isRequired,
+        className: PropTypes.string,
+        style: PropTypes.object,
+        isSingleSelection: PropTypes.bool,
+        onRemove: PropTypes.func,
+        onClick: PropTypes.func,
         item: PropTypes.object.isRequired,
-        content: PropTypes.any.isRequired
+        children: PropTypes.any.isRequired
     }
 
-    onRemove = (e) => {
-        const { onRemove, item } = this.props;
+    static defaultProps = {
+        className: '',
+        style: {}
+    }
+
+    onClick = (e) => {
+        const { isSingleSelection, onClick, onRemove, item } = this.props;
 
         e.stopPropagation();
 
-        onRemove(item);
+        if (onClick) {
+            onClick(item);
+        } else if (!isSingleSelection) {
+            onRemove(item);
+        }
     }
 
     render() {
-        const { isSingleSelection, content } = this.props;
+        const { className, style, isSingleSelection, children } = this.props;
 
         return (
             <div
-                className={`ItemPickerViewItem ${isSingleSelection ? 'ItemPickerViewItem--isSingleSelection' : ''}`}
-                onClick={!isSingleSelection ? this.onRemove : null}>
+                className={`
+                    ItemPickerViewItem
+                    ${className}
+                    ${isSingleSelection ? 'ItemPickerViewItem--isSingleSelection' : ''}
+                `}
+                style={style}
+                onClick={this.onClick}>
                 <span className='ItemPickerViewItem__content'>
-                    {content}
+                    {children}
                 </span>
             </div>
         );
