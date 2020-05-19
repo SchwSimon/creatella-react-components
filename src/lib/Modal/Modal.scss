@@ -43,8 +43,9 @@ $zIndexModal: $zIndexBackDrop + 100;
         animation-duration: 300ms;
         animation-timing-function: ease-out;
         animation-fill-mode: forwards;
-        width: 600px;
-        margin: 30px 10px 0;
+        width: 100%;
+        margin-top: 30px;
+        padding: 0 10px;
 
         @keyframes MoveIn {
             from { transform: translateY(-50px); }
