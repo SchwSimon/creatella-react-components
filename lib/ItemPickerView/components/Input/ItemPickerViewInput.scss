@@ -24,4 +24,9 @@
             color: $placeholder-color;
         }
     }
+
+    &__match {
+        position: fixed;
+        z-index: 1;
+    }
 }
