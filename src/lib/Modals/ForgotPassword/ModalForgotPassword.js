@@ -225,6 +225,7 @@ export default class ModalForgotPassword extends PureComponent {
         return (
             <Modal
                 isVisible={isVisible}
+                classNameDialog='ModalForgotPasswordDialog'
                 onClose={!isProcessing ? onClose : null}>
                 {isResetCode
                     ? this.renderResetUI()
