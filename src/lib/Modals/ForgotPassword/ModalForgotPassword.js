@@ -31,6 +31,10 @@ export default class ModalForgotPassword extends PureComponent {
         onChangeEmail: PropTypes.func.isRequired,
         onChangePassword: PropTypes.func.isRequired,
 
+        // submissions
+        onSubmitEmail: PropTypes.func.isRequired,
+        onSubmitPassword: PropTypes.func.isRequired,
+
         // Text
         emailTitle: PropTypes.string.isRequired,
         emailInputLabel: PropTypes.string.isRequired,
