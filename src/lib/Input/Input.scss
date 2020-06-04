@@ -8,6 +8,8 @@
     transition-property: border-color, color, background-color;
     transition-duration: 180ms;
     transition-timing-function: ease-out;
+    // mainly to remove firefox autofill coloring
+    filter: none;
 
     &::placeholder {
         color: $placeholder-color;
