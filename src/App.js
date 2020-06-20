@@ -208,6 +208,7 @@ class App extends Component {
                         </Button>
 
                         <ItemPickerView
+                            placeholder='Test placeholder'
                             className='App__ItemPickerView'
                             onClick={this.onToggleItemPicker}
                             onChange={(itempickerValue) => this.setState({ itempickerValue })}
@@ -215,14 +216,16 @@ class App extends Component {
                             items={itempickerItems16} />
 
                         <ItemPickerView
+                            placeholder='Test placeholder'
                             className='App__ItemPickerView'
                             onClick={this.onToggleItemPicker}
                             onChange={(itempickerItemsActiveIds) => this.setState({ itempickerItemsActiveIds })}
-                            isInput={true}
+                            isInput={false}
                             value={itempickerItemsActiveIds}
                             items={itempickerItems16} />
 
                         <ItemPickerView
+                            placeholder='Test placeholder'
                             className='App__ItemPickerView'
                             placeholder='test'
                             onClick={this.onToggleItemPicker}

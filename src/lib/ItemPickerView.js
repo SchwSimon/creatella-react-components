@@ -245,7 +245,7 @@ export default class ItemPickerView extends PureComponent {
 
                         {selectedItems.length
                             ? selectedItems.map(this.renderItem)
-                            : !!(isSingleSelection && !isProcessing) && (
+                            : !!(!isProcessing && (isSingleSelection || !isRenderInput)) && (
                                 <div
                                     className={`
                                         ItemPickerView__items-wrapper-placeholder
