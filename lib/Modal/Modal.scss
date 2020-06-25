@@ -37,7 +37,6 @@ $zIndexModal: $zIndexBackDrop + 100;
     overflow-y: auto;
 
     &__dialog {
-        position: relative;
         animation-name: MoveIn;
         animation-iteration-count: 1;
         animation-duration: 300ms;
@@ -53,6 +52,7 @@ $zIndexModal: $zIndexBackDrop + 100;
         }
 
         &-content {
+            position: relative;
             border-radius: 4px;
             margin-bottom: 30px;
             width: 100%;
