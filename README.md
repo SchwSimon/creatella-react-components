@@ -159,11 +159,12 @@ import OutsideClick from 'creatella-react-components/lib/OutsideClick';
 import Modal from 'creatella-react-components/lib/Modal';
 
 <Modal
-    isVisible       // [Bool] !required
-    onClose         // [Func] !required
-    className       // [String]
-    classNameDialog // [String]
-    <div />         // [Any] !required
+    isVisible           // [Bool] !required
+    onClose             // [Func] !required
+    className           // [String]
+    classNameDialog     // [String]
+    classNameContent    // [String]
+    <div />             // [Any] !required
 </Modal>
 ```
 

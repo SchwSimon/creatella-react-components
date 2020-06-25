@@ -9,13 +9,15 @@ export default class Modal extends PureComponent {
         onClose: PropTypes.func,
         className: PropTypes.string,
         classNameDialog: PropTypes.string,
+        classNameContent: PropTypes.string,
         children: PropTypes.any.isRequired
     }
 
     static defaultProps = {
         onClose: () => {},
         className: '',
-        classNameDialog: ''
+        classNameDialog: '',
+        classNameContent: ''
     }
 
     constructor(props) {
@@ -59,7 +61,7 @@ export default class Modal extends PureComponent {
     }
 
     render() {
-        const { isVisible, onClose, className, classNameDialog, children } = this.props;
+        const { isVisible, onClose, className, classNameDialog, classNameContent, children } = this.props;
 
         if (!isVisible) {
             return null;
@@ -78,7 +80,7 @@ export default class Modal extends PureComponent {
                         className={`Modal__dialog ${classNameDialog}`}
                         role='document'>
                         <OutsideClick
-                            className='Modal__dialog-content'
+                            className={`Modal__dialog-content ${classNameContent}`}
                             onOutsideClick={onClose}>
                             {children}
                         </OutsideClick>
