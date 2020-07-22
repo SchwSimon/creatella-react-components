@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { BUTTON_CLASSNAMES } from 'config/style';
 import ActivityIndicator from 'lib/ActivityIndicator';
-import { setHelmetData, resetHelmet } from 'lib/reduxReducers/helmet';
+import { setHelmetData, resetHelmet } from 'lib/ReduxReducers/helmet';
 import Helmet from 'lib/Helmet';
 import Button from 'lib/Button';
 // import Alerts from 'lib/Alerts';
