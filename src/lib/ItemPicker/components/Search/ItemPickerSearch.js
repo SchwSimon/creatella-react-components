@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
-import { withThrottledChange } from '../../../HoCs/withThrottledChange';
+import { withThrottledChange } from '../../../HOCs/withThrottledChange';
 
 class ItemPickerSearch extends PureComponent {
     static propTypes = {
