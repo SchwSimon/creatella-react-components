@@ -12,6 +12,7 @@ class Helmet extends Component {
             image: PropTypes.string.isRequired,
             type: PropTypes.string.isRequired,
             language: PropTypes.string.isRequired,
+            twitterCard: PropTypes.string.isRequired,
             twitterSite: PropTypes.string,
             siteName: PropTypes.string,
             fbAppId: PropTypes.string
@@ -43,7 +44,7 @@ class Helmet extends Component {
         const { defaultConfig } = this.props;
         const {
             title: dcTitle, description: dcDescription, image: dcImage,
-            type, twitterSite, siteName, fbAppId, language: dcLanguage
+            type, twitterSite, twitterCard, siteName, fbAppId, language: dcLanguage
         } = defaultConfig;
 
         let { title, description, image, language, extraTags } = this.props;
@@ -68,7 +69,7 @@ class Helmet extends Component {
                 <meta itemProp='description' content={description} />
                 <meta itemProp='image' content={image} />
 
-                <meta name='twitter:card' content='summary' />
+                <meta name='twitter:card' content={twitterCard} />
                 <meta name='twitter:title' content={title} />
                 <meta name='twitter:description' content={description} />
                 <meta name='twitter:image' content={image} />
