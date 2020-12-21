@@ -25,6 +25,7 @@ export default class ItemPickerView extends PureComponent {
         isInput: PropTypes.bool,
         isValid: PropTypes.bool,
         isInvalid: PropTypes.bool,
+        isAutoClose: PropTypes.bool,
         childrenLeft: PropTypes.any,
         childrenRight: PropTypes.any,
         childrenToggle: PropTypes.any,
@@ -42,6 +43,7 @@ export default class ItemPickerView extends PureComponent {
         isValid: false,
         isInvalid: false,
         isInput: false,
+        isAutoClose: true,
         childrenLeft: null,
         childrenRight: null,
         childrenToggle: null,
@@ -88,6 +90,8 @@ export default class ItemPickerView extends PureComponent {
                 isSingleSelection,
                 isMaxSelected: isSingleSelection || (maxSelections && maxSelections <= selectedItems.length)
             });
+
+            this.onClose();
         }
     }
 
@@ -156,6 +160,17 @@ export default class ItemPickerView extends PureComponent {
 
         if (nextValue !== false) {
             onChange(nextValue, item);
+        }
+    }
+
+    onClose = () => {
+        const { isAutoClose } = this.props;
+        const { isSingleSelection, isItemPickerVisible } = this.state;
+
+        if (isAutoClose && isSingleSelection && isItemPickerVisible) {
+            this.setState({
+                isItemPickerVisible: false
+            });
         }
     }
 
