@@ -274,7 +274,7 @@ import Alerts, { ALERTS_POSITION } from 'creatella-react-components/lib/Alerts';
 />
 
 // use with redux/dispatch to push alerts
-import { pushAlert, dismissAllAlerts, ALERT_TYPES } from 'creatella-react-components/lib/reduxReducers/alerts';
+import { pushAlert, dismissAllAlerts, ALERT_TYPES } from 'creatella-react-components/lib/ReduxReducers/alerts';
 // ALERT_TYPES => INFO, SUCCESS, WARNING, ERROR
 
 pushAlert({
@@ -312,7 +312,7 @@ import Helmet from 'creatella-react-components/lib/Helmet';
 />
 
 // use with redux/dispatch to set/reset head data
-// import { setHelmetData, resetHelmet } from 'creatella-react-components/lib/reduxReducers/helmet';
+// import { setHelmetData, resetHelmet } from 'creatella-react-components/lib/ReduxReducers/helmet';
 
 // extraTags = [<meta key={1} />, <meta key={2} />];
 // NOTE: you need to manually provide a key due to the way 'react-helmet' is handling the rendering

@@ -1,3 +1,3 @@
 
-export { default as helmet } from 'lib/reduxReducers/helmet';
-// export { default as alerts } from 'lib/reduxReducers/alerts';
+export { default as helmet } from 'lib/ReduxReducers/helmet';
+// export { default as alerts } from 'lib/ReduxReducers/alerts';
