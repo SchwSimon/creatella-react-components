@@ -357,7 +357,7 @@ import ErrorBoundary from 'creatella-react-components/lib/ErrorBoundary';
 ### `withAsyncCaller()`
 :exclamation: define `window._withAsyncCallerAxios` if using `apiCaller` or `apiCallerProps`
 ```js
-import { withAsyncCaller } from 'creatella-react-components/lib/HOCs/withAsyncCaller';
+import { withAsyncCaller } from 'creatella-react-components/lib/HOCS/withAsyncCaller';
 
 // define ocne globally
 window._withAsyncCallerAxios = AXIOS_REFERENCE;
@@ -392,7 +392,7 @@ generateCancelToken()
 
 ### `withThrottledChange()`
 ```js
-import { withThrottledChange } from 'creatella-react-components/lib/HOCs/withThrottledChange';
+import { withThrottledChange } from 'creatella-react-components/lib/HOCS/withThrottledChange';
 
 // Default throttle: 150ms
 export default withThrottledChange(MyComponent, 150);
@@ -406,7 +406,7 @@ onChangeThrottled(
 
 ### `withWindowResizeListener()`
 ```js
-import { withWindowResizeListener } from 'creatella-react-components/lib/HOCs/withWindowResizeListener';
+import { withWindowResizeListener } from 'creatella-react-components/lib/HOCS/withWindowResizeListener';
 
 // Default delay: 100ms
 export default withWindowResizeListener(MyComponent, 100);
@@ -418,7 +418,7 @@ windowHeight    // window.innerHeight
 
 ### `withForgotPassword()`
 ```js
-import { withForgotPassword } from 'creatella-react-components/lib/HOCs/withThrottledChange';
+import { withForgotPassword } from 'creatella-react-components/lib/HOCS/withThrottledChange';
 
 // Default throttle: 150ms
 export default withForgotPassword(
