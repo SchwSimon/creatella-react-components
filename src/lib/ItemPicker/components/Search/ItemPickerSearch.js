@@ -9,7 +9,7 @@ class ItemPickerSearch extends PureComponent {
         placeholder: PropTypes.string.isRequired,
         search: PropTypes.string,
         isAutoFocus: PropTypes.bool.isRequired
-    }
+    };
 
     constructor(props) {
         super(props);
@@ -34,7 +34,7 @@ class ItemPickerSearch extends PureComponent {
         if (this.REF_SEARCH.current) {
             this.REF_SEARCH.current.focus();
         }
-    }
+    };
 
     onChangeSearch = (e) => {
         const { onChangeThrottled } = this.props;
@@ -43,13 +43,13 @@ class ItemPickerSearch extends PureComponent {
         this.setState({ search });
 
         onChangeThrottled(search, this.onSearch);
-    }
+    };
 
     onSearch = (search) => {
         const { onChange } = this.props;
 
         onChange(search);
-    }
+    };
 
     render() {
         const { placeholder } = this.props;

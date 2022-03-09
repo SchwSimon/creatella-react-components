@@ -24,13 +24,13 @@ class Alerts extends PureComponent {
         animationDuration: PropTypes.number,
         dismissDuration: PropTypes.number,
         renderTimeDisplay: PropTypes.func
-    }
+    };
 
     static defaultProps = {
         isAutoDismiss: true,
         animationDuration: 500,
         dismissDuration: 4000
-    }
+    };
 
     renderAlert = ({ id, ...props }) => {
         const {
@@ -50,7 +50,7 @@ class Alerts extends PureComponent {
                 onDismiss={dismissAlert}
                 renderTimeDisplay={renderTimeDisplay} />
         );
-    }
+    };
 
     render() {
         const { alerts, position } = this.props;

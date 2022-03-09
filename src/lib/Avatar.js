@@ -9,13 +9,13 @@ export default class Avatar extends PureComponent {
         icon: PropTypes.object,
         style: PropTypes.object,
         className: PropTypes.string
-    }
+    };
 
     static defaultProps = {
         icon: faUserTie,
         style: {},
         className: ''
-    }
+    };
 
     render() {
         const { src, icon, className, style, ...props } = this.props;

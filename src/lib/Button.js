@@ -20,7 +20,7 @@ export default class Button extends PureComponent {
         sizeActivityIndicator: PropTypes.number,
         onClick: PropTypes.func,
         children: PropTypes.any
-    }
+    };
 
     static defaultProps = {
         className: '',
@@ -36,7 +36,7 @@ export default class Button extends PureComponent {
         isProcessing: false,
         debounceTime: 300,
         sizeActivityIndicator: 20
-    }
+    };
 
     constructor(props) {
         super(props);
@@ -63,11 +63,11 @@ export default class Button extends PureComponent {
                 this.DEBOUNCE_TIMEOUT = setTimeout(this.debounce, debounceTime);
             }
         }
-    }
+    };
 
     debounce = () => {
         this.IS_DEBOUNCE = false;
-    }
+    };
 
     render() {
         const {

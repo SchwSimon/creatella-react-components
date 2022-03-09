@@ -78,7 +78,7 @@ export default class AlertsCard extends PureComponent {
 
     requestAnimationFrame = () => {
         requestAnimationFrame(this.startDismiss);
-    }
+    };
 
     startDismiss = () => {
         const { isAutoDismiss } = this.props;
@@ -87,7 +87,7 @@ export default class AlertsCard extends PureComponent {
             dismissTimeoutStartDate: Date.now(),
             dismissTimeout: isAutoDismiss ? setTimeout(this.onDismiss, this.dismissCountdown) : null
         });
-    }
+    };
 
     onMouseEnter = () => {
         const { dismissTimeoutStartDate, dismissTimeout } = this.state;
@@ -98,14 +98,14 @@ export default class AlertsCard extends PureComponent {
         this.setState({
             dismissTimeout: null
         });
-    }
+    };
 
     onMouseLeave = () => {
         this.setState({
             dismissTimeoutStartDate: new Date(),
             dismissTimeout: setTimeout(this.onDismiss, this.dismissCountdown)
         });
-    }
+    };
 
     onPin = () => {
         const { dismissTimeout } = this.state;
@@ -116,7 +116,7 @@ export default class AlertsCard extends PureComponent {
             dismissTimeout: null,
             isPinned: true
         });
-    }
+    };
 
     onUpdateTime = () => {
         const { renderTimeDisplay } = this.props;
@@ -127,7 +127,7 @@ export default class AlertsCard extends PureComponent {
                 ? renderTimeDisplay(timestamp)
                 : formatDistanceStrict(timestamp, new Date(), { addSuffix: true })
         });
-    }
+    };
 
     onDismiss = () => {
         const { animationDuration } = this.props;
@@ -135,13 +135,13 @@ export default class AlertsCard extends PureComponent {
         this.setState({
             dismissedTimeout: setTimeout(this.onDismissFinal, animationDuration)
         });
-    }
+    };
 
     onDismissFinal = () => {
         const { id, onDismiss } = this.props;
 
         onDismiss(id);
-    }
+    };
 
     render() {
         const {

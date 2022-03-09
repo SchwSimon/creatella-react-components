@@ -7,13 +7,13 @@ export default class ItemPickerItem extends PureComponent {
         content: PropTypes.any.isRequired,
         item: PropTypes.object.isRequired,
         isActive: PropTypes.bool.isRequired
-    }
+    };
 
     onClick = () => {
         const { onSelect, item } = this.props;
 
         onSelect(item);
-    }
+    };
 
     render() {
         const { content, isActive } = this.props;

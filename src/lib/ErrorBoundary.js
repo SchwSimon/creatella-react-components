@@ -8,11 +8,11 @@ export default class ErrorBoundary extends Component {
         fallbackMessage: PropTypes.string,
         fallbackScreen: PropTypes.any,
         children: PropTypes.any
-    }
+    };
 
     static defaultProps = {
         fallbackMessage: 'Oops, an error occurred !'
-    }
+    };
 
     static getDerivedStateFromError() { // eslint-disable-line react/sort-comp
         return {

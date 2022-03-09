@@ -27,7 +27,7 @@ export default class ItemPicker extends PureComponent {
         emptySearchText: PropTypes.string,
         searchPlaceholderText: PropTypes.string,
         style: PropTypes.object
-    }
+    };
 
     static defaultProps = {
         ...ItemPickerGlobalDefaultProps,
@@ -41,7 +41,7 @@ export default class ItemPicker extends PureComponent {
         domPortalNode: null,
         style: {},
         ...(window._ItemPicker_defaultProps || {})
-    }
+    };
 
     constructor(props) {
         super(props);
@@ -87,7 +87,7 @@ export default class ItemPicker extends PureComponent {
         if (nextValue !== false) {
             onChange(nextValue, item);
         }
-    }
+    };
 
     onChangeSearch = (search) => {
         const { items, itemsNameKey, itemsSearchConfig } = this.props;
@@ -112,7 +112,7 @@ export default class ItemPicker extends PureComponent {
             search,
             searchItems: results.map(mapItem)
         });
-    }
+    };
 
     renderItem = (item) => {
         const { renderItemContent, itemsNameKey } = this.props;
@@ -129,7 +129,7 @@ export default class ItemPicker extends PureComponent {
                 isActive={isActive}
                 content={renderItemContent ? renderItemContent(item, isActive) : name} />
         );
-    }
+    };
 
     render() {
         const {

@@ -27,13 +27,13 @@ export function withForgotPassword(Component, configProps) {
             isProcessing: PropTypes.bool,
             isRenderStrengthMeter: PropTypes.bool,
             isSuccess: PropTypes.bool
-        }
+        };
 
         static defaultProps = {
             isProcessing: _useZxcvbn,
             isRenderStrengthMeter: false,
             isSuccess: false
-        }
+        };
 
         constructor(props) {
             super(props);
@@ -80,7 +80,7 @@ export function withForgotPassword(Component, configProps) {
             _textConfig = textConfig;
 
             this.forceUpdate();
-        }
+        };
 
         setZxcvbn = async () => {
             const { setOwnProps } = this.props;
@@ -95,7 +95,7 @@ export function withForgotPassword(Component, configProps) {
                     isRenderStrengthMeter: true
                 });
             }
-        }
+        };
 
         toggleModal = () => {
             const { isVisible, email } = this.state;
@@ -103,7 +103,7 @@ export function withForgotPassword(Component, configProps) {
             sessionStorage.setItem(STORAGEKEY_LOGIN_EMAIL, email);
 
             this.setState({ isVisible: !isVisible });
-        }
+        };
 
         onChangeEmail = (e) => {
             const email = e.target.value.trim();
@@ -112,7 +112,7 @@ export function withForgotPassword(Component, configProps) {
                 email,
                 isValidEmail: _validatorEmail(email)
             });
-        }
+        };
 
         onChangePassword = (e) => {
             const password = e.target.value;
@@ -130,7 +130,7 @@ export function withForgotPassword(Component, configProps) {
                 password,
                 isValidPassword
             });
-        }
+        };
 
         submitEmail = () => {
             const { email } = this.state;
@@ -141,7 +141,7 @@ export function withForgotPassword(Component, configProps) {
                 api: _apiRequest,
                 apiArgs: [email]
             });
-        }
+        };
 
         submitPassword = () => {
             const { password, resetCode } = this.state;
@@ -150,7 +150,7 @@ export function withForgotPassword(Component, configProps) {
                 api: _apiReset,
                 apiArgs: [resetCode, password]
             });
-        }
+        };
 
         requestApi = async ({ api, apiArgs }) => {
             const { asyncCaller, setOwnProps } = this.props;
@@ -172,11 +172,11 @@ export function withForgotPassword(Component, configProps) {
                     setOwnProps({ isProcessing: false });
                 }
             }
-        }
+        };
 
         onBackToRequestUI = () => {
             this.setState({ resetCode: '' });
-        }
+        };
 
         render() {
             const { isProcessing, isRenderStrengthMeter, isSuccess } = this.props;

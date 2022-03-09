@@ -10,12 +10,12 @@ export default class ItemPickerViewItem extends PureComponent {
         onClick: PropTypes.func,
         item: PropTypes.object.isRequired,
         children: PropTypes.any.isRequired
-    }
+    };
 
     static defaultProps = {
         className: '',
         style: {}
-    }
+    };
 
     onClick = (e) => {
         const { isSingleSelection, onClick, onRemove, item } = this.props;
@@ -27,7 +27,7 @@ export default class ItemPickerViewItem extends PureComponent {
         } else if (!isSingleSelection) {
             onRemove(item);
         }
-    }
+    };
 
     render() {
         const { className, style, isSingleSelection, children } = this.props;

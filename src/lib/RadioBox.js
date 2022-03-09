@@ -9,18 +9,18 @@ export default class RadioBox extends PureComponent {
         onChange: PropTypes.func,
         label: PropTypes.string,
         children: PropTypes.any
-    }
+    };
 
     static defaultProps = {
         className: '',
         label: ''
-    }
+    };
 
     onChange = () => {
         const { onChange, id } = this.props;
 
         onChange(id);
-    }
+    };
 
     render() {
         const { className, onChange, id, checkedId, label, children } = this.props;

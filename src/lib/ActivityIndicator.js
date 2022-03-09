@@ -7,14 +7,14 @@ export default class ActivityIndicator extends PureComponent {
         className: PropTypes.string,
         classNameInfo: PropTypes.string,
         info: PropTypes.string
-    }
+    };
 
     static defaultProps = {
         size: 24,
         className: '',
         classNameInfo: '',
         info: ''
-    }
+    };
 
     render() {
         const { className, classNameInfo, size, info } = this.props;

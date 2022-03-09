@@ -26,11 +26,11 @@ export function withThrottledChange(Component, defaultThrottle = 150) {
             this.VALUE = value;
             this.CALLBACK = callback;
             this.TIMEOUT = setTimeout(this.change, throttle);
-        }
+        };
 
         change = () => {
             this.CALLBACK(this.VALUE);
-        }
+        };
 
         render() {
             return (

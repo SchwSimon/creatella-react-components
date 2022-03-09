@@ -11,7 +11,7 @@ export default class Input extends PureComponent {
         isValid: PropTypes.bool,
         isInvalid: PropTypes.bool,
         isTextArea: PropTypes.bool
-    }
+    };
 
     static defaultProps = {
         className: '',
@@ -22,7 +22,7 @@ export default class Input extends PureComponent {
         isValid: false,
         isInvalid: false,
         isTextArea: false
-    }
+    };
 
     render() {
         const {

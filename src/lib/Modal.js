@@ -11,14 +11,14 @@ export default class Modal extends PureComponent {
         classNameDialog: PropTypes.string,
         classNameContent: PropTypes.string,
         children: PropTypes.any.isRequired
-    }
+    };
 
     static defaultProps = {
         onClose: () => {},
         className: '',
         classNameDialog: '',
         classNameContent: ''
-    }
+    };
 
     constructor(props) {
         super(props);
@@ -58,7 +58,7 @@ export default class Modal extends PureComponent {
 
             onClose();
         }
-    }
+    };
 
     render() {
         const { isVisible, onClose, className, classNameDialog, classNameContent, children } = this.props;

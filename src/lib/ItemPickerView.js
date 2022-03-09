@@ -32,7 +32,7 @@ export default class ItemPickerView extends PureComponent {
         placeholderInput: PropTypes.string,
         onChangeInput: PropTypes.func,
         renderActiveItemContent: PropTypes.func
-    }
+    };
 
     static defaultProps = {
         ...ItemPickerGlobalDefaultProps,
@@ -51,7 +51,7 @@ export default class ItemPickerView extends PureComponent {
         renderActiveItemContent: null,
         domPortalNode: window.document.body,
         ...(window._ItemPickerView_defaultProps || {})
-    }
+    };
 
     constructor(props) {
         super(props);
@@ -93,11 +93,11 @@ export default class ItemPickerView extends PureComponent {
 
     setFocusInputFunc = (focusInput) => {
         this.focusInput = focusInput;
-    }
+    };
 
     onFocusInput = (e) => {
         this.focusInput && this.focusInput();
-    }
+    };
 
     onToggleItemPicker = () => {
         const { domPortalNode } = this.props;
@@ -122,7 +122,7 @@ export default class ItemPickerView extends PureComponent {
             isItemPickerVisible: !isItemPickerVisible,
             itemPickerStyle
         });
-    }
+    };
 
     onAddItem = (item) => {
         const { value, maxSelections, minSelections, onChange } = this.props;
@@ -143,7 +143,7 @@ export default class ItemPickerView extends PureComponent {
         }
 
         return false;
-    }
+    };
 
     onRemoveItem = (item) => {
         const { value, maxSelections, minSelections, onChange } = this.props;
@@ -157,7 +157,7 @@ export default class ItemPickerView extends PureComponent {
         if (nextValue !== false) {
             onChange(nextValue, item);
         }
-    }
+    };
 
     renderItem = (item) => {
         const { renderItemContent, renderActiveItemContent, itemsNameKey } = this.props;
@@ -175,7 +175,7 @@ export default class ItemPickerView extends PureComponent {
                 {renderContent ? renderContent(item) : name}
             </ItemPickerViewItem>
         );
-    }
+    };
 
     render() {
         const {

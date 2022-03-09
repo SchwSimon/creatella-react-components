@@ -9,11 +9,11 @@ export default class OutsideClick extends PureComponent {
         children: PropTypes.any.isRequired,
         onOutsideClick: PropTypes.func,
         event: PropTypes.string
-    }
+    };
 
     static defaultProps = {
         event: 'mousedown'
-    }
+    };
 
     constructor(props) {
         super(props);
@@ -52,7 +52,7 @@ export default class OutsideClick extends PureComponent {
         if (!this.REF.current.contains(e.target)) {
             onOutsideClick();
         }
-    }
+    };
 
     render() {
         const { onOutsideClick, children, event, ...props } = this.props;

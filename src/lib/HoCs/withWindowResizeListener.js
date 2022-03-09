@@ -32,14 +32,14 @@ export function withWindowResizeListener(Component, delay = 100) {
             clearTimeout(this.TIMEOUT);
 
             this.TIMEOUT = setTimeout(this.onWindowResizeDone, delay);
-        }
+        };
 
         onWindowResizeDone = () => {
             this.setState({
                 windowWidth: window.innerWidth,
                 windowHeight: window.innerHeight
             });
-        }
+        };
 
         render() {
             const { windowWidth, windowHeight } = this.state;

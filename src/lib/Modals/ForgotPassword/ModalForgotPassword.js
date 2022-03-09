@@ -48,7 +48,7 @@ export default class ModalForgotPassword extends PureComponent {
         passwordSuccess: PropTypes.string.isRequired,
         passwordRequestNewEmail: PropTypes.string.isRequired,
         backToLogin: PropTypes.string.isRequired
-    }
+    };
 
     static defaultProps = {
         emailTitle: 'Forgot your password ?',
@@ -63,7 +63,7 @@ export default class ModalForgotPassword extends PureComponent {
         passwordSuccess: 'You can now login with your new password.',
         passwordRequestNewEmail: 'Click here to request a new password reset.',
         backToLogin: 'Back to Login'
-    }
+    };
 
     constructor(props) {
         super(props);
@@ -77,9 +77,9 @@ export default class ModalForgotPassword extends PureComponent {
         const { isPasswordVisible } = this.state;
 
         this.setState({ isPasswordVisible: !isPasswordVisible });
-    }
+    };
 
-    onChangehiddenEmailInputDummy = () => {}
+    onChangehiddenEmailInputDummy = () => {};
 
     renderRequestUI = () => {
         const {
@@ -133,7 +133,7 @@ export default class ModalForgotPassword extends PureComponent {
                 </div>
             </div>
         );
-    }
+    };
 
     renderResetUI = () => {
         const {
@@ -217,7 +217,7 @@ export default class ModalForgotPassword extends PureComponent {
                 </div>
             </div>
         );
-    }
+    };
 
     render() {
         const { isProcessing, isVisible, isResetCode, onClose } = this.props;

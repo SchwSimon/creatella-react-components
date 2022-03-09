@@ -13,19 +13,19 @@ export default class CheckBox extends PureComponent {
         label: PropTypes.any,
         children: PropTypes.any,
         value: PropTypes.any
-    }
+    };
 
     static defaultProps = {
         isSwitch: false,
         className: '',
         label: ''
-    }
+    };
 
     onChange = () => {
         const { onChange, isChecked, value } = this.props;
 
         onChange(isChecked, value);
-    }
+    };
 
     render() {
         const { className, isSwitch, onChange, isChecked, label, children } = this.props;

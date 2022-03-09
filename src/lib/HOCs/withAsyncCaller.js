@@ -34,7 +34,7 @@ export function withAsyncCaller(Component) {
             this._isMounted = false;
 
             Object.keys(this.cancelTokens).forEach(this.cancelTokenByKey);
-        }
+        };
 
         cancelTokenByKey = (key) => {
             if (this.cancelTokens[key]) {
@@ -42,7 +42,7 @@ export function withAsyncCaller(Component) {
 
                 delete this.cancelTokens[key];
             }
-        }
+        };
 
         generateCancelToken = (isAutoHandling = true) => {
             if (AXIOS.CancelToken) {
@@ -58,23 +58,23 @@ export function withAsyncCaller(Component) {
             }
 
             return undefined;
-        }
+        };
 
         apiCaller = (func, ...args) => {
             return this.caller(func, ...[...args, this.generateCancelToken()]);
-        }
+        };
 
         apiCallerProps = (config, ...args) => {
             this.callerProps(config, ...[...args, this.generateCancelToken()]);
-        }
+        };
 
         asyncCaller = (func, ...args) => {
             return this.caller(func, ...args);
-        }
+        };
 
         asyncCallerProps = (config, ...args) => {
             this.callerProps(config, ...args);
-        }
+        };
 
         caller = async (func, ...args) => {
             if (this._isMounted) {
@@ -96,7 +96,7 @@ export function withAsyncCaller(Component) {
                     throw err;
                 }
             }
-        }
+        };
 
         callerProps = (config, ...args) => {
             const {
@@ -155,13 +155,13 @@ export function withAsyncCaller(Component) {
                     request();
                 }
             }
-        }
+        };
 
         setOwnProps = (props) => {
             if (this._isMounted) {
                 this.setState({ ...props });
             }
-        }
+        };
 
         render() {
             return (

@@ -22,7 +22,7 @@ class Helmet extends Component {
         image: PropTypes.string.isRequired,
         language: PropTypes.string.isRequired,
         extraTags: PropTypes.array
-    }
+    };
 
     shouldComponentUpdate(nextProps) {
         const { pathname, title, description, image, language, extraTags } = this.props;

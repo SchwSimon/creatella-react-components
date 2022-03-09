@@ -7,11 +7,11 @@ export default class PasswordStrengthMeter extends Component {
         zxcvbn: PropTypes.func,
         onChangeScore: PropTypes.func,
         className: PropTypes.string
-    }
+    };
 
     static defaultProps = {
         className: ''
-    }
+    };
 
     constructor(props) {
         super(props);
@@ -60,7 +60,7 @@ export default class PasswordStrengthMeter extends Component {
         this.zxcvbn = zxcvbn.default;
 
         this.setPasswordScore();
-    }
+    };
 
     setPasswordScore = () => {
         const { password } = this.props;
@@ -68,7 +68,7 @@ export default class PasswordStrengthMeter extends Component {
         this.setState({
             score: this.zxcvbn(password).score
         }, this.onUpdatedScore);
-    }
+    };
 
     onUpdatedScore = () => {
         const { onChangeScore } = this.props;
@@ -77,7 +77,7 @@ export default class PasswordStrengthMeter extends Component {
         if (onChangeScore) {
             onChangeScore(score);
         }
-    }
+    };
 
     render() {
         const { className } = this.props;

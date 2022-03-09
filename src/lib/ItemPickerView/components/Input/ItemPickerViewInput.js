@@ -16,7 +16,7 @@ export default class ItemPickerViewInput extends PureComponent {
         onSubmit: PropTypes.func.isRequired,
         onRemove: PropTypes.func.isRequired,
         onChangeInput: PropTypes.func
-    }
+    };
 
     constructor(props) {
         super(props);
@@ -47,13 +47,13 @@ export default class ItemPickerViewInput extends PureComponent {
 
             this.REF_INPUT.current.focus();
         }
-    }
+    };
 
     blurInput = () => {
         if (this.REF_INPUT.current) {
             this.REF_INPUT.current.blur();
         }
-    }
+    };
 
     onChangeValue = (e) => {
         const { onChangeInput } = this.props;
@@ -68,7 +68,7 @@ export default class ItemPickerViewInput extends PureComponent {
         this.setState(nextState);
 
         onChangeInput && onChangeInput(value);
-    }
+    };
 
     onKeyUp = (e) => {
         const {
@@ -110,7 +110,7 @@ export default class ItemPickerViewInput extends PureComponent {
 
             this.setState(nextState);
         }
-    }
+    };
 
     onSelectMatch = () => {
         const { onSubmit } = this.props;
@@ -123,7 +123,7 @@ export default class ItemPickerViewInput extends PureComponent {
             match: null,
             value: ''
         });
-    }
+    };
 
     onShowMatch = () => {
         const { match } = this.state;
@@ -134,11 +134,11 @@ export default class ItemPickerViewInput extends PureComponent {
             matchPosX: left,
             matchPosY: top
         });
-    }
+    };
 
     onHideMatch = () => {
         this.setState({ isMatchVisible: false });
-    }
+    };
 
     render() {
         const { placeholder, placeholderInput, itemsSelected } = this.props;
