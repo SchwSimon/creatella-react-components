@@ -17,7 +17,7 @@ module.exports = {
         "react/jsx-max-props-per-line": [2, { "maximum": 3 }],
         "react/self-closing-comp": 2,
         "react/sort-comp": 2,
-        "semi": [2, "always"],
+        "semi": [1, "always"],
         "space-before-function-paren": ["error", {
             "anonymous": "never",
             "named": "never",
