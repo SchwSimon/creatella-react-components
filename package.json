@@ -55,7 +55,6 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
     "connected-react-router": "^6.8.0",
-    "creatella-react-components": "^0.1.88",
     "date-fns": "^2.13.0",
     "delay-cli": "^1.1.0",
     "eslint-config-standard": "^14.1.1",
